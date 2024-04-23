@@ -1,0 +1,203 @@
+/* PICKER */
+
+.selector .select .selected{
+    border: 1px solid var(---line);
+    padding: 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 250px;
+    max-width: 280px;
+
+    cursor: pointer;
+}
+
+.selector .select .select_options{
+    padding: 5px;
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    margin-top: 5px;
+    position: absolute;
+    width: 250px;
+    max-width: 280px;
+    background-color: var(---white);
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    min-height: 150px;
+    max-height: 200px;
+
+    overflow-y: auto;
+    background-image: url('../assets/sbca.logo4.jpg');
+    background-position: center;
+    background-repeat: no-repeat no-repeat;
+    background-size: 100px;
+
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    display: none;
+}
+
+.selector .select .selected p,
+.selector .select .select_options p{
+    white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+}
+
+.selector .select .select_options::-webkit-scrollbar{
+    display: none;
+}
+
+.selector .select .show{
+    display: block;
+}
+
+.selector .select .select_options .s_item{
+    padding: 5px;
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+.selector .select .select_options .s_item:hover{
+    background-color: var(---hover);
+}
+
+/* quick dropdown */
+.dropdown{
+    background-color: var(---white);
+    position: absolute;
+    min-width: 450px;
+    min-height: 300px;
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    display: none;
+}
+
+.dropdown .selection{
+    padding: 10px;
+    border-bottom: 1px solid var(---line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.dropdown .selection .label{
+    display: flex;
+    align-items: center;
+}
+
+.dropdown .selection .label p{
+    margin-left: 10px;
+}
+
+.dropdown .selection:hover{
+    background-color: var(---hover);
+}
+
+.dropdown .selection .q_dropdown{
+    border-bottom: 1px solid var(---line);
+    min-width: 150px;
+    text-align: end;
+    font-size: 15px;
+}
+
+.dropdown .selection .q_dropdown .q_selection{
+    position: absolute;
+    background-color: var(---white);
+    border: 1px solid var(---line);
+    text-align: start;
+    width: 250px;
+    min-height: 200px;
+    max-height: 250px;
+    overflow-y: auto;
+    border-radius: 5px;
+    display: none;
+}
+
+.dropdown .selection .q_dropdown .q_selection::-webkit-scrollbar{
+    display: none;
+}
+
+.dropdown .selection .q_dropdown .q_selection p{
+    padding: 10px;
+}
+
+.dropdown .selection .q_dropdown .q_selection .item{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown .selection .q_dropdown .q_selection .item:hover,
+.dropdown .selection .q_dropdown .q_selection p:hover{
+    background-color: var(---hover);
+}
+
+/* selection with switch */
+
+.dropdown .selection .switch{
+    border: 1px solid var(---line);
+    border-radius: 50px;
+    width: 50px;
+    height: 26px;
+}
+
+.dropdown .selection .switch .circle{
+    width: 25px;
+    height: 25px;
+    border: 1px solid var(---line);
+    border-radius: 50%;
+    background-color: var(---maincolor);
+}
+
+.dropdown .selection .switch .on{
+    margin-left: 23px;
+    background-color: var(---sbca2);
+}
+
+/* show dropdown when hover */
+._acc_actions:hover .dropdown,
+._actions:hover .dropdown{
+    display: block;
+}
+
+.dropdown .selection .q_dropdown:hover .q_selection{
+    display: block;
+}
+
+/* quick selectiion */
+.year_selection{
+    border-bottom: 1px solid var(---line);
+    background-color: var(---white);
+    text-align: end;
+}
+
+.year_selection #selected{
+    padding: 5px;
+    width: 150px;
+}
+
+.year_selection .selections{
+    position: absolute;
+    text-align: end;
+    border: 1px solid var(---line);
+    background-color: var(---white);
+    overflow-y: auto;
+    display: none;
+}
+
+.year_selection .selections p{
+    padding: 5px;
+    width: 150px;
+    cursor: pointer;
+}
+
+.year_selection .selections p:hover{
+    background-color: var(---hover);
+}
+
+.year_selection:hover .selections{
+    display: block;
+}

@@ -1,0 +1,1182 @@
+.view{
+    height: 85vh;
+    width: 100%;
+    display: none;
+}
+
+.active_user{
+    display: flex;
+}
+
+.dashboard .sides{
+    padding: 10px;
+}
+
+/* all text input and textarea */
+textarea,
+input{
+    font-family: "Open Sans", "Noto Color Emoji", sans-serif;
+}
+
+/* dashboard Usercard - STUDENTS */
+
+.dashboard .userprofile{
+    width: 25%;
+    min-width: 300px;
+}
+
+.dashboard .userprofile .usercard{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    border-radius: 10px;
+    height: 230px;
+    min-height: 200px;
+    border: 1px solid var(---line);
+}
+
+.dashboard .userprofile .usercard .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.dashboard .userprofile .usercard .header .user_profile{
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .userprofile .usercard .header .user_profile .image{
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+    border-radius: 50px;
+}
+
+.dashboard .userprofile .usercard .header .user_profile .image #image{
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+}
+
+.dashboard .userprofile .usercard .header .user_profile .name #name{
+    color: var(---maincolor);
+    font-weight: bold;
+}
+
+.dashboard .userprofile .usercard .header .user_profile .name #course{
+    color: var(---gray);
+    font-size: 16px;
+}
+
+.dashboard .userprofile .usercard .header .options{
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+}
+
+.dashboard .userprofile .usercard .header .options:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+/* View GPA */
+
+.dashboard .userprofile .usercard .viewGPA{
+    height: 130px;
+    max-height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .userprofile .usercard .viewGPA .gpa #grade{
+    font-size: 50px;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* dashboard Table view - STUDENTS */
+.dashboard .dashboardTable{
+    width: 75%;
+}
+
+.dashboard .dashboardTable .header{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard .dashboardTable .header .head p{
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.dashboard .dashboardTable .timeupdate{
+    padding-left: 10px;
+    padding-right: 10px;
+    color: var(---gray);
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .dashboardTable .timeupdate i{
+    margin-right: 10px;
+}
+
+.dashboard .dashboardTable .table{
+    padding: 10px;
+}
+
+.dashboard .dashboardTable .table .gradeTable{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.dashboard .dashboardTable .table .gradeTable tr th{
+    border: 1px solid var(---line);
+    text-align: start;
+    padding: 3px;
+    color: var(---selected_color);
+    background-color: var(---tableHeader);
+}
+
+.dashboard .dashboardTable .table .gradeTable tr td{
+    border: 1px solid var(---gray);
+    padding: 3px;
+    cursor: pointer;
+}
+
+.dashboard .dashboardTable .table .gradeTable tr #grade{
+    width: 5%;
+}
+
+.dashboard .dashboardTable .table .gradeTable tr #subject{
+    width: auto;
+}
+
+.dashboard .dashboardTable .table .gradeTable tr #code{
+    width: 10%;
+}
+
+.dashboard .dashboardTable .table .gradeTable tr #teacher{
+    width: auto;
+}
+
+.dashboard .dashboardTable .table .gradeTable tr:not(#header):hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+/* dashboard admin's view - ADMIN */
+
+/* global input - for dark and white mode */
+input{
+    color: var(---maincolor);
+    background-color: transparent;
+    font-family: "Open Sans", "Noto Color Emoji";
+}
+
+input[type="date"]{
+    font-family: "Open Sans", sans-serif;
+}
+
+input::placeholder{
+    color: var(---gray);
+}
+
+textarea{
+    background-color: transparent;
+    color: var(---maincolor);
+    font-family: "Open Sans", "Noto Color Emoji";
+}
+
+select{
+    background-color: transparent;
+    color: var(---maincolor);
+}
+
+option{
+    color: var(---maincolor);
+    background-color: var(---white);
+}
+
+/* tab bar admin view */
+.dashboard .tabbar{
+    width: 200px;
+    padding: 5px;
+}
+
+.dashboard .tabbar .option{
+    color: var(---maincolor);
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    font-family: "Open Sans", sans-serif;
+}
+
+.dashboard .tabbar .option:not(.active):hover{
+    background-color: var(---hover);
+}
+
+.dashboard .tabbar .active{
+    background-color: var(---sbca);
+    color: var(---selected_color);
+}
+
+.dashboard .tabbar .option svg,
+.dashboard .tabbar .option i{
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 5px;
+}
+
+.dashboard .tabbar .option svg{
+    width: 25px;
+    height: 25px;
+}
+
+.dashboard .tabbar .option p{
+    font-size: 17px;
+}
+
+/* dashboard box-content workspace */
+
+.dashboard .workspace{
+    padding: 10px;
+    width: 100%;
+}
+
+.dashboard .workspace .workcard{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    border-radius: 10px;
+    height: 520px;
+    min-height: 500px;
+    max-height: 520px;
+
+    display: none;
+}
+
+/* all page header and popup menus */
+
+.dashboard .workspace .workcard .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid var(---gray);
+}
+
+.dashboard .workspace .workcard .header .controlside,
+.dashboard .workspace .workcard .header .actionside{
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .workspace .workcard .header .controlside .controls,
+.dashboard .workspace .workcard .header .actionside .actions{
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50px;
+    font-size: 15px;
+}
+
+.dashboard .workspace .workcard .header .actionside #admindb_option p{
+    position: absolute;
+}
+
+.dashboard .workspace .workcard .header .actionside .actions svg,
+.dashboard .workspace .workcard .header .controlside .controls svg{
+    width: 20px;
+    height: 20px;
+}
+
+.dashboard .workspace .workcard .header .controlside .controls p{
+    margin-right: 10px;
+    margin-left: 10px;
+    font-size: 17px;
+}
+
+/* for announcment post button */
+.dashboard .workspace .workcard .header .controlside .post{
+    background-color: var(---sbca);
+    color: var(---selected_color);
+    padding: 5px 15px 5px 15px;
+}
+
+.dashboard .workspace .workcard .header .controlside .post:active{
+    background-color: var(---white);
+}
+
+.dashboard .workspace .workcard .header .controlside .controls:hover,
+.dashboard .workspace .workcard .header .actionside .actions:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.dashboard .workspace .workcard .header .controlside .controls:active,
+.dashboard .workspace .workcard .header .actionside .actions:active{
+    color: var(---white);
+}
+
+.dashboard .workspace .workcard .header .controlside .page{
+    font-size: 17px;
+    color: var(---gray);
+    margin-left: 10px;
+}
+
+/* searchbar popup */
+
+.dashboard .workspace .workcard .header .search .searchinput{
+    display: none;
+}
+
+.dashboard .workspace .workcard .header .search .showSearch{
+    display: block;
+}
+
+.dashboard .workspace .workcard .header .search .searchinput input{
+    margin-left: 10px;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+    color: var(---maincolor);
+}
+
+.dashboard .workspace .workcard .header .search input:focus{
+    outline: none;
+}
+/* end of header styling */
+
+/* TAB BAR PAGES STYLES */
+
+/* dashboard workspace */
+
+.dashboard .workspace .Dashboardview .content .titleContent{
+    margin-bottom: 10px;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled{
+    overflow-y: auto;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled{
+    width: 100%;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr:not(#header):hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    cursor: pointer;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr:not(#header):active{
+    color: var(---white);
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr th{
+    text-align: start;
+    padding: 3px;
+    color: var(---selected_color);
+    background-color: var(---tableHeader);
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr td{
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr #std_userid{
+    width: 15%;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr #std_course{
+    width: 30%;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr #std_unit,
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr #std_year,
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr #std_gpa{
+    width: 6%;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr .gpa_input .total_gpa{
+    font-size: 20px;
+    width: 100%;
+    text-align: end;
+    border: 0;
+    background-color: transparent;
+}
+
+.dashboard .workspace .Dashboardview .content .tableofenrolled .enrolled tr .gpa_input .total_gpa:focus{
+    outline: none;
+}
+
+/* Semester workspace */
+
+.dashboard .workspace .workcard .content{ /* Content page of all pages from tab bar starts here. */
+    padding: 10px;
+    height: 420px;
+    max-height: 420px;
+    overflow-y: auto;
+    /* border: 1px solid gray; */
+
+    /* removing scrollbar */
+    scrollbar-width: none; /* remove scrollbar for firefox */
+    -ms-overflow-style: none; /* remove scrollbar for edge  */
+}
+
+/* remove scrollbar */
+.dashboard .workspace .Dashboardview .content::-webkit-scrollbar{
+    display: none;
+}
+
+.dashboard .workspace .workcard .content .currentsem{
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+.dashboard .workspace .workcard .content .info{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+    padding: 10px;
+    height: 80px;
+}
+
+.dashboard .workspace .workcard .content .info .seminfo{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid var(---gray);
+    min-width: 100px;
+    margin-right: 20px;
+    color: var(---maincolor);
+}
+
+.dashboard .workspace .workcard .content .info .seminfo i{
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+/* hidding pages - this is for navigating pages like dashboard, semester, students and more. */
+.dashboard .workspace .viewpage{
+    display: block;
+}
+
+/* POPUP STYLES */
+
+/* popup for new users */
+
+.dashboard .workcard .content .popup_message{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(---white);
+
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    height: 120px;
+    width: 300px;
+
+    visibility: hidden;
+}
+
+.dashboard .workcard .content .showError{ 
+    /* show the error message */
+    visibility: visible;
+}
+
+.dashboard .workcard .content .popup_message .header .headertitle{
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .workcard .content .popup_message .header .headertitle p{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+.dashboard .workcard .content .popup_message .header .exit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.dashboard .workcard .content .popup_message .header .exit:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.dashboard .workcard .content .popup_message .header .exit:active{
+    color: var(---white);
+}
+
+.dashboard .workcard .content .popup_message .error_name{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 60px;
+    
+    font-size: 20px;
+}
+
+.dashboard .workcard .content .popup_message .error_name #error_name,
+.dashboard .workcard .content .popup_message .error_name #error_name_msg{
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+/* popup for new semester */
+.dashboard .workspace .blurbg{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: rgba(66, 66, 66, 0.589);
+    height: 100%;
+    width: 100%;
+
+    visibility: hidden;
+}
+.dashboard .Semesterview .blurbg .newsempopup{
+    height: 300px;
+    width: 500px;
+    border-radius: 10px;
+    background-color: var(---white);
+    box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(---white);
+}
+
+/* this will add to classlist */
+.dashboard .workspace .showSemPopup{
+    visibility: visible;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .header .headertitle{
+    font-weight: bold;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .header .exit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .header .exit:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .header .exit:active{
+    color: var(---white);
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform{
+    padding: 10px;
+    text-align: center;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .inputsem{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .inputsem input{
+    padding: 5px;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+    border: none;
+    border-bottom: 1px solid var(---gray);
+    text-align: end;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .savesemester #savesemester{
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: 0;
+    width: 80%;
+    background-color: var(---sbca);
+    color: var(---selected_color);
+    margin-top: 20px;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform input:focus{
+    outline: none;
+    border-bottom: 1px solid var(---sbca);
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .savesemester #savesemester:hover{
+    background-color: var(---white);
+    color: var(---maincolor);
+}
+
+/* student option popup */
+
+.dashboard .studentlistview .studentOption{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: var(---white);
+    height: 200px;
+    width: 400px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+}
+
+.dashboard .studentlistview .studentOption .header .headertitle{
+    font-weight: bold;
+}
+
+.dashboard .studentlistview .studentOption .header .exit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.dashboard .studentlistview .studentOption .header .exit:active{
+    color: var(---white);
+}
+
+.dashboard .studentlistview .studentOption .header .exit:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.dashboard .studentlistview .studentOption .popupOptions{
+    height: 200px;
+}
+
+.dashboard .studentlistview .studentOption .popupOptions .optionsContent{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard .studentlistview .studentOption .popupOptions .optionsContent select{
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid var(---sbca);
+}
+
+.dashboard .studentlistview .studentOption .popupOptions .optionsContent select:focus{
+    outline: none;
+}
+
+/* list of students view - ADMIN */
+.dashboard .workspace .workcard .content .adminlistofstudents{
+    width: 100%;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr:not(.tb_header){
+    cursor: pointer;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr:not(.tb_header):hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr:not(.tb_header):active{
+    color: var(---white);
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr th{
+    /* border: 1px solid var(---gray); */
+    padding: 3px;
+    text-align: start;
+    background-color: var(---tableHeader);
+    color: var(---selected_color);
+    font-weight: normal;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr td{
+    /* border: 1px solid var(---gray); */
+    padding: 10px;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr #userid{
+    width: 15%;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr #name{
+    width: 30%;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr #course{
+    width: 30%;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr #year{
+    width: 10%;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr #status{
+    width: 10%;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr #email{
+    width: 20%;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr #numstudents,
+.dashboard .workspace .workcard .content .adminlistofstudents tr #coursecode{
+    width: 10%;
+}
+
+.dashboard .workspace .workcard .content .adminlistofstudents tr #coursename{
+    width: auto;
+}
+
+/* announcment /calendar */
+
+.dashboard .workspace .announcementview .content .entries .title{
+    border: none;
+    font-size: 30px;
+    width: 100%;
+}
+
+.dashboard .workspace .announcementview .content .entries .ann_body:focus,
+.dashboard .workspace .announcementview .content .entries .title:focus{
+    outline: none;
+}
+
+.dashboard .workspace .announcementview .content .entries .ann_body{
+    width: 100%;
+    font-size: 20px;
+    font-family: "Open sans", "Noto Color Emoji", sans-serif;
+    border: none;
+    border-bottom: 1px solid var(---line);
+    resize: none;
+    margin-top: 20px;
+}
+
+.dashboard .workspace .announcementview .content .attachments .files{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 5px;
+    width: fit-content;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.dashboard .workspace .announcementview .content .attachments .files:hover{
+    background-color: var(---line);
+    color: var(---maincolor);
+}
+
+
+.dashboard .workspace .announcementview .content .attachments .files svg,
+.dashboard .workspace .announcementview .content .attachments .files i{
+    margin-right: 10px;
+}
+
+.dashboard .workspace .announcementview .content .attachments .files .remove{
+    margin-left: 10px;
+}
+
+/* Course popup - for adding new course */
+
+.dashboard .courselistview .addnew_course{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 66, 66, 0.589);
+
+    display: none;
+}
+
+.dashboard .courselistview .show_addnew_course{
+    display: block;
+}
+
+.dashboard .courselistview .addnew_course .new_course{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 550px;
+    height: 300px;
+    background-color: var(---white);
+    border: 1px solid var(---line);
+    border-radius: 5px;
+}
+
+.dashboard .courselistview .addnew_course .new_course .header i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.dashboard .courselistview .addnew_course .new_course .header i:hover{
+    background-color: var(---hover);
+}
+
+.dashboard .courselistview .addnew_course .new_course .header i:active{
+    color: var(---white);
+}
+
+.dashboard .courselistview .addnew_course .new_course .content{
+    max-height: 200px;
+}
+
+.dashboard .courselistview .addnew_course .new_course .content .course_input{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard .courselistview .addnew_course .new_course .content .course_input input{
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    padding: 5px;
+    font-family: "Open sans", sans-serif;
+    font-size: 18px;
+    margin-bottom: 10px;
+    width: 300px;
+}
+
+.dashboard .courselistview .addnew_course .new_course .content .course_input input:focus{
+    outline: none;
+}
+
+.dashboard .courselistview .addnew_course .new_course .content .button{
+    text-align: center;
+    width: 100%;
+    display: block;
+    margin-top: 20px;
+}
+
+.dashboard .courselistview .addnew_course .new_course .content .button input{
+    border-radius: 5px;
+    background-color: var(---sbca2);
+    color: var(---selected_color);
+}
+
+.dashboard .courselistview .addnew_course .new_course .content .button input:hover{
+    background-color: transparent;
+    color: var(---maincolor);
+}
+
+.dashboard .courselistview .addnew_course .new_course .content .button input:active{
+    color: var(---white);
+}
+
+
+/* announcement popup menu */
+
+.dashboard .workspace .announcementview .publishPopup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: var(---white);
+    width: 400px;
+    height: 250px;
+    border-radius: 10px;
+}
+
+.dashboard .workspace .announcementview .publishPopup .header .actionside .title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dashboard .workspace .announcementview .publishPopup .header .controlside .exit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.dashboard .workspace .announcementview .publishPopup .header .controlside .exit:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.dashboard .workspace .announcementview .publishPopup .header .controlside .exit:active{
+    color: var(---white);
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time{
+    padding: 10px;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .date_picker{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(---line);
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .date_picker .date_display,
+.dashboard .workspace .announcementview .publishPopup .date_time .time_picker .start .label,
+.dashboard .workspace .announcementview .publishPopup .date_time .date_picker .label{
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .time_picker .start .label svg,
+.dashboard .workspace .announcementview .publishPopup .date_time .date_picker .label svg,
+.dashboard .workspace .announcementview .publishPopup .date_time .time_picker .start .label i,
+.dashboard .workspace .announcementview .publishPopup .date_time .date_picker .label i{
+    margin-right: 10px;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .date_picker .date_display svg,
+.dashboard .workspace .announcementview .publishPopup .date_time .date_picker .date_display i{
+    margin-left: 10px;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .time_picker .start:hover,
+.dashboard .workspace .announcementview .publishPopup .date_time .date_picker:hover{
+    background-color: var(---hover2);
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .time_picker{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .time_picker .start{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 2px solid var(---line);
+    padding: 5px;
+    border-radius: 10px;
+    width: 45%;
+    cursor: pointer;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .time_picker .start .time_display{
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .time_picker .start .time_display i{
+    margin-left: 10px;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .checkboxes{
+    margin-top: 15px;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .publish{
+    margin: 15px;
+    text-align: center;
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .publish button{
+    width: 100%;
+    padding: 10px;
+    font-size: 18px;
+    border-radius: 10px;
+    border: none;
+    background-color: var(---sbca);
+    color: var(---selected_color);
+}
+
+.dashboard .workspace .announcementview .publishPopup .date_time .publish button:hover{
+    background-color: var(---white);
+    color: var(---maincolor);
+}
+
+/* todo list view */
+
+.dashboard .workspace .workcard .content .todo_lists,
+.dashboard .workspace .workcard .content .todolist{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .workspace .workcard .content .todolist .newtodo{
+    border: 1px solid var(---gray);
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.dashboard .workspace .workcard .content .todolist .newtodo .newtodoinput{
+    border-radius: 10px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .workspace .workcard .content .todolist .newtodo .newtodoinput input{
+    border: none;
+    font-size: 18px;
+    font-family: sans-serif;
+    width: 300px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.dashboard .workspace .workcard .content .todolist .newtodo .newtodoinput button{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 10px;
+    border: none;
+    color: var(---selected_color);
+    background-color: var(---sbca);
+    border-radius: 50%;
+}
+
+.dashboard .workspace .workcard .content .todolist .newtodo .newtodoinput button svg{
+    width: 30px;
+    height: 30px;
+}
+
+.dashboard .workspace .workcard .content .todolist .newtodo .newtodoinput input:focus{
+    outline: none;
+}
+
+.dashboard .workspace .workcard .content .todo_lists .lists{
+    padding: 10px;
+    width: 500px;
+    max-width: 500px;
+    margin-top: 10px;
+}
+
+.dashboard .workspace .workcard .content .todo_lists .lists .item{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.dashboard .workspace .workcard .content .todo_lists .lists .item:hover{
+    background-color: var(---hover3);
+}
+
+.dashboard .workspace .workcard .content .todo_lists .lists .item .checkbox{
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.dashboard .workspace .workcard .content .todo_lists .lists .item .checkbox input{
+    margin-right: 10px;
+    background-color: var(---sbca);
+    cursor: pointer;
+}
+
+.dashboard .workspace .workcard .content .todo_lists .lists .item i:hover{
+    color: var(---sbca);
+}
+
+/* new student and teacher page */
+.dashboard .workspace .newuserview .content .title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard .workspace .newuserview .content .forms{
+    margin-top: 10px;
+}
+
+.dashboard .workspace .newuserview .content .forms .user_name{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.dashboard .workspace .newuserview .content .forms .user_name .form{
+    display: flex;
+    align-items: center;
+    border: 1px solid var(---line);
+    margin-right: 10px;
+    border-radius: 5px;
+}
+
+.dashboard .workspace .newuserview .content .forms .user_name .form input{
+    padding: 5px;
+    font-size: 18px;
+    border: none;
+    background-color: transparent;
+}
+
+.dashboard .workspace .newuserview .content .forms .user_name .form input:focus{
+    outline: none;
+}
+
+.dashboard .workspace .newuserview .content .forms .user_name .picker{
+    margin-right: 20px;
+}
+
+.dashboard .workspace .newuserview .content .forms .user_name .picker input{
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid var(---line);
+    font-size: 18px;
+}
+
+.dashboard .workspace .newuserview .content .forms .user_name .address textarea{
+    width: 500px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.dashboard .workspace .newuserview .content .forms .user_name .address textarea:focus{
+    outline: none;
+}

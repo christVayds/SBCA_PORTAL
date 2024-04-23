@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Color+Emoji&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Reddit+Mono:wght@200..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root{
+    ---sbca: #ff6666;
+    ---sbca2: #FD4848;
+    ---sbca3: #ba1111;
+    ---maincolor: #3F3F3F;
+    ---tableHeader: #3F3F3F;
+    ---gray: #A5A5A5;
+    ---line: #9b9a9a59;
+    ---white: #fff;
+    ---selected_color: #fff;
+    ---shadow: #c4c4c4;
+    ---shadow2: #2e2e2e;
+    ---hover: #e3e3e3;
+    ---hover2: #ebeaea48;
+    ---hover3: #c4c4c45d;
+    ---acc_bg: #b9b1fd15;
+    ---list_hover: #e2e2e238;
+    ---tab_hover: #dbdbdb5d;
+    ---practice: #f0f0f0ec;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+}
+
+a{
+    text-decoration: none;
+    color: var(---maincolor);
+}
+
+body{
+    font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+    color: var(---maincolor);
+    background-color: var(---white);
+}
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(---white);
+
+    width: 900px;
+    border-radius: 5px;
+}
+
+.container .users{
+    display: flex;
+    align-items: center;
+    padding-left: 10px;
+}
+
+.container .users .user{
+    padding: 7px;
+    border-radius: 8px 8px 0 0;
+    cursor: pointer;
+}
+
+.container .users .active{
+    border: 1px solid var(---line);
+    background-color: var(---sbca2);
+    color: var(---selected_color);
+}
+
+.container .users .user:not(.active):hover{
+    background-color: var(---hover);
+}
+
+.container .loginbox{
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    height: 400px;
+    padding: 10px;
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.container .loginbox .side{
+    width: 50%;
+}
+
+.container .loginbox .left{
+    position: relative;
+    border-radius: 10px;
+    margin: 10px;
+    /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
+    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
+    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+}
+
+.container .loginbox .left .logo{
+    text-align: center;
+    padding: 10px;
+}
+
+.container .loginbox .left .form{
+    text-align: start;
+}
+
+.container .loginbox .left .form .logUser{
+    padding-left: 15px;
+}
+
+.container .loginbox .left .form .forms{
+    text-align: center;
+}
+
+.container .loginbox .left .form .forms input{
+    width: 350px;
+    padding: 10px;
+    font-size: 18px;
+    font-family: "Open sans";
+    margin-top: 20px;
+    border-radius: 5px;
+    border: 1px solid var(---line);
+}
+
+.container .loginbox .left .form .forms input:focus{
+    outline: none;
+}
+
+.container .loginbox .left .form .forms input[type="submit"]{
+    background-color: var(---sbca2);
+    color: var(---selected_color);
+}
+
+.container .loginbox .left .form .forms input[type="submit"]:hover{
+    background-color: var(---sbca);
+}
+
+.container .loginbox .left .logo img{
+    width: 35%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.container .loginbox .left .logo img:hover{
+    transform: scale(1.02);
+}
+
+.container .loginbox .right{
+    position: relative;
+    text-align: end;
+}
+
+.container .loginbox .right .slide_img{
+    width: 90%;
+    object-fit: cover;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    transition: transform 0.3s ease;
+    animation-duration: 1s;
+    animation-name: slide_image;
+}
+
+@keyframes slide_image{
+    from{
+        margin-right: 20%;
+        opacity: 0%;
+    }
+    to{
+        margin-right: 0%;
+        opacity: 100%;
+    }
+}
+
+.container .loginbox .right img:hover{
+    transform: scale(1.02);
+}
+
+.container .options{
+    display: flex;
+    margin-top: 10px;
+}
+
+.container .options a{
+    text-decoration: none;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 16px;
+    color: var(---gray);
+}
+
+.container .options a:hover{
+    color: var(---maincolor);
+    text-decoration: underline;
+}

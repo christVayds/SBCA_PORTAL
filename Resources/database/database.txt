@@ -1,0 +1,154 @@
+# create table for Students
+CREATE TABLE Students(
+    username varchar(255) NOT NULL PRIMARY KEY,
+    fname varchar(255) NOT NULL,
+    lname varchar(255) NOT NULL,
+    mname varchar(255) NOT NULL,
+    email varchar(255) UNIQUE NOT NULL,
+    userid varchar(255) NOT NULL,
+    course varchar(255) NOT NULL,
+    _password LONGTEXT NOT NULL,
+    bdate DATETIME NOT NULL,
+    address varchar(255),
+    gender varchar(20),
+    profilePicture LONGBLOB
+);
+
+INSERT INTO Students (username, fname, lname, mname, email, userid, course, _password, bdate, address, gender) VALUES (
+    'atangan',
+    'judy an',
+    'tangan',
+    's',
+    'zxtangan@sbca.edu.ph',
+    'userid01',
+    'bsit',
+    '12345678',
+    '2000-11-10 16:38:34',
+    'home address',
+    'female'
+);
+
+# create table for Teachers
+CREATE TABLE Teachers(
+    username varchar(255) NOT NULL PRIMARY KEY,
+    fname varchar(255) NOT NULL,
+    lname varchar(255) NOT NULL,
+    mname varchar(255) NOT NULL,
+    email varchar(255) UNIQUE NOT NULL,
+    userid varchar(255) NOT NULL,
+    _password LONGTEXT NOT NULL,
+    bdate DATETIME NOT NULL,
+    address varchar(255),
+    gender varchar(20),
+    profession varchar(255),
+    profilePicture LONGBLOB
+);
+
+INSERT INTO Teachers (username, fname, lname, mname, email, userid, _password, bdate, address, gender, profession) VALUES (
+    'tstark',
+    'tony',
+    'stark',
+    's',
+    'tstark@sbca.edu.ph',
+    'userid01',
+    '12345678',
+    '2000-11-10 16:38:34',
+    'home address',
+    'male',
+    'IT Professor'
+);
+
+# create table for Admin
+CREATE TABLE Admin(
+    username varchar(255) NOT NULL PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    email varchar(255) UNIQUE NOT NULL,
+    _password LONGTEXT NOT NULL,
+    address varchar(255),
+);
+
+INSERT INTO Admin(username, name, email, _password, address) VALUES (
+    'sbcaeduph',
+    'st. bernadette college of alabang',
+    'sbca@edu.ph',
+    'sbca12345',
+    'sbcaaddress'
+);
+
+# subjects
+CREATE TABLE Subjects(
+    code varchar(255) NOT NULL PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    _year int(1) NOT NULL,
+    semester int(1) NOT NULL,
+    Major int(1) NOT NULL,
+    username varchar(255) NOT NULL, # teacher's username
+
+    FOREIGN KEY (username) REFERENCES Teachers(username)
+);
+
+# semester
+CREATE TABLE Semester(
+    semester int(1) NOT NULL,
+    schoolyear varchar(255) NOT NULL,
+    semID varchar(255) PRIMARY KEY,
+    current int(1) NOT NULL # 0 - not, 1 - yes
+);
+
+INSERT INTO semester (semester, schoolyear, semID, current) VALUES (
+    1,
+    '2023-2024',
+    '1sem2023-2024',
+    1
+);
+
+CREATE TABLE todo_admin(
+    todoid int(11) AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    username varchar(255) NOT NULL,
+    name varchar(255) NOT NULL,
+    checked int(1) NOT NULL,
+
+    FOREIGN KEY (username) REFERENCES Admin(username)
+);
+
+INSERT INTO todo_admin(todoid, username, name, checked) VALUES (
+    'sbcaeduph',
+    'eat your vegies',
+    0
+);
+
+# courses
+
+CREATE TABLE Course(
+    code varchar(255) PRIMARY KEY,
+    name varchar(255) NOT NULL,
+    _year int(1) NOT NULL
+);
+
+INSERT INTO Course (code, name, _year) VALUES (
+    'bsit3',
+    'BS Information Technology',
+    3
+);
+
+// css
+:root{
+    ---sbca: #ff6666;
+    ---sbca2: #FD4848;
+    ---sbca3: #ba1111;
+    ---maincolor: #3F3F3F;
+    ---tableHeader: #3F3F3F;
+    ---gray: #A5A5A5;
+    ---line: #9b9a9a59;
+    ---white: #fff;
+    ---selected_color: #fff;
+    ---shadow: #c4c4c4;
+    ---shadow2: #2e2e2e;
+    ---hover: #e3e3e3;
+    ---hover2: #ebeaea48;
+    ---hover3: #c4c4c45d;
+    ---acc_bg: #b9b1fd15;
+    ---list_hover: #e2e2e238;
+    ---tab_hover: #dbdbdb5d;
+    ---practice: #f0f0f0ec;
+}

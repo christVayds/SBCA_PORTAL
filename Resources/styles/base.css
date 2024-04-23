@@ -1,0 +1,117 @@
+
+/* 
+redit mono 
+Roboto 
+Open sans 
+Black Ops One
+Noto Color Emoji
+*/
+@import url('https://fonts.googleapis.com/css2?family=Black+Ops+One&family=Noto+Color+Emoji&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Reddit+Mono:wght@200..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+    text-decoration: none;
+}
+
+body{
+    font-size: 18px;
+    font-family: "Open Sans", sans-serif;
+    color: var(---maincolor);
+    background-color: var(---white);
+
+    /* removing scrollbar */
+    /* scrollbar-width: none; /* remove scrollbar for firefox */
+    /* -ms-overflow-style: none; remove scrollbar for edge */ 
+}
+
+/* remove the scrollbar display for - chrome, safari, opera */
+/* body::-webkit-scrollbar{
+    display: none;
+} */
+
+/* Navigation Bar */
+
+.navbar{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Design in desktop view */
+
+.navbar .navmenu{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Logo design */
+
+.navbar .navmenu #sbca{
+    font-size: 20px;
+    color: var(---sbca);
+    letter-spacing: 1px;
+    font-family: "Black Ops One"; /* change this shit */
+}
+
+.navbar .navmenu img:not(#textlogo){
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    margin-right: 10px;
+}
+
+.navbar .navmenu #textlogo{
+    height: 35px;
+}
+
+/* Action menu */
+
+.navbar .navmenu a{
+    color: var(---gray);
+}
+
+.navbar .navmenu .active{
+    color: var(---maincolor);
+}
+
+.navbar .navmenu a .nav{
+    margin-left: 15px;
+    padding: 5px;
+    font-size: 20px;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.navbar .navmenu a .label{
+    display: none;
+    opacity: 0;
+    position: absolute;
+    font-size: 15px;
+    border-radius: 5px;
+    background-color: var(---hover);
+    color: var(---maincolor);
+    margin-top: 5px;
+    transition: opacity .5s, display 5s;
+    padding: 5px;
+}
+
+.navbar .navmenu a .nav:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.navbar .navmenu a:hover .label{
+    opacity: .7;
+    display: block;
+}
+
+.navbar .navmenu a #sbca:active,
+.navbar .navmenu a .nav:active{
+    color: var(---white);
+}

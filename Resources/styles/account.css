@@ -1,0 +1,1273 @@
+.account{
+    height: 85vh;
+
+    /* border: 1px solid gray; */
+    display: none;
+}
+
+.account::-webkit-scrollbar{
+    display: none;
+}
+
+.active{
+    display: flex;
+}
+
+/* .account .side{
+    border: 1px solid gray;
+} */
+
+/* GLOBAL */
+
+/* for all tabs */
+.acc_tabs{
+    padding: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.acc_tabs svg,
+.acc_tabs i{
+    margin-right: 10px;
+}
+
+.acc_tabs p{
+    font-size: 17px;
+}
+
+.acc_tabs:hover{
+    background-color: var(---tab_hover);
+    color: var(---maincolor);
+}
+
+.account .acc_tabbar .active_tab{
+    background-color: var(---sbca);
+    color: var(---selected_color);
+}
+
+/* GLOBAL HEADER */
+
+/* action buttons */
+.acc_header{
+    background-color: var(---white);
+    display: flex;
+    align-items: center;
+    margin: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    width: fit-content;
+    border: 1px solid var(---line);
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+/* for buttons */
+.acc_actions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+    margin-right: 5px;
+    margin-left: 5px;
+    font-size: 16px;
+}
+
+.acc_actions svg{
+    font-size: 30px;
+}
+
+.acc_actions:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.acc_actions:active{
+    color: var(---white);
+}
+
+/* end of for buttons */
+
+
+/* table view */
+.acc_page .acc_table_view{
+    margin-top: 10px;
+}
+
+.acc_page .acc_table_view .acc_table_content{
+    width: 125%;
+    text-align: left;
+    overflow-y: auto;
+}
+
+/* header for table */
+
+.acc_page .acc_table_view .acc_table_content tr:not(#tbl_header):hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    cursor: pointer;
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header{
+    background-color: var(---tableHeader);
+    color: var(---selected_color);
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header th{
+    font-weight: normal;
+    border: 1px solid var(---line);
+    padding: 4px;
+}
+
+/* for the students account width of columns */
+.acc_page .acc_table_view .acc_table_content #tbl_header #userid{
+    width: 6%;
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header #username{
+    width: 10%;
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header #usercourse{
+    width: 10%;
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header #userreceivable,
+.acc_page .acc_table_view .acc_table_content #tbl_header #usermonthly,
+.acc_page .acc_table_view .acc_table_content #tbl_header #usertotal{
+    width: 5%;
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header #userunit{
+    width: 5%;
+}
+
+/* make the table text color to main color */
+.acc_page .acc_table_view .acc_table_content tr a{
+    color: var(---maincolor);
+}
+
+.acc_page .acc_table_view .acc_table_content tr td{
+    padding: 4px;
+}
+
+.acc_page .acc_table_view .acc_table_content tr .balance{
+    text-align: end;
+}
+
+/* for the students schedule table view */
+.acc_page .acc_table_view .acc_table_content #tbl_header #subcode,
+.acc_page .acc_table_view .acc_table_content #tbl_header #time{
+    width: 10%;
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header #units,
+.acc_page .acc_table_view .acc_table_content #tbl_header #day{
+    width: 10%;
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header #description{
+    width: 25%;
+}
+
+.acc_page .acc_table_view .acc_table_content #tbl_header #gclassCode{
+    width: auto;
+}
+
+/* Table view */
+
+.acc_table{
+    background-color: var(---white);
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    height: 70vh;
+    min-height: 450px;
+    overflow-x: scroll;
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.acc_table::-webkit-scrollbar{
+    width: 10px;
+    border-top: 1px solid var(---line);
+}
+
+.acc_table::-webkit-scrollbar-track{
+    background-color: transparent;
+}
+
+.acc_table::-webkit-scrollbar-thumb{
+    background-color: transparent;
+    border-radius: 10px;
+}
+
+.acc_table::-webkit-scrollbar-thumb:hover{
+    background-color: var(---gray);
+}
+
+/* text heading */
+.text_heading{
+    padding: 10px;
+    background-color: var(---white);
+}
+
+.text_heading .heading_name{
+    color: var(---sbca);
+}
+
+.text_with_icon{
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.text_with_icon p{
+    color: var(---maincolor);
+    margin-left: 10px;
+}
+
+/* if the element is clickable */
+.clickable{
+    cursor: pointer;
+}
+
+/* post content - a post or content that you can like and comment */
+.post_content{
+    background-color: var(---white);
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.post_content .post_author{
+    font-weight: bold;
+    margin-bottom: 10px;
+    font-size: 20px;
+    color: var(---maincolor);
+}
+
+.post_content .post_image img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.post_content .post_like_count{
+    margin-top: 10px;
+    color: var(---gray);
+}
+
+.post_content .interact{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+.post_content .interact .con{
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+}
+
+.post_content .interact .datetime{
+    padding: 10px;
+    color: var(---gray);
+}
+
+/* cards design */
+.acc_card{
+    border: 1px solid var(---line);
+    width: 350px;
+    height: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    margin: 20px;
+}
+
+.acc_card .header{
+    padding: 10px;
+    border-bottom: 1px solid var(---line);
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    font-family: Verdana;
+}
+
+.acc_card .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    height: 200px;
+    font-size: 20px;
+}
+
+/* END OF GLOBAL */
+
+/* tabbar side */
+.account .acc_tabbar{
+    width: 15%;
+    border-right: 1px solid var(---line);
+}
+
+/* content side */
+.account .settings_content,
+.account .logout_content,
+.account .change_pass_content,
+.account .theme_content,
+.account .event_content,
+.account .about_content,
+.account .class_content,
+.account .acc_content{
+    width: 85%;
+    background-color: var(---acc_bg);
+    border-top: 1px solid var(---line);
+
+    display: none;
+}
+
+/* display the page */
+.account .content_active{
+    display: block;
+}
+
+/* about content view style */
+.account .about_content{
+    overflow-y: auto;
+
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.account .about_content::-webkit-scrollbar{
+    display: none;
+}
+
+.account .about_content .about_nav_bar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background-color: var(---sbca3);
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    margin: 5px;
+    height: 50px;
+}
+
+/* logo in about page header */
+.account .about_content .about_nav_bar .logo{
+    border: 1px solid var(---line);
+    padding: 1px;
+    width: 85px;
+    height: 85px;
+    border-radius: 50%;
+    background-color: var(---white);
+    margin: 10px;
+
+    position: relative;
+    top: 50%;
+}
+
+.account .about_content .about_nav_bar .logo img{
+    width: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.account .about_content .about_nav_bar .nav_items{
+    padding: 10px;
+}
+
+.account .about_content .about_nav_bar .nav_items a{
+    color: var(---selected_color);
+    margin-left: 10px;
+}
+
+.account .about_content .about_nav_bar .nav_items a:hover{
+    text-decoration: underline;
+}
+
+.account .about_content .slide_images{
+    background-color: transparent;
+    border-radius: 5px;
+    max-height: 450px;
+    margin: 5px;
+}
+
+.account .about_content .slide_images img{
+    width: 100%;
+    max-height: 450px;
+    border-radius: 5px;
+    border: 1px solid var(---line);
+    object-fit: cover;
+}
+
+.account .about_content .news_about{
+    display: flex;
+    justify-content: space-between;
+}
+
+.account .about_content .news_about .side{
+    margin: 5px;
+    padding: 10px;
+    border: 1px solid var(---line);
+    background-color: var(---white);
+    border-radius: 5px;
+    height: fit-content;
+}
+
+.account .about_content .news_about .side h3{
+    color: var(---sbca2);
+}
+
+/* news side in about page */
+
+.account .about_content .news_about .side .header{
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(---line);
+}
+
+/* news and updates side */
+
+.account .about_content .news_about .news_side{
+    width: 60%;
+}
+
+.account .about_content .news_about .news_side .news_content{
+    margin-bottom: 50px;
+    font-family: "Open sans", "Noto Color Emoji";
+}
+
+.account .about_content .news_about .about_side .abt_side_content .award_content img,
+.account .about_content .news_about .news_side .news_content img{
+    width: 100%;
+    border-radius: 5px;
+    transition: transform 0.3s ease;
+}
+
+.account .about_content .news_about .about_side .abt_side_content .award_content img:hover,
+.account .about_content .news_about .news_side .news_content img:hover{
+    transform: scale(1.01);
+}
+
+.account .about_content .news_about .about_side .abt_side_content .award_content p,
+.account .about_content .news_about .news_side .news_content p{
+    padding: 10px;
+}
+
+
+/* certificate and ratings side */
+.account .about_content .news_about .about_side{
+    width: 40%;
+}
+
+.account .about_content .news_about .about_side .abt_side_content .award_content{
+    margin-bottom: 50px;
+}
+
+/* about St Bernadette College of Alabang */
+.account .about_content .about_school{
+    min-height: 200px;
+    border: 1px solid var(---line);
+    background-color: var(---sbca2);
+    color: var(---selected_color);
+    display: flex;
+    justify-content: center;
+}
+
+.account .about_content .about_school .side{
+    padding: 10px;
+}
+
+.account .about_content .about_school .left_side{
+    width: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account .about_content .about_school .left_side .side_content{
+    text-align: center;
+}
+
+.account .about_content .about_school .left_side .side_content img{
+    width: 300px;
+    object-fit: cover;
+}
+
+.account .about_content .about_school .right_side{
+    width: 60%;
+}
+
+.account .about_content .about_school .right_side .side_content{
+    margin: 20px;
+}
+
+.account .about_content .about_school .right_side .side_content p{
+    font-size: 15px;
+}
+
+/* events page content */
+.account .event_content .content{
+    display: flex;
+    align-items: center;
+}
+
+.account .event_content .content .event_info{
+    width: 80%;
+    height: 85vh;
+    overflow-y: auto;
+
+    /* removing scrollbar */
+    scrollbar-width: none; /* remove scrollbar for firefox */
+    -ms-overflow-style: none; /* remove scrollbar for edge */
+}
+
+/* hide the scrollbar */
+.account .event_content .content .event_lists::-webkit-scrollbar,
+.account .event_content .content .event_info::-webkit-scrollbar{
+    display: none;
+}
+
+.account .event_content .content .event_info .display_event{
+    background-color: var(---white);
+    margin: 3px;
+    border-radius: 5px;
+    border: 1px solid var(---line);
+    min-height: 400px;
+    margin-bottom: 5px;
+}
+
+.account .event_content .content .event_info .title{
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.account .event_content .content .event_info .title .name{
+    display: flex;
+    font-size: 20px;
+}
+
+.account .event_content .content .event_info .title .name img{
+    margin-right: 10px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(---line);
+    object-fit: cover;
+}
+
+.account .event_content .content .event_info .display_event .event_body{
+    padding: 10px;
+    font-family: "Open sans", "Noto Color Emoji";
+}
+
+.account .event_content .content .event_info .display_event .event_body .medias{
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.account .event_content .content .event_info .display_event .event_body .medias img{
+    width: 500px;
+    border-radius: 5px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.account .event_content .content .event_info .display_event .event_body .medias img:hover{
+    transform: scale(1.05);
+}
+
+.account .event_content .content .event_info .display_event .numberOfRections{
+    margin-left: 10px;
+    font-size: 16px;
+    color: var(---gray);
+}
+
+.account .event_content .content .event_info .display_event .reactions{
+    display: flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.account .event_content .content .event_info .display_event .reactions .like .fa-solid{
+    color: var(---sbca2);
+}
+
+/* event lists */
+
+.account .event_content .content .event_lists{
+    width: 20%;
+    /* border: 1px solid var(---line); */
+    height: 85vh;
+    overflow-y: auto;
+
+    /* removing scrollbar */
+    scrollbar-width: none; /* remove scrollbar for firefox */
+    -ms-overflow-style: none; /* remove scrollbar for edge */
+}
+
+.account .event_content .content .event_lists .event_heading{
+    border: 1px solid var(---line);
+    background-color: var(---white);
+    height: 100px;
+}
+
+.account .event_content .content .event_lists .event_heading .title{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+}
+
+.account .event_content .content .event_lists .event_heading .title:hover{
+    background-color: var(---list_hover);
+}
+
+.account .event_content .content .event_lists .event_heading .num_events{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.account .event_content .content .event_lists .event_heading .num_events i{
+    margin-right: 10px;
+}
+
+.account .event_content .content .event_lists .list_of_events .event{
+    background-color: var(---white);
+    padding: 10px;
+    margin-top: 2px;
+    border: 1px solid var(---line);
+    cursor: pointer;
+}
+
+.account .event_content .content .event_lists .list_of_events .event:hover{
+    background-color: var(---list_hover);
+}
+
+.account .event_content .content .event_lists .list_of_events .event .title{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.account .event_content .content .event_lists .list_of_events .event .content_event{
+    height: 100px;
+    padding: 10px;
+    display: none;
+    font-family: "Open sans", "Noto Color Emoji";
+}
+
+.account .event_content .content .event_lists .list_of_events .event .show_event{
+    display: block;
+}
+
+/* theme page */
+.account .theme_content{
+    padding: 5px;
+}
+
+.account .theme_content .select_theme{
+    background-color: var(---white);
+    color: var(---maincolor);
+    padding: 10px;
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.account .theme_content .select_theme .theme_header{
+    display: flex;
+    align-items: center;
+}
+
+.account .theme_content .select_theme .theme_header svg,
+.account .theme_content .select_theme .theme_header i{
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.account .theme_content .select_theme .themes_items{
+    padding: 10px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.account .theme_content .select_theme .themes_items .theme{
+    margin-right: 10px;
+    width: 150px;
+    height: 150px;
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 50px;
+    cursor: pointer;
+}
+
+.account .theme_content .select_theme .themes_items #normal{
+    background-color: #fff;
+    color: #3F3F3F;
+}
+
+.account .theme_content .select_theme .themes_items #dark{
+    background-color: #3F3F3F;
+    color: var(---selected_color);
+}
+
+.account .theme_content .select_theme .themes_items .theme .icon{
+    text-align: center;
+}
+
+.account .theme_content .select_theme .themes_items .theme .icon p{
+    font-size: 20px;
+}
+
+.account .theme_content .select_theme .themes_items #dark:hover,
+.account .theme_content .select_theme .themes_items #normal:hover,
+.account .theme_content .select_theme .themes_items .theme:hover{
+    background-color: var(---tab_hover);
+    color: var(---maincolor);
+}
+
+.account .theme_content .time_to_off{
+    margin-top: 5px;
+    background-color: var(---white);
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    padding: 10px;
+}
+
+.account .theme_content .time_to_off .time_picker{
+    margin-top: 10px;
+    border: 1px solid var(---line);
+    padding: 10px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 5px;
+}
+
+.account .theme_content .time_to_off .time_picker:hover{
+    background-color: var(---tab_hover);
+}
+
+.account .theme_content .time_to_off .time_picker input{
+    border: none;
+    font-size: 18px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.account .theme_content .time_to_off .time_picker input:focus{
+    outline: none;
+}
+
+.account .theme_content .time_to_off .info{
+    font-size: 16px;
+    margin: 10px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    color: var(---gray);
+}
+
+.account .theme_content .time_to_off .info svg,
+.account .theme_content .time_to_off .info i{
+    margin-right: 5px;
+    font-size: 18px;
+}
+
+/* change password page */
+.account .change_pass_content{
+    padding: 30px;
+}
+
+.account .change_pass_content .change_pass{
+    height: 100%;
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    background-color: var(---white);
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.account .change_pass_content .change_pass .header{
+    padding: 5px;
+    margin: 0 0 0 10px;
+}
+
+.account .change_pass_content .change_pass .header h2{
+    color: var(---sbca2);
+}
+
+.account .change_pass_content .change_pass .sides{
+    display: flex;
+    justify-content: space-around;
+}
+
+.account .change_pass_content .change_pass .sides .side{
+    width: 50%;
+    height: 400px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* left side */
+.account .change_pass_content .change_pass .sides .right_side .side_content,
+.account .change_pass_content .change_pass .sides .left_side .side_content{
+    text-align: center;
+    width: 100%;
+    margin:30px;
+}
+
+.account .change_pass_content .change_pass .sides .left_side .side_content .logo img{
+    width: 200px;
+    object-fit: cover;
+}
+
+.account .change_pass_content .change_pass .sides .left_side .side_content .password_tips{
+    width: 100%;
+    text-align: start;
+}
+
+.account .change_pass_content .change_pass .sides .left_side .side_content .password_tips .tips_list{
+    padding: 10px;
+    color: var(---gray);
+}
+
+/* right side  */
+.account .change_pass_content .change_pass .sides .right_side .side_content .password_icon img{
+    width: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form{
+    text-align: start;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form{
+    margin: 5px;
+    text-align: center;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form input{
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 18px;
+    width: 95%;
+    margin-bottom: 10px;
+
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form input:focus{
+    outline: none;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form #save_password{
+    background-color: var(---sbca2);
+    color: var(---selected_color);
+    border-radius: 50px;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form #save_password:hover{
+    background-color: var(---sbca);
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form #save_password:disabled{
+    background-color: #ff9b9b;
+}
+
+/* logout */
+
+/* logout popup */
+.account .logout_content .logout_popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(66, 66, 66, 0.589);
+
+    width: 100%;
+    height: 100%;
+
+    display: none;
+}
+
+.account .logout_content .show_logout{
+    display: block;
+}
+
+.account .logout_content .logout_popup .popup_box{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(---white);
+
+    height: 250px;
+    width: 450px;
+    border-radius: 5px;
+    border: 1px solid var(---line);
+    box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+}
+
+/* header for pop up in logout */
+.account .logout_content .logout_popup .popup_box .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+/* exit button */
+.account .logout_content .logout_popup .popup_box .header i{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.account .logout_content .logout_popup .popup_box .header i:hover{
+    background-color: var(---hover);
+}
+
+.account .logout_content .logout_popup .popup_box .action button:active,
+.account .logout_content .logout_popup .popup_box .header i:active{
+    color: var(---white);
+}
+
+.account .logout_content .logout_popup .popup_box .content{
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account .logout_content .logout_popup .popup_box .action{
+    text-align: center;
+}
+
+.account .logout_content .logout_popup .popup_box .action button{
+    width: 80%;
+    padding: 5px;
+    font-size: 18px;
+    border: 1px solid var(---line);
+    background-color: var(---sbca2);
+    color: var(---selected_color);
+    font-family: "Open sans", sans-serif;
+    border-radius: 5px;
+}
+
+.account .logout_content .logout_popup .popup_box .action button:hover{
+    background-color: transparent;
+    color: var(---maincolor);
+}
+
+/* Settings Page */
+.account .settings_content .content{
+    display: flex;
+    justify-content: space-between;
+}
+
+/* POPUP in SETTINGS */
+
+.account .settings_content .popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 66, 66, 0.589);
+
+    display: none;
+}
+
+.account .settings_content .popup .popupbox{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 650px;
+    height: 350px;
+    background-color: var(---white);
+    border-radius: 5px;
+    border: 1px solid var(---line);
+    box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+}
+
+.account .settings_content .showPopUp{
+    display: block;
+}
+
+.account .settings_content .popup .popupbox .popupHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid var(---line);
+}
+
+.account .settings_content .popup .popupbox .popupHeader .label{
+    display: flex;
+    align-items: center;
+}
+.account .settings_content .popup .popupbox .popupHeader .label i{
+    margin-right: 10px;
+}
+
+.account .settings_content .popup .popupbox .popupHeader #exit_export,
+.account .settings_content .popup .popupbox .popupHeader #exit_import{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    border-radius: 50%;
+}
+
+.account .settings_content .popup .popupbox .popupHeader #exit_export:hover,
+.account .settings_content .popup .popupbox .popupHeader #exit_import:hover{
+    background-color: var(---hover);
+}
+
+.account .settings_content .popup .popupbox .selectFile{
+    height: 80%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account .settings_content .popup .popupbox .selectFile .openFile{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.account .settings_content .popup .popupbox .selectFile .openFile:hover{
+    background-color: var(---hover2);
+}
+
+.account .settings_content .popup .popupbox .selectFile .openFile .file{
+    text-align: center;
+}
+
+.account .settings_content .popup .popupbox .selectFile .openFile .file i{
+    font-size: 50px;
+    margin-bottom: 10px;
+    color: var(---sbca2);
+}
+
+.account .settings_content .popup .popupbox .exportSet{
+    height: 80%;
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename{
+    padding: 10px;
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename input{
+    padding: 5px;
+    font-size: 18px;
+    font-family: 'Open sans';
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    width: 300px;
+    margin-top: 5px;
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename input:focus{
+    outline: none;
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename .selectToExport{
+    background-color: var(---white);
+    margin-top: 5px;
+    width: 300px;
+    cursor: pointer;
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename .selectToExport #selectedExport{
+    padding: 5px;
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    font-size: 20px;
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename .selectToExport #selectedExport:hover{
+    background-color: var(---hover);
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename .selectToExport:hover .options{
+    display: block;
+    position: absolute;
+    width: 300px;
+    background-color: var(---white);
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename .selectToExport .options{
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    display: none;
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename .selectToExport .options p{
+    padding: 5px;
+    cursor: pointer;
+}
+
+.account .settings_content .popup .popupbox .exportSet .filename .selectToExport .options p:hover{
+    background-color: var(---hover);
+}
+
+.account .settings_content .popup .popupbox .exportSet .submit{
+    text-align: center;
+    margin-top: 50px;
+}
+
+.account .settings_content .popup .popupbox .exportSet .submit button{
+    border: 1px solid var(---line);
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-family: 'Open sans';
+    width: 50%;
+    background-color: var(---sbca2);
+    color: var(---selected_color);
+}
+
+.account .settings_content .popup .popupbox .exportSet .submit button:hover{
+    background-color: var(---sbca);
+}
+
+/* SETTINGS CONTENT */
+
+.account .settings_content .content .side{
+    /* border: 1px solid var(---line); */
+    height: 80vh;
+    padding: 5px;
+}
+
+.account .settings_content .content .setting{
+    width: 60%;
+}
+
+.account .settings_content .content .setting .settingbox{
+    background-color: var(---white);
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    height: 100%;
+    overflow-y: auto;
+}
+
+.account .settings_content .content .setting .settingbox::-webkit-scrollbar{
+    display: none;
+}
+
+.account .settings_content .content .setting .settingbox .header{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.account .settings_content .content .setting .settingbox .settingItem{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.account .settings_content .content .setting .settingbox .settingItem .settingname{
+    padding: 10px;
+}
+
+.account .settings_content .content .setting .settingbox .settingItem:hover{
+    background-color: var(---hover);
+}
+
+.account .settings_content .content .setting .settingbox .header i{
+    margin-right: 10px ;
+}
+
+.account .settings_content .content .user{
+    width: 40%;
+}
+
+.account .settings_content .content .user .userbox{
+    background-color: var(---white);
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    min-height: 200px;
+}
+
+.account .settings_content .content .user .userbox .header{
+    display: flex;
+    padding: 10px;
+    border-bottom: 1px solid var(---line);
+}
+
+.account .settings_content .content .user .userbox .header img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(---line);
+}
+
+.account .settings_content .content .user .userbox .header .nameuser{
+    margin: 5px;
+}
+
+.account .settings_content .content .user .userbox .header .nameuser a{
+    font-weight: bold;
+    color: var(---maincolor);
+}
+
+.account .settings_content .content .user .userbox .actions{
+    padding: 10px;
+}
+
+.account .settings_content .content .user .userbox .actions .action{
+    display: flex;
+    align-items: center;
+    width: fit-content;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    color: var(---maincolor);
+}
+
+.account .settings_content .content .user .userbox .actions .action p{
+    margin-left: 10px;
+}
+
+.account .settings_content .content .user .userbox .actions .action:hover{
+    background-color: var(---hover2);
+}
+
+.account .settings_content .content .user .userbox .actions .action:active{
+    color: var(---white);
+}

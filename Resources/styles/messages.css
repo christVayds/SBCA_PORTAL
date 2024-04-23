@@ -1,0 +1,175 @@
+.messages{
+    display: flex;
+    padding: 10px;
+}
+
+.messages .mside{
+    padding: 10px;
+    height: 75vh;
+}
+
+/* Action tab */
+
+.messages .actiontabs{
+    width: 20vw;
+}
+
+.messages .actiontabs .header{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.messages .actiontabs .actions{
+    padding: 5px;
+}
+
+.messages .actiontabs .actions a{
+    color: var(---maincolor);
+}
+
+.messages .actiontabs .actions a .button{
+    padding: 10px;
+    color: var(---gray);
+    border-radius: 10px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.messages .actiontabs .actions a #active{
+    background-color: var(---maincolor);
+    color: var(---white);
+}
+
+.messages .actiontabs .actions a .button:hover:not(.compose){
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    color: var(---maincolor);
+}
+
+.messages .actiontabs .actions a .compose{
+    background-color: var(---sbca);
+    color: var(---selected_color);
+}
+
+.messages .actiontabs .actions a .button i{
+    margin-right: 10px;
+}
+
+.messages .actiontabs .actions a .compose:active,
+.messages .actiontabs .actions a .button:active{
+    color: transparent;
+}
+
+/* messages content */
+
+.messages .message{
+    width: 80vw;
+}
+
+.messages .message .cardmessage{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    height: inherit;
+    min-height: 400px;
+    border-radius: 10px;
+}
+
+.messages .message .cardmessage .header{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid var(---gray);
+}
+
+.messages .message .cardmessage .header .messageoptions{
+    display: flex;
+    align-items: center;
+}
+
+.messages .message .cardmessage .header .pageoption .pagenav,
+.messages .message .cardmessage .header .messageoptions .option{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 50px;
+    width: 18px;
+    margin-right: 10px;
+    font-size: 17px;
+}
+
+.messages .message .cardmessage .header .pageoption .pagenav:hover,
+.messages .message .cardmessage .header .messageoptions .option:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.messages .message .cardmessage .header .pageoption .pagenav:active,
+.messages .message .cardmessage .header .messageoptions .option:active{
+    color: var(---white);
+}
+
+.messages .message .cardmessage .header .pageoption{
+    display: flex;
+    align-items: center;
+}
+
+.messages .message .cardmessage .header .pageoption .pagecount{
+    margin-right: 10px;
+    color: var(---gray);
+    font-size: 15px;
+}
+
+/* message list table */
+
+.messages .message .cardmessage .messagesList{
+    height: 400px;
+    max-height: 400px;
+    padding: 10px;
+}
+
+.messages .message .cardmessage .messagesList #messageTable{
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.messages .message .cardmessage .messagesList #messageTable #new{
+    background-color: var(---line);
+    font-weight: bold;
+}
+
+.messages .message .cardmessage .messagesList #messageTable tr{
+    cursor: pointer;
+}
+
+.messages .message .cardmessage .messagesList #messageTable tr:hover{
+    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.messages .message .cardmessage .messagesList #messageTable tr td{
+    padding: 5px;
+    border-bottom: 1px solid var(---gray);
+}
+
+.messages .message .cardmessage .messagesList #messageTable tr #sender{
+    width: 30%;
+}
+
+.messages .message .cardmessage .messagesList #messageTable tr #message .messageContent{
+    display: flex;
+}
+
+.messages .message .cardmessage .messagesList #messageTable tr #message .messageContent #subject{
+    font-weight: bold;
+}
+
+.messages .message .cardmessage .messagesList #messageTable tr #message .messageContent #body{
+    font-weight: normal;
+    margin-left: 10px;
+}
+
+.messages .message .cardmessage .messagesList #messageTable tr #time{
+    width: 10%;
+    text-align: end;
+}
