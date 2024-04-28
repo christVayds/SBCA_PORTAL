@@ -149,6 +149,18 @@ $(document).ready(function(){
         document.getElementById($(this).attr('id')).classList.add("active");
     })
 
+    // dashboard information pop up - dashboard tab
+    $(".enrolled_std").click(function(){
+        document.getElementById('open_info_popup').classList.add('active_open_popup');
+        var name = document.getElementById(this.id+'_name').textContent;
+        document.getElementById('info_student_name').textContent = name;
+    });
+
+    // exit dashboard information pop up - dashboard tab
+    $("#exit_d_info_p").click(function(){
+        document.getElementById('open_info_popup').classList.remove('active_open_popup');
+    });
+
     // students list popup option
     $("#adminstudentlist_option").click(function(){
         var stdpopup = document.getElementById("stdlst_popup");

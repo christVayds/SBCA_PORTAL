@@ -364,6 +364,140 @@ option{
 
 /* dashboard workspace */
 
+/* dashboard pop-up / show student information */
+.dashboard .workspace .Dashboardview .open_info_popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(66, 66, 66, 0.589);
+
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.dashboard .workspace .Dashboardview .active_open_popup{
+    display: block;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(---white);
+
+    width: 750px;
+    height: 450px;
+    border-radius: 5px;
+    border: 1px solid var(---line);
+    box-shadow: 0 4px 8px 0 var(---tableHeader), 0 6px 20px 0 var(---tableHeader);
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .header .exit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .header .exit:hover{
+    background-color: var(---hover);
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .header .exit:active{
+    color: var(---white);
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .profile{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .profile .picture{
+    border: 1px solid var(---line);
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .profile .picture img{
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .profile .student_name .studentname{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .profile .student_name .studentcourse{
+    color: var(---gray);
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .students_grade{
+    overflow-y: scroll;
+    height: 250px;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .students_grade::-webkit-scrollbar{
+    display: none;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .students_grade .grade{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    padding: 10px;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .students_grade .grade:hover{
+    background-color: var(---hover);
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .students_grade .grade input{
+    width: 200px;
+    font-size: 18px;
+    padding: 5px;
+    font-family: 'Open sans', sans-serif;
+    border: 0;
+    border-bottom: 1px solid var(---line);
+    text-align: end;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .total_grade input:focus,
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .students_grade .grade input:focus{
+    outline: none;
+    border-bottom: 1px solid var(---sbca2);
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .total_grade{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.dashboard .workspace .Dashboardview .open_info_popup .info_popup .total_grade input{
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    padding: 5px;
+    font-size: 18px;
+    font-family: 'Open sans', sans-serif;
+    text-align: end;
+    margin-left: 10px;
+}
+
+/* end of information popup */
+
 .dashboard .workspace .Dashboardview .content .titleContent{
     margin-bottom: 10px;
 }

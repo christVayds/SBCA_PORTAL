@@ -118,16 +118,79 @@
             <p>Todo List</p>
         </div>
     </div>
+
     <div class="tabs workspace">
 
     <!-- dashboard view -->
         <div class="workcard Dashboardview viewpage" id="_admindashboard">
+
+            <div class="open_info_popup " id="open_info_popup"> <!-- active: active_open_popup -->
+                <div class="info_popup">
+                    <div class="header">
+                        <div class="title">
+                            <h3>Student</h3>
+                        </div>
+                        <div class="exit" id="exit_d_info_p">
+                            <i class="fa-solid fa-xmark"></i>
+                        </div>
+                    </div>
+                    <div class="profile">
+                        <div class="picture">
+                            <img src="Resources/assets/default-profile-photo2.jpg" alt="">
+                        </div>
+                        <div class="student_name">
+                            <p class="studentname" id="info_student_name">Empty name</p>
+                            <p class="studentcourse" id="info_student_course">Empty Course</p>
+                        </div>
+                    </div>
+                    <div class="students_grade">
+                        <div class="grade">
+                            <p>Information Assurance</p>
+                            <input type="text" placeholder="Grade">
+                        </div>
+                        <div class="grade">
+                            <p>Application development</p>
+                            <input type="text" placeholder="Grade">
+                        </div>
+                        <div class="grade">
+                            <p>Capstone Project 1</p>
+                            <input type="text" placeholder="Grade">
+                        </div>
+                        <div class="grade">
+                            <p>Certfication review</p>
+                            <input type="text" placeholder="Grade">
+                        </div>
+                        <div class="grade">
+                            <p>Social And Professional</p>
+                            <input type="text" placeholder="Grade">
+                        </div>
+                        <div class="grade">
+                            <p>Fundamental of Business Outsourcing</p>
+                            <input type="text" placeholder="Grade">
+                        </div>
+                        <div class="grade">
+                            <p>Filipino gamit sa Pananaliksik</p>
+                            <input type="text" placeholder="Grade">
+                        </div>
+                        <div class="grade">
+                            <p>System Integration and Architecture</p>
+                            <input type="text" placeholder="Grade">
+                        </div>
+                    </div>
+                    <div class="total_grade">
+                        <p>Total Grade: </p>
+                        <input type="text" placeholder="Total">
+                    </div>
+                </div>
+            </div>
+
             <div class="header">
                 <div class="actionside">
                     <div class="_actions">
                         <div class="actions" id="admindb_option">
                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
                         </div>
+                        <!-- drop down for dashboard menu icon -->
                         <div class="dropdown">
                             <div class="selection">
                                 <div class="label">
@@ -233,9 +296,9 @@
                             <th id="std_unit">Unit</th>
                             <th id="std_gpa">GPA</th>
                         </tr>
-                        <tr>
+                        <tr id="rborbon" class="enrolled_std">
                             <td>C2021-29984</td>
-                            <td>Ricky Borbon</td>
+                            <td id="rborbon_name">Ricky Borbon</td>
                             <td>BS Information Technology</td>
                             <td>3rd</td>
                             <td>12</td>
@@ -243,9 +306,9 @@
                                 <input type="text" class="total_gpa" placeholder="0">
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="cvaydal" class="enrolled_std">
                             <td>C2021-29985</td>
-                            <td>Christian Vaydal</td>
+                            <td id="cvaydal_name">Christian Vaydal</td>
                             <td>BS Information Technology</td>
                             <td>3rd</td>
                             <td>12</td>
@@ -253,9 +316,9 @@
                                 <input type="text" class="total_gpa" placeholder="0">
                             </td>
                         </tr>
-                        <tr>
+                        <tr id="jquito" class="enrolled_std">
                             <td>C2021-29974</td>
-                            <td>Jayson Quito</td>
+                            <td id="jquito_name">Jayson Quito</td>
                             <td>BS Information Technology</td>
                             <td>3rd</td>
                             <td>12</td>

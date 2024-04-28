@@ -151,4 +151,5 @@ INSERT INTO Course (code, name, _year) VALUES (
     ---list_hover: #e2e2e238;
     ---tab_hover: #dbdbdb5d;
     ---practice: #f0f0f0ec;
+    ---open_popup: rgba(66, 66, 66, 0.589);
 }
