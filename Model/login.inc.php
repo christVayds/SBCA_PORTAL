@@ -1,5 +1,5 @@
 <?php
-
+// fix this
 if(isset($_POST['submit'])){
     include 'db.inc.php';
     session_start();
