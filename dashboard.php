@@ -926,7 +926,7 @@
                             <div class="checkbox">
                                 <input type="checkbox" id="01-check" name="Todo 1">
                                 <label for="one">Todo 1</label>
-                            </div>
+                            </div>php
                             <i class="fa-solid fa-trash"></i>
                         </div> -->
                     </div>
@@ -1071,7 +1071,7 @@
     </div>
 </div>
 
-<!-- teacher view (jayson and reke) -->
+<!-- teacher view -->
 <div class="dashboard" id="teacher">
     <div class="view">
         
@@ -1079,5 +1079,5 @@
 </div>
 
 <!-- script for dashboard -->
-<script src="Resources/script/userview.js"></script>
-<script src="Resources/script/dashboard.js"></script>
+<!-- <script src="Resources/script/dashboard.js"></script>
+<script src="Resources/script/userview.js"></script> -->

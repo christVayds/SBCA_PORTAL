@@ -3,7 +3,7 @@
 function showStudents($count){
     include 'db.inc.php';
 
-    $studentsquery = "SELECT * FROM Students";
+    $studentsquery = "SELECT * FROM students";
     $result = mysqli_query($conn, $studentsquery);
 
     if(mysqli_num_rows($result) > 0){
@@ -69,4 +69,3 @@ function Naming($fname, $lname, $mname){
     return $fullname;
 }
 
-?>

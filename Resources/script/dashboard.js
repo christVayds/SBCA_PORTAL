@@ -1,93 +1,4 @@
-// tab bar 
-
-document.getElementById("dashboardtab").addEventListener("click", () => {
-    document.getElementById("_admindashboard").classList.add("viewpage");
-    document.getElementById("semesterpage").classList.remove("viewpage");
-    document.getElementById("studentlistpage").classList.remove("viewpage");
-    document.getElementById("teacherlistpage").classList.remove("viewpage");
-    document.getElementById("courselistpage").classList.remove("viewpage");
-    document.getElementById("announcementpage").classList.remove("viewpage");
-    document.getElementById("todopage").classList.remove("viewpage");
-    document.getElementById("newuserpage").classList.remove("viewpage");
-});
-
-document.getElementById("semestertab").addEventListener("click", () => {
-    document.getElementById("semesterpage").classList.add("viewpage");
-    document.getElementById("_admindashboard").classList.remove("viewpage");
-    document.getElementById("studentlistpage").classList.remove("viewpage");
-    document.getElementById("teacherlistpage").classList.remove("viewpage");
-    document.getElementById("courselistpage").classList.remove("viewpage");
-    document.getElementById("announcementpage").classList.remove("viewpage");
-    document.getElementById("todopage").classList.remove("viewpage");
-    document.getElementById("newuserpage").classList.remove("viewpage");
-});
-
-document.getElementById("studentlisttab").addEventListener("click", () => {
-    document.getElementById("studentlistpage").classList.add("viewpage");
-    document.getElementById("_admindashboard").classList.remove("viewpage");
-    document.getElementById("semesterpage").classList.remove("viewpage");
-    document.getElementById("teacherlistpage").classList.remove("viewpage");
-    document.getElementById("courselistpage").classList.remove("viewpage");
-    document.getElementById("announcementpage").classList.remove("viewpage");
-    document.getElementById("todopage").classList.remove("viewpage");
-    document.getElementById("newuserpage").classList.remove("viewpage");
-});
-
-document.getElementById("teacherlisttab").addEventListener("click", () => {
-    document.getElementById("teacherlistpage").classList.add("viewpage");
-    document.getElementById("studentlistpage").classList.remove("viewpage");
-    document.getElementById("_admindashboard").classList.remove("viewpage");
-    document.getElementById("semesterpage").classList.remove("viewpage");
-    document.getElementById("courselistpage").classList.remove("viewpage");
-    document.getElementById("announcementpage").classList.remove("viewpage");
-    document.getElementById("todopage").classList.remove("viewpage");
-    document.getElementById("newuserpage").classList.remove("viewpage");
-});
-
-document.getElementById("courselisttab").addEventListener("click", () => {
-    document.getElementById("courselistpage").classList.add("viewpage");
-    document.getElementById("teacherlistpage").classList.remove("viewpage");
-    document.getElementById("studentlistpage").classList.remove("viewpage");
-    document.getElementById("_admindashboard").classList.remove("viewpage");
-    document.getElementById("semesterpage").classList.remove("viewpage");
-    document.getElementById("announcementpage").classList.remove("viewpage");
-    document.getElementById("todopage").classList.remove("viewpage");
-    document.getElementById("newuserpage").classList.remove("viewpage");
-});
-
-document.getElementById("announcementtab").addEventListener("click", () => {
-    document.getElementById("announcementpage").classList.add("viewpage");
-    document.getElementById("courselistpage").classList.remove("viewpage");
-    document.getElementById("teacherlistpage").classList.remove("viewpage");
-    document.getElementById("studentlistpage").classList.remove("viewpage");
-    document.getElementById("_admindashboard").classList.remove("viewpage");
-    document.getElementById("semesterpage").classList.remove("viewpage");
-    document.getElementById("todopage").classList.remove("viewpage");
-    document.getElementById("newuserpage").classList.remove("viewpage");
-});
-
-document.getElementById("todotab").addEventListener("click", () => {
-    document.getElementById("todopage").classList.add("viewpage");
-    document.getElementById("announcementpage").classList.remove("viewpage");
-    document.getElementById("courselistpage").classList.remove("viewpage");
-    document.getElementById("teacherlistpage").classList.remove("viewpage");
-    document.getElementById("studentlistpage").classList.remove("viewpage");
-    document.getElementById("_admindashboard").classList.remove("viewpage");
-    document.getElementById("semesterpage").classList.remove("viewpage");
-    document.getElementById("newuserpage").classList.remove("viewpage");
-});
-
-// new student and teacher page
-document.getElementById("addnewstudent").addEventListener("click", () => {
-    document.getElementById("newuserpage").classList.add("viewpage");
-    document.getElementById("todopage").classList.remove("viewpage");
-    document.getElementById("announcementpage").classList.remove("viewpage");
-    document.getElementById("courselistpage").classList.remove("viewpage");
-    document.getElementById("teacherlistpage").classList.remove("viewpage");
-    document.getElementById("studentlistpage").classList.remove("viewpage");
-    document.getElementById("_admindashboard").classList.remove("viewpage");
-    document.getElementById("semesterpage").classList.remove("viewpage");
-});
+// tab bar
 
 // gender checkbox - only 1 checkbox can be selected
 function checkbox(id){
@@ -135,19 +46,69 @@ function checkEmptyInput(formID, courseSelector, address){
     return emptyInput;
 }
 
-// for jquery
+function clearDashboardPages(){
+    var options = document.getElementsByClassName('option');
+    var pages = document.getElementsByClassName('workcard');
+
+    // clear tabs selected / active
+    for(var i=0;i<options.length;i++){
+        options[i].classList.remove("active");
+    }
+
+    // close / remove all active tabs
+    for(var i=0;i<pages.length;i++){
+        pages[i].classList.remove('viewpage');
+    }
+}
+
+// JQUERY
 
 // todo list
 $(document).ready(function(){
+    
     // admin navigation bar background color for active
     $(".option").click(function(){
+        clearDashboardPages();
         // console.log($(this).attr('id'));
-        var options = document.getElementsByClassName('option');
-        for(var i=0;i<options.length;i++){
-            options[i].classList.remove("active");
-        }
         document.getElementById($(this).attr('id')).classList.add("active");
-    })
+
+        switch($(this).attr('id')){
+            case('dashboardtab'):
+                document.getElementById("_admindashboard").classList.add("viewpage");
+                break;
+            case('semestertab'):
+                document.getElementById("semesterpage").classList.add("viewpage");
+                break;
+            case('studentlisttab'):
+                document.getElementById('studentlistpage').classList.add("viewpage");
+                break;
+            case('teacherlisttab'):
+                document.getElementById('teacherlistpage').classList.add("viewpage");
+                break;
+            case('courselisttab'):
+                document.getElementById('courselistpage').classList.add("viewpage");
+                break;
+            case('announcementtab'):
+                document.getElementById('announcementpage').classList.add("viewpage");
+                break;
+            case('todotab'):
+                document.getElementById('todopage').classList.add("viewpage");
+                break;
+            // case('addnewstudent'):
+            //     document.getElementById('newuserpage').classList.add("viewpage");
+            //     break;
+            default:
+                console.log('page not found');
+                break;
+        }
+    });
+
+    // add new student page
+    $("#addnewstudent").click(function(){
+        // console.log('adding new student');
+        clearDashboardPages();
+        document.getElementById('newuserpage').classList.add('viewpage');
+    });
 
     // dashboard information pop up - dashboard tab
     $(".enrolled_std").click(function(){

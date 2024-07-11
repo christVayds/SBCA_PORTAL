@@ -703,6 +703,7 @@
                     <div class="header">
                         <img src="resources/assets/sbca.logo.5.jpg" alt="">
                         <div class="nameuser">
+                            <!-- change this! -->
                             <a href="#">Christian Vaydal</a>
                             <p>SBCA</p>
                         </div>
@@ -746,4 +747,4 @@
     </div>
 </div>
 
-<script src="Resources/script/account.js"></script>
+<!-- <script src="Resources/script/account.js"></script> -->
