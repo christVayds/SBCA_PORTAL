@@ -96,6 +96,10 @@ class Students extends Users{
 		mysqli_close($conn);
 		return false;
     }
+
+    public function showStudentGrades(){
+        include 'db.inc.php';
+    }
 }
 
 class Teachers extends Users{

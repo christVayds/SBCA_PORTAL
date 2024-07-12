@@ -113,8 +113,14 @@ $(document).ready(function(){
     // dashboard information pop up - dashboard tab
     $(".enrolled_std").click(function(){
         document.getElementById('open_info_popup').classList.add('active_open_popup');
-        var name = document.getElementById(this.id+'_name').textContent;
-        document.getElementById('info_student_name').textContent = name;
+        // var name = document.getElementById(this.id+'_name').textContent;
+        // var course = document.getElementById(this.id+'_course').textContent;
+        // document.getElementById('info_student_name').textContent = name;
+        // document.getElementById('info_student_course').textContent = course;
+
+        $("#open_info_popup").load("Resources/data/showStudentInfo.php", {
+            student: this.id
+        });
     });
 
     // exit dashboard information pop up - dashboard tab
