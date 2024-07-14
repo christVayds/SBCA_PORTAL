@@ -1,5 +1,5 @@
 <?php
-// yeah boi
+
 class Users{
     public $username;
     public $fname;
@@ -69,7 +69,7 @@ class Users{
 class Students extends Users{
     public $course;
 
-    public function __construct($fname, $mname, $lname, $course, $userid, $email, $password, $bdate, $gender, $homeaddress){
+    public function __construct($fname, $mname, $lname, $course, $userid, $email, $password, $bdate, $gender, $homeaddress, $newStudent=true){
         $this->fname = $fname;
         $this->mname = $mname;
         $this->lname = $lname;
@@ -79,8 +79,40 @@ class Students extends Users{
         $this->bdate = $bdate;
         $this->homeaddress = $homeaddress;
         $this->gender = $gender;
-        $this->username = $this->generateUsername($this->fname, $this->mname, $this->lname);
+
+        if($newStudent){
+            $this->username = $this->generateUsername($this->fname, $this->mname, $this->lname);
+        }
+
         $this->course = $course;
+    }
+
+    public function FullName(){
+        if($this->mname != 'n/a'){
+            return ucwords($this->fname . ' ' . $this->mname[0] . '. ' . $this->lname);
+        } return ucwords($this->fname . ' ' . $this->lname);
+    }
+
+    public function Course(){
+        switch($this->course){
+            case("bsit"):
+                $course = "BS Information Technology";
+                break;
+            case("bsba"):
+                $course = "BS Business Ad";
+                break;
+            case("bshm"):
+                $course = "BS Hospitality Management";
+                break;
+            case("bsp"):
+                $course = "BS Psychology";
+                break;
+            default:
+                $course = "Unkown";
+                break;
+        };
+    
+        return $course;
     }
 
     public function save(){
@@ -98,7 +130,19 @@ class Students extends Users{
     }
 
     public function showStudentGrades(){
-        include 'db.inc.php';
+        include '../../Model/db.inc.php';
+        $stmt = mysqli_stmt_init($conn);
+
+        $gradesquery = 'SELECT * FROM grades WHERE userid=?';
+
+        if(mysqli_stmt_prepare($stmt, $gradesquery)){
+
+            mysqli_stmt_bind_param($stmt,'s', $this->userid);
+            mysqli_stmt_execute($stmt);
+            $result = mysqli_stmt_get_result($stmt);
+
+            return $result;
+        }
     }
 }
 

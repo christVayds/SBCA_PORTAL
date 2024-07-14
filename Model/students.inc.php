@@ -50,7 +50,7 @@ function showStudentsByCourse($courseid){
 // show student grade info in dashboard - popup
 function showStudentInfo($username=null){
     include 'db.inc.php';
-    include '../Class/Users.class.php';
+    // include '../Class/Users.class.php';
 
     $stmt = mysqli_stmt_init($conn);
 
