@@ -1,8 +1,6 @@
-
-
 // picker for courses
-var clicked_course_selector = false;
 
+var clicked_course_selector = false;
 $(document).ready(function(){
     $(".op_item").click(function(){
         if(clicked_course_selector){

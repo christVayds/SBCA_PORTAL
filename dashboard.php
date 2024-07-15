@@ -125,7 +125,8 @@
         <div class="workcard Dashboardview viewpage" id="_admindashboard">
 
             <div class="open_info_popup " id="open_info_popup"> <!-- active: active_open_popup -->
-                <div class="info_popup">
+
+                <!-- <div class="info_popup">
                     <div class="header">
                         <div class="title">
                             <h3>Student</h3>
@@ -143,7 +144,7 @@
                             <p class="studentcourse" id="info_student_course">Empty Course</p>
                         </div>
                     </div>
-                    <div class="students_grade">
+                    <div class="students_grade" id="students_grade">
                         <div class="grade">
                             <p>Information Assurance</p>
                             <input type="text" placeholder="Grade">
@@ -177,11 +178,13 @@
                             <input type="text" placeholder="Grade">
                         </div>
                     </div>
+
                     <div class="total_grade">
                         <p>Total Grade: </p>
                         <input type="text" placeholder="Total">
                     </div>
-                </div>
+                </div> -->
+                
             </div>
 
             <div class="header">
@@ -288,44 +291,17 @@
                 <!-- table of enrolled students, only enrolled students -->
                 <div class="tableofenrolled">
                     <table class="enrolled">
-                        <tr id="header">
+                        <!-- <tr id="header">
                             <th id="std_userid">ID NO.</th>
                             <th id="std_name">Name</th>
                             <th id="std_course">Course</th>
                             <th id="std_year">Year</th>
                             <th id="std_unit">Unit</th>
                             <th id="std_gpa">GPA</th>
-                        </tr>
-                        <tr id="rborbon" class="enrolled_std">
-                            <td>C2021-29984</td>
-                            <td id="rborbon_name">Ricky Borbon</td>
-                            <td>BS Information Technology</td>
-                            <td>3rd</td>
-                            <td>12</td>
-                            <td class="gpa_input">
-                                <input type="text" class="total_gpa" placeholder="0">
-                            </td>
-                        </tr>
-                        <tr id="cvaydal" class="enrolled_std">
-                            <td>C2021-29985</td>
-                            <td id="cvaydal_name">Christian Vaydal</td>
-                            <td>BS Information Technology</td>
-                            <td>3rd</td>
-                            <td>12</td>
-                            <td class="gpa_input">
-                                <input type="text" class="total_gpa" placeholder="0">
-                            </td>
-                        </tr>
-                        <tr id="jquito" class="enrolled_std">
-                            <td>C2021-29974</td>
-                            <td id="jquito_name">Jayson Quito</td>
-                            <td>BS Information Technology</td>
-                            <td>3rd</td>
-                            <td>12</td>
-                            <td class="gpa_input">
-                                <input type="text" class="total_gpa" placeholder="0">
-                            </td>
-                        </tr>
+                        </tr> -->
+                        <?php
+                            showStudentsByCourse('bsit');
+                        ?>
                     </table>
                 </div>
             </div>
@@ -926,7 +902,7 @@
                             <div class="checkbox">
                                 <input type="checkbox" id="01-check" name="Todo 1">
                                 <label for="one">Todo 1</label>
-                            </div>
+                            </div>php
                             <i class="fa-solid fa-trash"></i>
                         </div> -->
                     </div>
@@ -1071,7 +1047,7 @@
     </div>
 </div>
 
-<!-- teacher view (jayson and reke) -->
+<!-- teacher view -->
 <div class="dashboard" id="teacher">
     <div class="view">
         
@@ -1079,5 +1055,5 @@
 </div>
 
 <!-- script for dashboard -->
-<script src="Resources/script/userview.js"></script>
-<script src="Resources/script/dashboard.js"></script>
+<!-- <script src="Resources/script/dashboard.js"></script>
+<script src="Resources/script/userview.js"></script> -->

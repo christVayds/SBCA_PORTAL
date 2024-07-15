@@ -12,13 +12,15 @@
 	<script src="https://kit.fontawesome.com/9515269a08.js" crossorigin="anonymous"></script>
     <script src="Resources/script/base.js"></script>
     <script src="Resources/script/widgets.js"></script>
+    <script src="Resources/script/dashboard.js"></script>
+    <script src="Resources/script/account.js"></script>
     <title>SBCA Portal</title>
 </head>
 <body>
     <div class="navbar">
         <div class="navmenu">
-            <img src="resources/assets/sbca.logo3.png">
-            <img src="resources/assets/SBCA-text-nobg.png" alt="" id="textlogo">
+            <img src="Resources/assets/sbca.logo3.png">
+            <img src="Resources/assets/SBCA-text-nobg.png" alt="" id="textlogo">
         </div>
         <div class="navmenu">
             <a href="dashboard.php">
