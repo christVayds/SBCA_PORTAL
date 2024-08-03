@@ -69,7 +69,7 @@ class Users{
 class Students extends Users{
     public $course;
 
-    public function __construct($fname, $mname, $lname, $course, $userid, $email, $password, $bdate, $gender, $homeaddress, $newStudent=true){
+    public function __construct($fname, $mname, $lname, $course, $userid, $email, $password, $bdate, $gender, $homeaddress, $newStudent='None'){
         $this->fname = $fname;
         $this->mname = $mname;
         $this->lname = $lname;
@@ -80,8 +80,10 @@ class Students extends Users{
         $this->homeaddress = $homeaddress;
         $this->gender = $gender;
 
-        if($newStudent){
+        if($newStudent == 'None'){
             $this->username = $this->generateUsername($this->fname, $this->mname, $this->lname);
+        } else {
+            $this->username = $newStudent;
         }
 
         $this->course = $course;
@@ -133,11 +135,11 @@ class Students extends Users{
         include '../../Model/db.inc.php';
         $stmt = mysqli_stmt_init($conn);
 
-        $gradesquery = 'SELECT * FROM grades WHERE userid=?';
+        $gradesquery = 'SELECT grades.totalGrade, Subjects.name FROM grades JOIN Subjects ON Subjects.subId = grades.subjectId WHERE grades.username=?';
 
         if(mysqli_stmt_prepare($stmt, $gradesquery)){
 
-            mysqli_stmt_bind_param($stmt,'s', $this->userid);
+            mysqli_stmt_bind_param($stmt,'s', $this->username);
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
 

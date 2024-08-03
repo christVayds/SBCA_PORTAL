@@ -1,7 +1,9 @@
 <?php
 
 if(isset($_POST['student'])){
+
     $student = findStudent($_POST['student']);
+    
     echo '
         <div class="info_popup">
             <div class="header">
@@ -24,11 +26,13 @@ if(isset($_POST['student'])){
             <div class="students_grade" id="students_grade">';
                 
     DisplayGradesStudent($student);
+    
     echo '<div class="total_grade">
                 <p>Total Grade: </p>
                 <input type="text" placeholder="Total">
             </div>
         </div>';
+
 }
 
 function findStudent($studentID){
@@ -50,7 +54,7 @@ function findStudent($studentID){
 
         $student = $result->fetch_assoc();
 
-        $studentInfo = new Students($student['fname'], $student['mname'], $student['lname'], $student['course'], $student['userid'], $student['email'], $student['password'], $student['bdate'], $student['gender'], $student['address'], false);
+        $studentInfo = new Students($student['fname'], $student['mname'], $student['lname'], $student['course'], $student['userid'], $student['email'], $student['password'], $student['bdate'], $student['gender'], $student['address'], $student['username']);
 
         return $studentInfo;
     }
@@ -62,12 +66,17 @@ function DisplayGradesStudent($student){
     if($result){
         while($row = $result->fetch_assoc()){
             echo '<div class="grade">
-                    <p>Fundamental of Business Outsourcing</p>
-                    <input type="text" placeholder="Grade">
+                    <p>'. $row['name'] .'</p>
+                    <input type="text" placeholder="Grade" value='. $row['totalGrade'] .'>
                 </div>';
         }
     }
 }
 
 ?>
-<script src="Resources/script/dashboard.js"></script>
+<script>
+    // exit dashboard information pop up - dashboard tab
+    $("#exit_d_info_p").click(function(){
+        document.getElementById('open_info_popup').classList.remove('active_open_popup');
+    });
+</script>

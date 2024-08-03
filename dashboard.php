@@ -1,15 +1,20 @@
 <?php
+    // include the base / navigation bar of the page
     include "base.php";
 
+    // include the Model packages
     include "Model/students.inc.php";
     include 'Model/todo.inc.php';
 
+    // starting a new session in opening
     session_start();
+
+    // check user login
     if(!isset($_SESSION['user'])){
+        // if user not in session, go to login page
         header('location: login.php');
-        exit();
+        exit(); // exit current page
     }
-    // uncomment later
 ?>
 
 <!-- student's dashboard -->
