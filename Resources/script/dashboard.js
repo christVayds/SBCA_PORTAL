@@ -113,19 +113,10 @@ $(document).ready(function(){
     // dashboard information pop up - dashboard tab
     $(".enrolled_std").click(function(){
         document.getElementById('open_info_popup').classList.add('active_open_popup');
-        // var name = document.getElementById(this.id+'_name').textContent;
-        // var course = document.getElementById(this.id+'_course').textContent;
-        // document.getElementById('info_student_name').textContent = name;
-        // document.getElementById('info_student_course').textContent = course;
 
         $("#open_info_popup").load("Resources/data/showStudentInfo.php", {
             student: this.id
         });
-    });
-
-    // exit dashboard information pop up - dashboard tab
-    $("#exit_d_info_p").click(function(){
-        document.getElementById('open_info_popup').classList.remove('active_open_popup');
     });
 
     // students list popup option
@@ -286,12 +277,15 @@ $(document).ready(function(){
     $("#exitpopup").click(function(){
         document.getElementById("popup_message").classList.remove("showError");
     });
+
     $("#exitpopup_save").click(function(){
         document.getElementById("save").classList.remove("showError");
     });
+
     $("#exitsempopup").click(function(){
         document.getElementById("newsempopup").classList.remove("showSemPopup");
     });
+
     $("#exit_stdlst_popup").click(function(){
         document.getElementById("stdlst_popup").classList.remove("showSemPopup");
     });
@@ -307,5 +301,10 @@ $(document).ready(function(){
     // exit add new course
     $("#exit_newcourse").click(function(){
         document.getElementById('addnew_course').classList.remove('show_addnew_course');
+    });
+
+    // exit dashboard information pop up - dashboard tab
+    $("#exit_d_info_p").click(function(){
+        document.getElementById('open_info_popup').classList.remove('active_open_popup');
     });
 });

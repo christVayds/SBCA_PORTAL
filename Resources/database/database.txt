@@ -77,14 +77,23 @@ INSERT INTO Admin(username, name, email, _password, address) VALUES (
 
 # subjects
 CREATE TABLE Subjects(
-    code varchar(255) NOT NULL PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    _year int(1) NOT NULL,
-    semester int(1) NOT NULL,
-    Major int(1) NOT NULL,
-    username varchar(255) NOT NULL, # teacher's username
+    subId INT AUTO_INCREMENT PRIMARY KEY,
+    name varchar(255) NOT NULL,                 # name of the subject
+    _year int(1) NOT NULL,                      # for what year 
+    semester int(1) NOT NULL,                   # for what semester
+    Major int(1) NOT NULL,                      # major, 0=false, 1=true
+    username varchar(255) NOT NULL,             # teacher's username
 
     FOREIGN KEY (username) REFERENCES Teachers(username)
+);
+
+# create a new subject 
+INSERT INTO Subjects(name, _year, semester, Major, username) VALUES (
+    'Intro to Programming',
+    1,
+    1,
+    1,
+    'tstark'
 );
 
 # semester
@@ -129,6 +138,23 @@ INSERT INTO Course (code, name, _year) VALUES (
     'bsit3',
     'BS Information Technology',
     3
+);
+
+# student grade
+CREATE TABLE grades(
+    gradeID INT AUTO_INCREMENT PRIMARY KEY,
+    subjectId INT NOT NULL, # subject's id or code
+    username varchar(255) NOT NULL, # student's user id
+    totalGrade DECIMAL(2, 2) NOT NULL,
+
+    FOREIGN KEY (username) REFERENCES students(username),
+    FOREIGN KEY (subjectId) REFERENCES Subjects(subId)
+);
+
+INSERT INTO grades(subjectId, username, totalGrade) VALUES (
+    1,
+    'cvaydal',
+    0
 );
 
 // css

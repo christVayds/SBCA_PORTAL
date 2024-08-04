@@ -12,9 +12,9 @@ if(isset($_POST['submit'])){
 
     if($user){
         if($user === 'student'){
-            $studentQuery = "SELECT * FROM Students WHERE username=? OR email=?";
+            $studentQuery = "SELECT * FROM students WHERE username=? OR email=?";
         } else if($user === 'teacher'){
-            $studentQuery = "SELECT * FROM Teachers WHERE username=? OR email=?";
+            $studentQuery = "SELECT * FROM teachers WHERE username=? OR email=?";
         } else if($user === 'sbca'){
             $studentQuery = "SELECT * FROM admin WHERE username=? OR email=?";
         }
@@ -30,9 +30,8 @@ if(isset($_POST['submit'])){
 
             if ($row = mysqli_fetch_assoc($result)) {
                 // temporary
-                if($user === 'student' || $user === 'teacher'){
-                    $pwdCheck = password_verify($password, $row['_password']);
-                    if($pwdCheck === false){
+                if($user === 'student'){
+                    if($pwdCheck == false){
                         header("location: ../login.php?user=".$user."&message=wrong_password");
                         exit();
                     } else if($pwdCheck === true) {
@@ -48,7 +47,7 @@ if(isset($_POST['submit'])){
                             exit();
                         }
                     }
-                } else if($user === 'sbca'){
+                } else if($user === 'sbca' || $user === 'teacher'){ // temporary
                     if($password === $row['_password']){
                         $_SESSION['username'] = $row['username'];
                         $_SESSION['name'] = $row['name'];
