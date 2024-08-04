@@ -1054,8 +1054,124 @@
 
 <!-- teacher view -->
 <div class="dashboard" id="teacher">
-    <div class="view">
-        
+    <div class="view <?php if($_SESSION['user'] === 'teacher'){ echo 'active_user'; } // uncomment  ?>">
+
+        <!-- for tabs (left side) -->
+        <div class="tabs tabbar">
+            <div class="option active" id="t_dashboardtab">
+                <svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 23 23" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-app-window"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 4v4"/><path d="M2 8h20"/><path d="M6 4v4"/></svg>
+                <p>Dashboard</p>
+            </div>
+            <div class="option" id="t_subjects">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+                <p>Subjects</p>
+            </div>
+            <div class="option" id="t_todotab">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-list"><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></svg>
+                <p>Todo</p>
+            </div>
+        </div>
+
+        <!-- list contents (right side) -->
+        <div class="tabs workspace">
+            <div class="workcard Dashboardview viewpage" id="_admindashboard">
+            
+            <div class="header">
+                <div class="actionside">
+                    <div class="_actions">
+                        <div class="actions" id="admindb_option">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+                        </div>
+                        <!-- drop down for dashboard menu icon -->
+                        <div class="dropdown">
+                            <div class="selection">
+                                <div class="label">
+                                    <i class="fa-solid fa-user-large"></i>
+                                    <p>Year</p>
+                                </div>
+                                <div class="q_dropdown">
+                                    <p>3rd</p>
+                                    <div class="q_selection">
+                                        <p>1st</p>
+                                        <p>2nd</p>
+                                        <p>3rd</p>
+                                        <p>4th</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selection">
+                                <div class="label">
+                                    <i class="fa-solid fa-graduation-cap"></i>
+                                    <p>Course</p>
+                                </div>
+                                <div class="q_dropdown">
+                                    <p>BS Information Technology</p>
+                                    <div class="q_selection">
+                                        <p>BS Information Technology</p>
+                                        <p>BS Hospitality Managemennt</p>
+                                        <p>BS Business Ad</p>
+                                        <p>BS Psychology</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selection">
+                                <div class="label">
+                                    <i class="fa-solid fa-upload"></i>
+                                    <p>Export</p>
+                                </div>
+                                <div class="q_dropdown">
+                                    <p>Excel</p>
+                                    <div class="q_selection">
+                                        <p>Excel</p>
+                                        <p>CSV File</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="selection">
+                                <div class="label">
+                                    <i class="fa-solid fa-download"></i>
+                                    <p>Import</p>
+                                </div>
+                                <div class="q_dropdown">
+                                    <p>Excel</p>
+                                    <div class="q_selection">
+                                        <p>Excel</p>
+                                        <p>CSV File</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 25 25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-cw"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+                    </div>
+                    <div class="actions">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+                    </div>
+                    <div class="actions">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+                    </div>
+                    <div class="actions">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                    </div>
+                </div>
+                <div class="controlside">
+                    <div class="controls">
+                        <p>Year: 1</p>
+                    </div>
+                    <div class="page">
+                        <p>Page: 1-1</p>
+                    </div>
+                    <div class="controls">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-left"><path d="m11 17-5-5 5-5"/><path d="m18 17-5-5 5-5"/></svg>
+                    </div>
+                    <div class="controls">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-chevrons-right"><path d="m6 17 5-5-5-5"/><path d="m13 17 5-5-5-5"/></svg>
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
     </div>
 </div>
 
