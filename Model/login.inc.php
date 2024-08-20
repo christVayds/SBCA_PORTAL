@@ -27,10 +27,14 @@ if(isset($_POST['submit'])){
             mysqli_stmt_bind_param($stmt, "ss", $username, $username);
             mysqli_stmt_execute($stmt);
 		    $result = mysqli_stmt_get_result($stmt);
-
+            
+            // error
             if ($row = mysqli_fetch_assoc($result)) {
                 // temporary
                 if($user === 'student'){
+                    // check or verify the password
+                    $pwdCheck = password_verify($password, $row['_password']);
+
                     if($pwdCheck == false){
                         header("location: ../login.php?user=".$user."&message=wrong_password");
                         exit();
@@ -47,6 +51,8 @@ if(isset($_POST['submit'])){
                             exit();
                         }
                     }
+
+                // ok
                 } else if($user === 'sbca' || $user === 'teacher'){ // temporary
                     if($password === $row['_password']){
                         $_SESSION['username'] = $row['username'];
