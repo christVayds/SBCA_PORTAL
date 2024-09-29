@@ -24,7 +24,7 @@ function checkEmail(email){
 }
 
 // function to check all input in not empty
-function checkEmptyInput(formID, courseSelector, address){
+function checkEmptyInput(formID, courseSelector, address, toAdd='students'){
     var form = document.getElementById(formID);
     var emptyInput = [];
 
@@ -36,7 +36,9 @@ function checkEmptyInput(formID, courseSelector, address){
     }
     var course = document.getElementById(courseSelector).textContent;
     if(course === '' || course === "Select Course"){
-        emptyInput.push(courseSelector);
+        if(toAdd == 'students'){ // only check the course if user is students
+            emptyInput.push(courseSelector);
+        }
     }
     var addr = document.getElementById(address);
     if(addr.value === ''){
@@ -65,6 +67,7 @@ function clearDashboardPages(){
 
 // todo list
 $(document).ready(function(){
+    var addUser = 'students'; // teporary, checking what type of user to add in database
     
     // admin navigation bar background color for active
     $(".option").click(function(){
@@ -79,12 +82,26 @@ $(document).ready(function(){
             case('semestertab'):
                 document.getElementById("semesterpage").classList.add("viewpage");
                 break;
+
+            // call the refresh function when you click this
             case('studentlisttab'):
+                $("#adminlistofstudents").load("Resources/data/refresh_stdlst.php", {
+                    refresh: 'showStudents'
+                });
+                
                 document.getElementById('studentlistpage').classList.add("viewpage");
                 break;
+
+            // call the refresh function when you click this
             case('teacherlisttab'):
+                $("#adminlistofteacher").load('Resources/data/refresh_stdlst.php', {
+                    refresh: 'showfaculties'
+                });
+
                 document.getElementById('teacherlistpage').classList.add("viewpage");
                 break;
+            
+            // list of all course available tab
             case('courselisttab'):
                 document.getElementById('courselistpage').classList.add("viewpage");
                 break;
@@ -108,6 +125,43 @@ $(document).ready(function(){
         // console.log('adding new student');
         clearDashboardPages();
         document.getElementById('newuserpage').classList.add('viewpage');
+        addUser = 'students';
+
+        $.ajax({
+            url: 'dashboard.php',
+            method: 'POST',
+            data: {signal: 'student'},
+            success: function(response){
+                document.getElementById('_who').textContent = 'New Student';
+                document.getElementById('selector-courses').style.display = 'block';
+                // console.log(response);
+            },
+            error: function(){
+                console.error('error');
+            }
+        });
+    });
+
+    // add new faculty page
+    $("#addnewfaculty").click(function(){
+        clearDashboardPages();
+        document.getElementById('newuserpage').classList.add('viewpage');
+        addUser = 'teachers';
+        
+        $.ajax({
+            // url: 'Resources/script/pract.php',
+            url: 'dashboard.php',
+            method: 'POST',
+            data: {signal: 'faculty'},
+            success: function(response){
+                document.getElementById('_who').textContent = 'New Faculty';
+                document.getElementById('selector-courses').style.display = 'none';
+                // console.log(response);
+            },
+            error: function(){
+                console.error('error');
+            }
+        });
     });
 
     // dashboard information pop up - dashboard tab
@@ -129,6 +183,13 @@ $(document).ready(function(){
     $("#refresh_studentlists").click(function(){
         $("#adminlistofstudents").load("Resources/data/refresh_stdlst.php", {
             refresh: 'showStudents'
+        });
+    });
+
+    // refresh faculty(teachers) list - #refresh_faculty not yet used
+    $('#refresh_facultylists').click(function(){
+        $('#adminlistofteacher').load('Resources/data/refresh_stdlst.php', {
+            refresh: 'showfaculties'
         });
     });
 
@@ -178,23 +239,38 @@ $(document).ready(function(){
         document.getElementById("newsempopup").classList.add("showSemPopup");
     });
 
-    // show search input
+    // show search input [students tab]
     $("#searchstudent").click(function(){
         document.getElementById("searchinput").classList.add("showSearch");
         document.getElementById("searchStudents").focus();
     });
 
+    // show search input [teachers tab]
+    $('#searchteacher').click(function(){
+        document.getElementById('t_searchinput').classList.add('showSearch');
+        document.getElementById('searchTeachers').focus();
+    });
+
     // search student
     $("#searchStudents").keyup(function(){
-        var search = $("#searchStudents").val();
+        // var search = $("#searchStudents").val(); // remove this later
         $("#adminlistofstudents").load("Resources/data/search.php", {
-            searchstudent: 'student',
-            search: search,
+            searchstudent: 'students',
+            search: this.value,
             count: 50
         });
     });
 
-    // option popup for studen list, onchange of select
+    // search faculties
+    $('#searchTeachers').keyup(function(){
+        $('#adminlistofteacher').load('Resources/data/search.php', {
+            searchstudent: 'teachers',
+            search: this.value,
+            count: 50
+        });
+    });
+
+    // option popup for studen list, onchange of select - to filter what to display
     $("#courseList").on('change', function(){
         $("#adminlistofstudents").load("Resources/data/search.php", {
             searchstudent: 'studentcourse',
@@ -203,8 +279,9 @@ $(document).ready(function(){
         });
     });
 
-    // get student data in table if click
+    // get student data in table if click - list of students
     $(".studentrow").click(function(){
+        // get the id of this class
         console.log($(this).attr('id'));
     });
 
@@ -228,13 +305,11 @@ $(document).ready(function(){
         }
 
         var bdate = document.getElementById("bdate").value;
-        // var selectcourse = document.getElementById("course_option");
-        // var course = selectcourse.options[selectcourse.selectedIndex].value;
         var address = document.getElementById("address").value;
         var course = document.getElementById('course_options'); // fix this
 
         // check if all input is not empty
-        var allinput = checkEmptyInput("newstudentform", "course_options", "address");
+        var allinput = checkEmptyInput("newstudentform", "course_options", "address", addUser);
 
         if(allinput.length !== 0){
             document.getElementById("popup_message").classList.add("showError");
@@ -246,8 +321,9 @@ $(document).ready(function(){
         else{
             // only proced if all input data are valid
             $("#error_name_msg").load("Model/newstudent.inc.php", {
+                user: addUser, // check what type of user to add
                 fname: fname,
-                mname: mname, 
+                mname: mname,
                 lname: lname,
                 schoolid: schoolid,
                 email: email,
@@ -257,16 +333,45 @@ $(document).ready(function(){
                 Course: course.className, // error
                 address: address
             });
+
+            // show the pop-up message
             document.getElementById("save").classList.add("showError");
             document.getElementById("newstudentform").reset();
         }
     });
 
-    // announcement page
+    // not yet done
+    // new semester -- copy ( UNDER TESTING )
+    $('#newsem').click(function(){
+        var getSY = document.getElementById('sy');
+        var getSemester = document.getElementById('semester');
+        
+        // for testing only
+        $('#geh').load('Model/semester.inc.php', {
+            addSem: true,
+            getSY_date: getSY.value,
+            getSem: getSemester.value
+        });
+    });
+
+    // -- end here
+
+    // announcement page - i dont realy know why im adding this bullshit features
     // click publish button
     $("#publish_btn").click(function(){
         document.getElementById("publish_event").classList.add("showSemPopup");
     });
+
+    // show add new course popup - i really dont understand this yet
+    $("#addnew_course_btn").click(function(){
+        document.getElementById('addnew_course').classList.add('show_addnew_course');
+    });
+
+    $("#addnew_course_btn2").click(function(){
+        document.getElementById('addnew_course').classList.add('show_addnew_course');
+    });
+
+    // more on exit buttons here
 
     // exit publish popup
     $("#exit_publish").click(function(){
@@ -288,14 +393,6 @@ $(document).ready(function(){
 
     $("#exit_stdlst_popup").click(function(){
         document.getElementById("stdlst_popup").classList.remove("showSemPopup");
-    });
-
-    // show add new course popup
-    $("#addnew_course_btn").click(function(){
-        document.getElementById('addnew_course').classList.add('show_addnew_course');
-    });
-    $("#addnew_course_btn2").click(function(){
-        document.getElementById('addnew_course').classList.add('show_addnew_course');
     });
 
     // exit add new course

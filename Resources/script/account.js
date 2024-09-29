@@ -1,6 +1,8 @@
 // for transition images in cover image background
 var coverImagesLink = [];
 
+// check for user to display in tab
+
 function convertTo12HourFormat(time){
     const [hour, minute] = time.split(':');
 
@@ -94,6 +96,23 @@ $(document).ready(function(){
         } else {
             document.getElementById('save_password').disabled = true;
         }
+    });
+
+    // save the password to database
+    $('#save_password').click(function(){
+        var password = $('#pass2').val(); // get the value of the second input password 
+
+        $.ajax({
+            url: '../../Model/security.inc.php',
+            method: 'POST',
+            data: {submit: 'sbca'},
+            success: function(response){
+                // success
+            },
+            error: function(){
+                // error
+            }
+        });
     });
 
     // exit logout

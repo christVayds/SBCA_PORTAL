@@ -3,7 +3,8 @@
     include "base.php";
 
     // include the Model packages
-    include "Model/students.inc.php";
+    // include 'Model/usertable.inc.php';
+    include "Model/usertable.inc.php";
     include 'Model/todo.inc.php';
 
     // starting a new session in opening
@@ -14,6 +15,13 @@
         // if user not in session, go to login page
         header('location: login.php');
         exit(); // exit current page
+    }
+
+    // what the hell is this?
+    if($_SERVER['REQUEST_METHOD'] == 'POST'){
+        $signal = $_POST['signal'];
+
+        //echo "signal received: " . $signal;
     }
 ?>
 
@@ -91,7 +99,7 @@
 
 <div class="dashboard" id="admin">
     <!-- check for user -->
-    <div class="view <?php if($_SESSION['user'] === 'sbca'){ echo 'active_user'; } // uncomment  ?>">
+    <div class="view <?php if($_SESSION['user'] === 'sbca' || $_SESSION['user'] == 'admin'){ echo 'active_user'; } // uncomment  ?>">
     <!-- admin's tabbars -->
     <div class="tabs tabbar">
         <div class="option active" id="dashboardtab">
@@ -514,7 +522,8 @@
                 <table class="adminlistofstudents" id="adminlistofstudents">
                     <div class="listallstudents" id="listallstudents">
                         <?php
-                            showStudents(50);
+                            // there's something i forgot in here, can't remember, bye
+                            // showUserData(50, 'students'); // uncomment later
                         ?>
                     </div>
                 </table>
@@ -528,14 +537,17 @@
                     <div class="actions">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
                     </div>
-                    <div class="actions">
+                    <div class="actions" id="refresh_facultylists">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-cw"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
                     </div>
-                    <div class="actions">
+                    <div class="actions" id="addnewfaculty">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-user-round-plus"><path d="M2 21a8 8 0 0 1 13.292-6"/><circle cx="10" cy="8" r="5"/><path d="M19 16v6"/><path d="M22 19h-6"/></svg>
                     </div>
-                    <div class="actions">
+                    <div class="actions search" id="searchteacher">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+                        <div class="searchinput" id="t_searchinput">
+                            <input type="text" placeholder="Search" id="searchTeachers">
+                        </div>
                     </div>
                 </div>
                 <div class="controlside">
@@ -552,27 +564,11 @@
             </div>
 
             <div class="content">
-                <table class="adminlistofstudents">
-                    <tr class="tb_header">
-                        <th id="name">Name</th>
-                        <th id="course">Profession</th>
-                        <th id="email">Email</th>
-                        <th id="action">Actions</th>
-                    </tr>
-                    <tr>
-                        <td>Tony Stark</td>
-                        <td>Information Technology</td>
-                        <td>tstark@sbca.edu.ph</td>
-                        <td>
-                            <div class="actions">
-                                <i class="fa-solid fa-user-pen"></i>
-                                <i class="fa-solid fa-trash"></i>
-                            </div>
-                        </td>
-                    </tr>
-
+                <table class="adminlistofstudents" id="adminlistofteacher">
+                    <div class="listallstudents" id="listallstudents">
+                        <!-- table faculties data here -->
+                    </div>
                 </table>
-
             </div>
         </div>
 
@@ -964,8 +960,8 @@
                 </div>
                 
                 <div class="title">
-                    <h3>New Student</h3>
-                    <p>S.Y. 2023-2023 2nd Semester</p>
+                    <h3 id="_who">New Student</h3>
+                    <p>S.Y. 2023-2024 2nd Semester</p>
                 </div>
                 <div class="forms">
                     <form action="Model/newstudent.inc.php" method="post" id="newstudentform" autocomplete="off">
@@ -1004,7 +1000,7 @@
                                 <p>Birthdate</p>
                                 <input type="date" id="bdate" required>
                             </div>
-                            <div class="selector">
+                            <div class="selector" id="selector-courses">
                                 <p>Course</p>
                                 <div class="select">
                                     <div class="selected" id="selector">

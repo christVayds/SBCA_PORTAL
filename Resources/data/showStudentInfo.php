@@ -1,5 +1,8 @@
 <?php
 
+// this will show in dashboard popup
+// show student's grades
+
 if(isset($_POST['student'])){
 
     $student = findStudent($_POST['student']);

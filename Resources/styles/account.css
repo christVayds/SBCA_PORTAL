@@ -91,6 +91,23 @@
 
 
 /* table view */
+
+/* for account table in students */
+.acc_page .acc_table .acc_table_assessments{
+    display: flex;
+    justify-content: space-between;
+}
+
+.acc_page .acc_table .acc_table_assessments div{
+    border: 1px solid var(---gray); /* temporary */
+    border-radius: 10px;
+    width: 50%;
+    min-height: 50vh;
+    max-height: 100vh;
+    margin: 5px;
+    padding: 10px;
+}
+
 .acc_page .acc_table_view{
     margin-top: 10px;
 }

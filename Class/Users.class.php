@@ -12,6 +12,19 @@ class Users{
     public $bdate;
     public $gender;
 
+    public function __construct($fname, $lname, $mname, $userid, $email, $password, $homeaddress, $bdate, $gender){
+        // $this->username = $username;
+        $this->fname = $fname;
+        $this->lname = $lname;
+        $this->mname = $mname;
+        $this->userid = $userid;
+        $this->email = $email;
+        $this->password = $password;
+        $this->homeaddress = $homeaddress;
+        $this->bdate = $bdate;
+        $this->gender = $gender;
+    }
+
     public function generateUsername($fname, $mname, $lname){
         $usrname = "";
         $count = 0;
@@ -38,10 +51,10 @@ class Users{
 		if(mysqli_num_rows($result) > 0){
 			mysqli_close($conn);
 			return true;
-		} else {
-			mysqli_close($conn);
-			return false;
 		}
+
+        mysqli_close($conn);
+        return false;
 	}
 
     // check email if it already exist in database
@@ -70,15 +83,16 @@ class Students extends Users{
     public $course;
 
     public function __construct($fname, $mname, $lname, $course, $userid, $email, $password, $bdate, $gender, $homeaddress, $newStudent='None'){
-        $this->fname = $fname;
-        $this->mname = $mname;
-        $this->lname = $lname;
-        $this->userid = $userid;
-        $this->email = $email;
-        $this->password = $password;
-        $this->bdate = $bdate;
-        $this->homeaddress = $homeaddress;
-        $this->gender = $gender;
+        parent::__construct($fname, $lname, $mname, $userid, $email, $password, $homeaddress, $bdate, $gender);
+        // $this->fname = $fname;
+        // $this->mname = $mname;
+        // $this->lname = $lname;
+        // $this->userid = $userid;
+        // $this->email = $email;
+        // $this->password = $password;
+        // $this->bdate = $bdate;
+        // $this->homeaddress = $homeaddress;
+        // $this->gender = $gender;
 
         if($newStudent == 'None'){
             $this->username = $this->generateUsername($this->fname, $this->mname, $this->lname);
@@ -117,7 +131,7 @@ class Students extends Users{
         return $course;
     }
 
-    public function save(){
+    public function save(): bool{
         include 'db.inc.php';
 
 		if(parent::checkEmail($this->email) == false){
@@ -149,5 +163,24 @@ class Students extends Users{
 }
 
 class Teachers extends Users{
-    public $profession;
+
+    public function __construct($fname, $lname, $mname, $userid, $email, $password, $homeaddress, $bdate, $gender){
+        parent::__construct($fname, $lname, $mname, $userid, $email, $password, $homeaddress, $bdate, $gender);
+
+        $this->username = $this->generateUsername($this->fname, $this->mname, $this->lname);
+    }
+
+    public function save(): bool{
+        include 'db.inc.php';
+        
+        if(parent::checkEmail($this->email) == false){
+            $pwdHashed = parent::hashPassword($this->password); // hash the password for teacher
+            $newUser = "INSERT INTO teachers (username, fname, lname, mname, email, userid, _password, bdate, address, gender) VALUES ('$this->username', '$this->fname', '$this->lname', '$this->mname', '$this->email', '$this->userid', '$pwdHashed', '$this->bdate', '$this->homeaddress', '$this->gender');";
+            $result = mysqli_query($conn, $newUser);
+			return true;
+        }
+
+        mysqli_close($conn);
+		return false;
+    }
 }

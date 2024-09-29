@@ -1,11 +1,18 @@
 <?php
-// show table of students
+// not yet done
+// fix the naming for faculty and students
+// check for selecting student
 
-// with filter (by course)
+// display the table    +
+// display in refresh   +
+// display in search    +
 
-// this file is to delete
+// show table of all users (students and faculties)
 
-function showStudentsByCourse($courseid){
+// show student grade info in dashboard(student/teacher tab) - popup
+
+// show students in dashboard tab
+function showStudentsByCourse($courseid, $year=3): void{
     include 'db.inc.php';
     $stmt = mysqli_stmt_init($conn);
 
@@ -52,41 +59,18 @@ function showStudentsByCourse($courseid){
     }
 }
 
-// show student grade info in dashboard - popup
-function showStudentInfo($username=null): void{ // to be removed
+// no filter
+function showUserData($count, $user){
     include 'db.inc.php';
 
-    $stmt = mysqli_stmt_init($conn);
-
-    // find student
-    $studentquery = 'SELECT * FROM students WHERE userid=?';
-
-    if($username){
-        if(!mysqli_stmt_prepare($stmt, $studentquery)){
-            header('location: /dashboard.php?message=usernotfound');
-            exit();
-        } else {
-            mysqli_stmt_bind_param($stmt,'s', $username);
-            mysqli_stmt_execute($stmt);
-            $result = mysqli_stmt_get_result($stmt);
-
-            while($row = $result->fetch_assoc()){
-                echo '<script>console.log("'. $row['username'] .'")</script>';
-            }
-        }
-    }
-}
-
-// no filters
-function showStudents($count){
-    include 'db.inc.php';
-
-    $studentsquery = "SELECT * FROM students";
+    // $user = studets or teacher only
+    $studentsquery = "SELECT * FROM ". $user ."";
     $result = mysqli_query($conn, $studentsquery);
 
     if(mysqli_num_rows($result) > 0){
 
         // echo the table header
+        if($user == 'students'){
         echo '<tr class="tb_header">
                 <th id="userid">ID NO.</th>
                 <th id="name">Name</th>
@@ -94,27 +78,56 @@ function showStudents($count){
                 <th id="year">Year</th>
                 <th id="status">Status</th>
             </tr>';
-        while($row = $result->fetch_assoc()){
-            $fullname = ucwords(Naming($row["fname"], $row["lname"], $row["mname"]));
-
-            // show all the data
-            if($count > 0){
-                echo '<tr id="'.$row['userid'].'" class="studentrow">
-                        <td>' . $row['userid'] .' </td>
-                        <td>' . $fullname . '</td>
-                        <td>' . Coursename($row["course"]) . '</td>
-                        <td>3rd</td>
-                        <td>Regular</td>
-                    </tr>
-                ';
-            }
-            $count -= 1;
+        } else {
+            echo '<tr class="tb_header">
+                <th id="userid">ID NO.</th>
+                <th id="name">Name</th>
+                <th id="course">Email</th>
+                <th id="year">Course</th>
+            </tr>';
         }
+            
+        displayTable($result, $count, $user);
+
     }
     mysqli_close($conn);
 }
 
-function Coursename($course): string{
+function displayTable($result, $count, $userType='students'): void{
+    
+    while($row = $result->fetch_assoc()){
+        $fullname = ucwords(Naming($row['fname'], $row['lname'], $row['mname']));
+
+        // show data
+        if($count > 0){
+            // first check the type of user, teacher(faculty) or students - default is students
+            if($userType == 'students'){
+                // for students data
+                echo '<tr id="'.$row['userid'].'" class="studentrow">
+                            <td>' . $row['userid'] .' </td>
+                            <td>' . $fullname . '</td>
+                            <td>' . Coursename($row["course"]) . '</td>
+                            <td>3rd</td>
+                            <td>Regular</td>
+                        </tr>
+                    ';
+            } else if($userType == 'teachers'){
+                // for teacher (faculty) data
+                echo '<tr id="'.$row['userid'].'" class="studentrow">
+                            <td>' . $row['userid'] .' </td>
+                            <td>' . $fullname . '</td>
+                            <td>' . $row['email'] . '</td>
+                            <td>' . $row['profession'] . '</td>
+                        </tr>
+                    ';
+            }
+        }
+        $count -= 1;
+    }
+}
+
+function Coursename($course){
+    
     switch($course){
         case("bsit"):
             $course = "BS Information Technology";
@@ -136,7 +149,7 @@ function Coursename($course): string{
     return $course;
 }
 
-function Naming($fname, $lname, $mname): string{
+function Naming($fname, $lname, $mname){
     $fullname = "";
     if($mname != 'n/a'){
         $fullname = $fname . " " . $mname[0] . ". " . $lname;
@@ -146,4 +159,3 @@ function Naming($fname, $lname, $mname): string{
 
     return $fullname;
 }
-

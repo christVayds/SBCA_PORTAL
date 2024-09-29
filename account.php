@@ -1,16 +1,27 @@
 <?php
     include 'base.php';
+    include 'Model/todo.inc.php';
+    include 'Resources/pages/tabs.html.php';
+
+    session_start();
+
+    // check if user is logged in
+    if(!isset($_SESSION['user'])){
+        header('location: login.php');
+        exit();
+    }
 ?>
 
 <!-- Account page Student -->
 <div class="account" id="student">
-
+    
 </div>
 
 <!-- Account page Admin -->
 <div class="account active" id="admin">
 
     <!-- TAB BARS -->
+
     <div class="side acc_tabbar">
         <div class="acc_tabs active_tab" id="acc_tab">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-circle-user-round"><path d="M18 20a6 6 0 0 0-12 0"/><circle cx="12" cy="10" r="4"/><circle cx="12" cy="12" r="10"/></svg>
@@ -51,6 +62,8 @@
     <div class="side acc_page acc_content content_active" id="acc_content"> 
         <div class="acc_header">
             <div class="_acc_actions">
+
+                <!-- options -->
                 <div class="acc_actions">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
                 </div>
@@ -113,18 +126,46 @@
                     </div>
                 </div>
             </div>
+
+            <!-- refresh -->
             <div class="acc_actions">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-rotate-cw"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
             </div>
+
+            <!-- save -->
             <div class="acc_actions">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
             </div>
+
+            <!-- search -->
             <div class="acc_actions">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-search"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             </div>
         </div>
+
+        <!-- content for student's balance account -->
         <div class="acc_table">
-            <div class="acc_table_header">
+            <?php
+                AccountPage();
+            ?>
+
+            <!-- for testing in student's viewing account balance -->
+            <div class="account_table_header">
+                <p>Name: Christian Vaydal</p>
+                <p>Level: BSIT 4</p>
+            </div>
+            <div class="acc_table_assessments">
+                <div class="table_L" id="table_L">
+                    <!-- student's balance here -->
+                    <p>Balance: 30,000</p>
+                    <p>Payment: Monthly</p>
+                    <p>Total: 30,000</p>
+                </div>
+                <div class="table_R" id="table_R">
+                    <!-- show total here -->
+                </div>
+            </div>
+            <!-- <div class="acc_table_header">
                 <h3>BS Information Technology 3</h3>
                 <p>S.Y. 2023-2024</p>
                 <p>2nd Semester</p>
@@ -163,7 +204,7 @@
                         <td class="balance">12</td>
                     </tr>
                 </table>
-            </div>
+            </div> --->
         </div>
     </div>
 
@@ -560,10 +601,10 @@
                         </div>
                         <div class="form">
                             <h4>Enter new password</h4>
-                            <form method="post" autocomplete="off">
-                                <input type="password" placeholder="Enter password" id="pass1">
-                                <input type="password" placeholder="Re-enter password" id="pass2">
-                                <input type="submit" value="Save" id="save_password" disabled>
+                            <form method="post" action="Model/security.inc.php" autocomplete="off">
+                                <input type="password" name="pass1" placeholder="Enter password" id="pass1">
+                                <input type="password" name="pass2" placeholder="Re-enter password" id="pass2">
+                                <input type="submit" value="Save" id="save_password" name="save_password" disabled>
                             </form>
                         </div>
                     </div>

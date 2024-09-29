@@ -98,7 +98,7 @@ INSERT INTO Subjects(name, _year, semester, Major, username) VALUES (
 
 # semester
 CREATE TABLE Semester(
-    semester int(1) NOT NULL,
+    semester int(1) NOT NULL AUTO_INCREMENT,
     schoolyear varchar(255) NOT NULL,
     semID varchar(255) PRIMARY KEY,
     current int(1) NOT NULL # 0 - not, 1 - yes
@@ -156,6 +156,104 @@ INSERT INTO grades(subjectId, username, totalGrade) VALUES (
     'cvaydal',
     0
 );
+
+table for School Year
+CREATE TABLE SchoolYear(
+    SY_ID VARCHAR(255) NOT NULL PRIMARY KEY,
+    START_DATE DATETIME NOT NULL,
+    END_DATE DATETIME NOT NULL,
+    EXTEND_DATE DATETIME NOT NULL,
+    NUM_ENROLLED INT(11),
+    OPEN INT(1),
+    CURRENT INT(1),
+);
+
+table for Enrolled Students
+CREATE TABLE Enrolled_Students(
+    SSY_ID VARCHAR(225) PRIMARY KEY NOT NULL,
+    S_ID VARCHAR(225) NOT NULL,
+    SY_ID VARCHAR(255) NOT NULL,
+    SEMESTER_LEVEl INT(1) NOT NULL,
+    TOTAL_GPA INT(1) NOT NULL,
+    LEVEL INT(1) NOT NULL,
+
+    FOREIGN KEY (S_ID) REFERENCES Students(username),
+    FOREIGN KEY (SY_ID) REFERENCES SchoolYear(SY_ID)
+);
+
+# chat or messages database - UNUSED
+CREATE TABLE std_messages (
+    msgID INT(11) PRIMARY KEY,
+    sender varchar(255) NOT NULL,
+    receiver varchar(255) NOT NULL,
+    datesend DATETIME NOT NULL,
+    messagebody VARCHAR(255),
+    messagesubject VARCHAR(255),
+    priority INT(1) NOT NULL,
+
+    FOREIGN KEY (sender) REFERENCES Students(username),
+    FOREIGN key (receiver) REFERENCES Students(username)
+);
+
+# chat or messages database - USED
+CREATE TABLE std_messages ( # students
+    msgID INT(11) PRIMARY KEY AUTO_INCREMENT,
+    sender varchar(255) NOT NULL,       # fk
+    res_type int(1) NOT NULL,           # type of user, 0 = student, 1 = faculty, 2 = admin
+    receiver varchar(255) NOT NULL,     # receiver not fk
+    datesend DATETIME NOT NULL,         # date when message sent
+    messagebody VARCHAR(255),           # body of the message 
+    messagesubject VARCHAR(255),        # subject of the message
+
+    FOREIGN KEY (sender) REFERENCES students(username) # for students
+);
+
+CREATE TABLE flty_messages ( # teacher(faculty)
+    msgID INT(11) PRIMARY KEY AUTO_INCREMENT,
+    sender varchar(255) NOT NULL,       # fk
+    res_type int(1) NOT NULL,           # type of user, 0 = student, 1 = faculty, 2 = admin
+    receiver varchar(255) NOT NULL,     # receiver not fk
+    datesend DATETIME NOT NULL,         # date when message sent
+    messagebody VARCHAR(255),           # body of the message 
+    messagesubject VARCHAR(255),        # subject of the message
+
+    FOREIGN KEY (sender) REFERENCES teachers(username) # for teachers(faculty)
+);
+
+CREATE TABLE admin_messages ( # admin(sbca)
+    msgID INT(11) PRIMARY KEY AUTO_INCREMENT,
+    sender varchar(255) NOT NULL,       # fk
+    res_type int(1) NOT NULL,           # type of user, 0 = student, 1 = faculty, 2 = admin
+    receiver varchar(255) NOT NULL,     # receiver not fk
+    datesend DATETIME NOT NULL,         # date when message sent
+    messagebody VARCHAR(255),           # body of the message 
+    messagesubject VARCHAR(255),        # subject of the message
+
+    FOREIGN KEY (sender) REFERENCES sbca(username) # for admin(sbca)
+);
+
+# new message - student (example)
+INSERT INTO messages(sender, receiver, res_type, datesend, messagebody, messagesubject) VALUES (
+    'cvaydal',
+    'sbcaeduph',
+    0,
+    '2024-09-15 14:30:00',
+    'hello world',
+    'message subject'
+);
+
+// balance of student (tution fee)
+CREATE TABLE account (
+    b_id INT PRIMARY KEY AUTO_INCREMENT,
+    student VARCHAR(255) NOT NULL,
+    assessment INT NOT NULL,
+    balance INT NOT NULL,
+    num_units INT NOT NULL,
+
+    FOREIGN KEY (student) REFERENCES Enrolled_Students(S_ID)
+);
+
+- add new account if student is enrolled
 
 // css
 :root{
