@@ -38,6 +38,12 @@ body{
     background-color: var(---white);
 }
 
+.login-error-message{
+    padding: 0;
+    font-size: 15px;
+    color: var(---sbca3);
+}
+
 .container{
     position: absolute;
     top: 50%;
@@ -117,13 +123,17 @@ body{
     padding: 10px;
     font-size: 18px;
     font-family: "Open sans";
-    margin-top: 20px;
+    margin-top: 10px;
     border-radius: 5px;
     border: 1px solid var(---line);
 }
 
 .container .loginbox .left .form .forms input:focus{
     outline: none;
+}
+
+.container .loginbox .left .form .forms input[type="submit"]:disabled:hover{
+    background-color: var(---sbca2);
 }
 
 .container .loginbox .left .form .forms input[type="submit"]{

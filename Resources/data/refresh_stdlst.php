@@ -1,16 +1,14 @@
 <?php
 
-    if(isset($_POST['refresh'])){
-        if($_POST['refresh'] == "showStudents"){
-            include '../../Model/students.inc.php';
-
-            showStudents(50);
-        }
-    }
+// to be delete
+if(isset($_POST['refresh'])){
+    include '../../Model/usertable.inc.php';
+    showUserData(50, $_POST['refresh']);
+}
 ?>
 
 <script>
-    // get student data in table if click
+    // get student data if item in table is click - list of students
     $(".studentrow").click(function(){
         console.log($(this).attr('id'));
     });

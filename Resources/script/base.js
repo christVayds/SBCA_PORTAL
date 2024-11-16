@@ -6,92 +6,70 @@ if(sessionStorage.length == 0 || sessionStorage.getItem('mode') === null){
     sessionStorage.setItem('mode', 'white');
 }
 
-var white = [
-    ['---sbca', '#ff6666'],
-    ['---sbca2', '#FD4848'],
-    ['---sbca3', '#ba1111'],
-    ['---maincolor', '#3F3F3F'],
-    ['---tableHeader', '#3F3F3F'],
-    ['---gray', '#A5A5A5'],
-    ['---line', '#9b9a9a59'],
-    ['---white', '#fff'],
-    ['---selected_color', '#fff'],
-    ['---shadow', '#c4c4c4'],
-    ['---shadow2', '#2e2e2e'],
-    ['---hover', '#e3e3e3'],
-    ['---hover2', '#ebeaea48'],
-    ['---hover3', '#c4c4c45d'],
-    ['---acc_bg', '#b9b1fd15'],
-    ['---list_hover', '#e2e2e238'],
-    ['---tab_hover', '#dbdbdb5d']
-];
-
-var dark = [
-    ['---sbca', '#ff6666'],
-    ['---sbca2', '#FD4848'],
-    ['---sbca3', '#ba1111'],
-    ['---maincolor', '#f0f0f0ec'], // white
-    ['---tableHeader', '#686868'],
-    ['---gray', '#A5A5A5'],
-    ['---line', '#9b9a9a59'],
-    ['---white', '#3F3F3F'], // black
-    ['---selected_color', '#f0f0f0ec'],
-    ['---shadow', '#6b6b6b94'],
-    ['---shadow2', '#2e2e2e'],
-    ['---hover', '#686868'],
-    ['---hover2', '#ebeaea48'],
-    ['---hover3', '#c4c4c45d'],
-    ['---acc_bg', '#b9b1fd15'],
-    ['---list_hover', '#e2e2e238'],
-    ['---tab_hover', '#dbdbdb5d']
-];
-
 $(document).ready(function(){
+
+    function fetchsemesterData(){
+        $.ajax({
+            url: '../../Model/semester.dashboard.inc.php',
+            type: 'POST',
+            data: {
+                semesterLevel: 1,
+                schoolYear: '2024-2025'
+            },
+            success: function(response){
+                if(response.success){
+                    document.getElementById('sem_num_enrolled').textContent = response.data[1];
+                    document.getElementById('sem_num_students').textContent = response.data[0];
+                    document.getElementById('sem_num_faculties').textContent = response.data[2];
+                    document.getElementById('sem_num_courses').textContent = response.data[3];
+                    document.getElementById('semester-year-level').textContent = response['schoolYear'];
+                    document.getElementById('semester-num-level').textContent = response['semesterLevel'];
+                }
+            },
+            error: function(){
+                console.log('Error fetching data in semester info');
+            }
+        });
+    }
+
+
     switch(page){
         case('dashboard.php'):
             document.getElementById('dashboard').classList.add('active');
+            fetchsemesterData();
             break;
-        case('messages.php'):
-            document.getElementById('messages').classList.add('active');
-            document.getElementById("icon_messages").classList.remove('fa-regular');
-            document.getElementById("icon_messages").classList.add('fa-solid');
+        case('accounting.php'):
+            document.getElementById('accounting').classList.add('active');
+            break;
+        case('announcements.php'):
+            document.getElementById('news-updates').classList.add('active');
+            document.getElementById("icon_announce").classList.add('fa-solid');
             break;
         case('account.php'):
             document.getElementById('account').classList.add('active');
-            document.getElementById("icon_account").classList.remove('fa-regular');
             document.getElementById("icon_account").classList.add('fa-solid');
             break;
     }
 
     $("#sbca").click(function(){
-        console.log("hello world");
+        console.log("life is short, so take a risk always or lose a chance.");
     });
 
-    if(sessionStorage['mode'] === 'dark'){
-        for(var i=0;i<dark.length;i++){
-            $(':root').css(dark[i][0], dark[i][1]);
-        }
-    } else if(sessionStorage['mode'] === 'white'){
-        for(var i=0;i<white.length;i++){
-            $(':root').css(white[i][0], white[i][1]);
-        }
-    }
+    // on click on theme page
+    // select theme
+    $('.theme').click(function(){
+        var mode = $(this).attr('id');
+        var lastTheme = sessionStorage.getItem('mode');
 
-    $("#normal").click(function(){
-        if(sessionStorage.getItem("mode") == "dark"){
-            sessionStorage.setItem('mode', 'white');
-            for(var i=0;i<white.length;i++){
-                $(':root').css(white[i][0], white[i][1]);
-            }
+        if(lastTheme){ // remove prev theme first
+            document.documentElement.classList.remove(lastTheme);
         }
-    });
 
-    $("#dark").click(function(){
-        if(sessionStorage.getItem('mode') == "white"){
-            sessionStorage.setItem('mode', 'dark');
-            for(var i=0;i<dark.length;i++){
-                $(':root').css(dark[i][0], dark[i][1]);
-            }
+        if(mode !== 'normal'){
+            document.documentElement.classList.add(mode);
+            sessionStorage.setItem('mode', mode);
+        } else {
+            sessionStorage.setItem('mode', null);
         }
     });
 });

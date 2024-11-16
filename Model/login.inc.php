@@ -9,6 +9,7 @@ if(isset($_POST['submit'])){
     $user = $_GET['user'];
 
     $_SESSION['user'] = $user; // add user to session
+    $_SESSION['attempt_login'] = true;
 
     if($user){
         if($user === 'student'){
@@ -27,38 +28,50 @@ if(isset($_POST['submit'])){
             mysqli_stmt_bind_param($stmt, "ss", $username, $username);
             mysqli_stmt_execute($stmt);
 		    $result = mysqli_stmt_get_result($stmt);
-
+            
             if ($row = mysqli_fetch_assoc($result)) {
-                // temporary
-                if($user === 'student'){
-                    if($pwdCheck == false){
-                        header("location: ../login.php?user=".$user."&message=wrong_password");
-                        exit();
-                    } else if($pwdCheck === true) {
-                        if($user === 'student'){
-                            $_SESSION['username'] = $row['username'];
-                            $_SESSION['email'] = $row['email'];
-                            $_SESSION["fullname"] = ucwords($row['fname']) . " " . ucwords($row['lname']);
-                            $_SESSION['course'] = $row['course'];
-                            $_SESSION['schoolID'] = $row['userid'];
-                            $_SESSION['gender'] = $row['gender'];
-                            $_SESSION['bdate'] = $row['bdate'];
-                            header("location: ../dashboard.php");
-                            exit();
-                        }
+
+                // check or verify the password
+                $pwdCheck = password_verify($password, $row['_password']);
+
+                
+                if(!$pwdCheck){
+                    header("location: ../login.php?user=".$user."&message=wrong_password");
+                    exit();
+                } else { // else if($pwdCheck === true) 
+                    if($user === 'student'){
+                        $_SESSION['usertype'] = 'students';
+                        $_SESSION['username'] = $row['username'];
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION["fullname"] = ucwords($row['fname']) . " " . ucwords($row['lname']);
+                        $_SESSION['course'] = $row['course'];
+                        $_SESSION['schoolID'] = $row['userid'];
+                        $_SESSION['gender'] = $row['gender'];
+                        $_SESSION['bdate'] = $row['bdate'];
+                        // header("location: ../dashboard.php");
+                        // exit();
                     }
-                } else if($user === 'sbca' || $user === 'teacher'){ // temporary
-                    if($password === $row['_password']){
+                    else if($user === 'sbca'){
+                        $_SESSION['usertype'] = 'admin';
                         $_SESSION['username'] = $row['username'];
                         $_SESSION['name'] = $row['name'];
                         $_SESSION['email'] = $row['email'];
                         $_SESSION['address'] = $row['address'];
-                        header("location: ../dashboard.php");
-                        exit();
+                        // header("location: ../dashboard.php");
+                        // exit();
                     } else {
-                        header("location: ../login.php?user=".$user."&message=wrong_password");
-                        exit();
+                        // for faculties and admin
+                        $_SESSION['usertype'] = 'teachers';
+                        $_SESSION['username'] = $row['username'];
+                        $_SESSION['name'] = $row['name'];
+                        $_SESSION['email'] = $row['email'];
+                        $_SESSION['address'] = $row['address'];
+                        // header("location: ../dashboard.php");
+                        // exit();
                     }
+                    // natigate to dashboard.php page
+                    header("location: ../dashboard.php");
+                    exit();
                 }
             } else {
                 header("location: ../login.php?user=". $user ."&message=user_not_found");

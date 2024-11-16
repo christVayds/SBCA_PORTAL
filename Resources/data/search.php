@@ -1,88 +1,100 @@
 <?php
     if(isset($_POST['searchstudent'])){
-        $count = $_POST['count'];
         include '../../Model/db.inc.php';
+        include '../../Model/usertable.inc.php';
 
-        $search = $_POST['search'];
+        // get maximum number of data to show
+        $count = $_POST['count'];
+
+        $search = $_POST['search']; // string value to search in database
         $toSearch = $_POST['searchstudent'];
-        $searchquery = "";
+        $course = $_POST['course'];
 
-        if($_POST['searchstudent'] == 'student'){
-            $searchquery = "SELECT * FROM students WHERE userid LIKE '%$search%' OR fname LIKE '%$search%' OR lname LIKE '%$search%' OR mname LIKE '%$search%' OR CONCAT(fname, ' ', lname) LIKE '%$search%'";
-        } else if($_POST['searchstudent'] == 'studentcourse'){
-            if($search !== 'all'){
-                $searchquery = "SELECT * FROM students WHERE course = '$search'";
-            } else {
-                $searchquery = "SELECT * FROM students";
-            }
+        // filtered search
+        $course = $_POST['course'];
+
+        // search student name
+        if($toSearch == 'students'){
+            $searchquery = "SELECT * FROM students WHERE CONCAT(fname, mname, lname, username, userid) LIKE '%$search%' AND course LIKE '%$course%'";
         }
-        $result = mysqli_query($conn, $searchquery);
+        // search teachers(faculties)
+        else if($toSearch == 'teachers'){
+            $searchquery = "SELECT * FROM teachers WHERE userid LIKE '%$search%' OR fname LIKE '%$search%' OR lname LIKE '%$search%' OR mname LIKE '%$search%' OR CONCAT(fname, ' ', lname) LIKE '%$search%'";
+        }
 
+        // get the result
+        $result = mysqli_query($conn, $searchquery);
+        
         // echo the table header
-        echo '<tr class="tb_header">
+
+        // if students
+        if(in_array($toSearch, ['students', 'studentcourse'])){
+            echo '<tr class="tb_header">
                 <th id="userid">ID NO.</th>
                 <th id="name">Name</th>
                 <th id="course">Course</th>
                 <th id="year">Year</th>
                 <th id="status">Status</th>
             </tr>';
-        if(mysqli_num_rows($result) > 0){
-			while($row = $result->fetch_assoc()){
-                $fullname = ucwords(Naming($row["fname"], $row["lname"], $row["mname"]));
 
-                if($count > 0){
-                    echo '<tr id="'.$row['userid'].'" class="studentrow">
+            if(mysqli_num_rows($result) > 0){
+                while($row = $result->fetch_assoc()){
+                    $fullname = ucwords(Naming($row["fname"], $row["lname"], $row["mname"]));
+
+                    if($count > 0){
+                        echo '<tr id="'.$row['userid'].'" class="studentrow">
+                                <td>' . $row['userid'] .' </td>
+                                <td>' . $fullname . '</td>
+                                <td>' . Coursename($row["course"]) . '</td>
+                                <td>3rd</td>
+                                <td>Regular</td>
+                            </tr>
+                        ';
+                    }
+                    $count -= 1;
+                }
+            }
+        } 
+        // if faculties
+        else if(in_array($toSearch, ['teachers', 'faculties'])){
+            echo '<tr class="tb_header">
+                <th id="userid">ID NO.</th>
+                <th id="name">Name</th>
+                <th id="course">Email</th>
+                <th id="year">Course</th>
+            </tr>';
+
+            if(mysqli_num_rows($result) > 0){
+                while($row = $result->fetch_assoc()){
+                    $fullname = ucwords(Naming($row["fname"], $row["lname"], $row["mname"]));
+
+                    if($count > 0){
+                        // for teacher (faculty) data
+                        echo '<tr id="'.$row['userid'].'" class="studentrow">
                             <td>' . $row['userid'] .' </td>
                             <td>' . $fullname . '</td>
-                            <td>' . Coursename($row["course"]) . '</td>
-                            <td>3rd</td>
-                            <td>Regular</td>
-                        </tr>
-                    ';
+                            <td>' . $row['email'] . '</td>
+                            <td>' . $row['profession'] . '</td>
+                            </tr>
+                        ';
+                    }
+                    $count -= 1;
                 }
-                $count -= 1;
             }
         }
+        
         mysqli_close($conn);
-    }
-
-    function Coursename($course){
-        switch($course){
-            case("bsit"):
-                $course = "BS Information Technology";
-                break;
-            case("bsba"):
-                $course = "BS Business Ad";
-                break;
-            case("bshm"):
-                $course = "BS Hospitality Management";
-                break;
-            case("bsp"):
-                $course = "BS Psychology";
-                break;
-            default:
-                $course = "Unkown";
-                break;
-        };
-    
-        return $course;
-    }
-    
-    function Naming($fname, $lname, $mname){
-        $fullname = "";
-        if($mname != 'n/a'){
-            $fullname = $fname . " " . $mname[0] . ". " . $lname;
-        } else {
-            $fullname = $fname . " " . $lname;
-        }
-    
-        return $fullname;
     }
 ?>
 
 <script>
-    // get student data in table if click
+    // student list popup (more information about student)
     $(".studentrow").click(function(){
-        console.log($(this).attr('id'));
+        var stdinfo = document.getElementById('stdinfo_popup');
+        stdinfo.classList.add('showSemPopup');
+
+        $('#viewstudentinfo_popup').load('Resources/pages/studentinfo.html.php', {
+            student_id: $(this).attr('id')
+        });
     });
 </script>

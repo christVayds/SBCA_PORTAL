@@ -28,15 +28,26 @@ $(document).ready(function(){
         case('teacher'):
             document.getElementById(active_user).classList.add('active');
             userImage.src = 'Resources/assets/teacher.nobg.png';
-            sessionStorage.setItem('user', 'student');
+            sessionStorage.setItem('user', 'teacher'); // student replaced
             break;
         case('sbca'):
             document.getElementById(active_user).classList.add('active');
             userImage.src = 'Resources/assets/tom.nobg.png';
-            sessionStorage.setItem('user', 'student');
+            sessionStorage.setItem('user', 'admin'); // student replaced
             break;
         default:
             window.location.href = 'login.php?user=student';
             break;
     }
+
+    $('.input').keyup(function(){
+        var username = document.getElementById('username').value;
+        var password = document.getElementById('password').value;
+
+        if(username.length > 0 && password.length >= 8){
+            document.getElementById('submit-login').disabled = false;
+        } else {
+            document.getElementById('submit-login').disabled = true;
+        }
+    });
 });

@@ -1,5 +1,13 @@
 <?php
 
+/*
+
+STUDENTS:
+    student database
+    account
+
+*/
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     include '../Class/Users.class.php';
 
@@ -14,8 +22,17 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $gender = $_POST['gender'];
     $address = $_POST['address'];
 
-    $student = new Students($fname, $mname, $lname, $course, $schoolid, $email, $password, $bdate, $gender, $address);
-    if($student->save()){
+    if($_POST['user'] == 'students'){
+        $new_user = new Students($fname, $mname, $lname, $course.'1', $schoolid, $email, $password, $bdate, $gender, $address);
+    } else if($_POST['user'] == 'teachers'){
+        $new_user = new Teachers($fname, $lname, $mname, $schoolid, $email, $password, $address, $bdate, $gender);
+    } else {
+        echo "User not found";
+        exit();
+    }
+
+    # save the new user (student or faculty)
+    if($new_user->save()){
         echo "Saved";
     } else {
         echo "Email Already used";
