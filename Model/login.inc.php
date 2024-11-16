@@ -9,6 +9,7 @@ if(isset($_POST['submit'])){
     $user = $_GET['user'];
 
     $_SESSION['user'] = $user; // add user to session
+    $_SESSION['attempt_login'] = true;
 
     if($user){
         if($user === 'student'){

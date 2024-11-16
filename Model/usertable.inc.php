@@ -12,29 +12,33 @@
 // show student grade info in dashboard(student/teacher tab) - popup
 
 // show students in dashboard tab
-function showStudentsByCourse($courseid, $year=3): void{
+
+function showStudentsByCourse($courseid, $year='1', $searchname=''): void{
     include 'db.inc.php';
     $stmt = mysqli_stmt_init($conn);
+    $courseid = $courseid.$year;
+    $searchname = '%'.$searchname.'%';
 
-    $studentsquery = 'SELECT * FROM students WHERE course=?';
+    // $studentsquery = 'SELECT * FROM students WHERE course=?';
+    $studentsquery = 'SELECT Enrolled_Students.*, students.* FROM Enrolled_Students JOIN students ON Enrolled_Students.S_ID = students.username WHERE students.course=? AND CONCAT(students.fname, students.lname, students.username, students.userid) like ?';
 
     if(!mysqli_stmt_prepare($stmt, $studentsquery)){
         header('location: /dashboard.php?message=error');
         exit();
     } else {
-        mysqli_stmt_bind_param($stmt,'s', $courseid);
+        mysqli_stmt_bind_param($stmt,'ss', $courseid, $searchname);
         mysqli_stmt_execute($stmt);
 		$result = mysqli_stmt_get_result($stmt);
 
         // table header
         echo '
-            <tr id="header">
-                <th id="std_userid">ID NO.</th>
-                <th id="std_name">Name</th>
-                <th id="std_course">Course</th>
-                <th id="std_year">Year</th>
-                <th id="std_unit">Unit</th>
-                <th id="std_gpa">GPA</th>
+            <tr class="table-row">
+                <th class="table-header table-id">ID NO.</th>
+                <th class="table-header table-name">Name</th>
+                <th class="table-header table-long">Course</th>
+                <th class="table-header table-num">Year</th>
+                <th class="table-header table-num">Unit</th>
+                <th class="table-header table-input">GPA</th>
             </tr>
         ';
 
@@ -43,13 +47,13 @@ function showStudentsByCourse($courseid, $year=3): void{
             $fullname = ucwords(Naming($row["fname"], $row["lname"], $row["mname"]));
 
             echo '
-                <tr id="'. $row['userid'] .'" class="enrolled_std">
-                    <td>'. $row['userid'] .'</td>
-                    <td id="'. $row['userid'] .'_name">'. $fullname .'</td>
-                    <td id="'. $row['userid'] .'_course">'. Coursename($row['course']) .'</td>
-                    <td>3rd</td>
-                    <td>12</td>
-                    <td class="gpa_input">
+                <tr id="'. $row['userid'] .'" class="table-row table-user enrolled_std">
+                    <td class="table-data">'. $row['userid'] .'</td>
+                    <td class="table-data" id="'. $row['userid'] .'_name">'. $fullname .'</td>
+                    <td class="table-data" id="'. $row['userid'] .'_course">'. Coursename($row['course']) .'</td>
+                    <td class="table-data">3rd</td>
+                    <td class="table-data">12</td>
+                    <td class="table-data table-input">
                         <input type="text" class="total_gpa" placeholder="0">
                     </td>
                 </tr>
@@ -127,6 +131,7 @@ function displayTable($result, $count, $userType='students'): void{
 }
 
 function Coursename($course){
+    $course = substr($course, 0, -1);
     
     switch($course){
         case("bsit"):
@@ -138,7 +143,7 @@ function Coursename($course){
         case("bshm"):
             $course = "BS Hospitality Management";
             break;
-        case("bsp"):
+        case("bspsych"):
             $course = "BS Psychology";
             break;
         default:
@@ -158,4 +163,16 @@ function Naming($fname, $lname, $mname){
     }
 
     return $fullname;
+}
+
+// this will format date into string formate
+function formatDate($date, $format='toString'): string{
+    if($format === 'toString'){
+        $date = explode(' ', $date);
+        $formattedDate = DateTime::createFromFormat('Y-m-d', $date[0])->format('M d, Y');
+    } else if($format === 'toInt'){
+        $formattedDate = DateTime::createFromFormat('M d, Y', $date)->format('Y-m-d');
+    }
+
+    return $formattedDate;
 }

@@ -1,5 +1,13 @@
 <?php
 
+/*
+
+STUDENTS:
+    student database
+    account
+
+*/
+
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     include '../Class/Users.class.php';
 
@@ -15,7 +23,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $address = $_POST['address'];
 
     if($_POST['user'] == 'students'){
-        $new_user = new Students($fname, $mname, $lname, $course, $schoolid, $email, $password, $bdate, $gender, $address);
+        $new_user = new Students($fname, $mname, $lname, $course.'1', $schoolid, $email, $password, $bdate, $gender, $address);
     } else if($_POST['user'] == 'teachers'){
         $new_user = new Teachers($fname, $lname, $mname, $schoolid, $email, $password, $address, $bdate, $gender);
     } else {

@@ -8,18 +8,14 @@
 
         $search = $_POST['search']; // string value to search in database
         $toSearch = $_POST['searchstudent'];
+        $course = $_POST['course'];
+
+        // filtered search
+        $course = $_POST['course'];
 
         // search student name
         if($toSearch == 'students'){
-            $searchquery = "SELECT * FROM students WHERE userid LIKE '%$search%' OR fname LIKE '%$search%' OR lname LIKE '%$search%' OR mname LIKE '%$search%' OR CONCAT(fname, ' ', lname) LIKE '%$search%'";
-        } 
-        // filtered search
-        else if($toSearch == 'studentcourse'){
-            if($search !== 'all'){
-                $searchquery = "SELECT * FROM students WHERE course = '$search'";
-            } else {
-                $searchquery = "SELECT * FROM students";
-            }
+            $searchquery = "SELECT * FROM students WHERE CONCAT(fname, mname, lname, username, userid) LIKE '%$search%' AND course LIKE '%$course%'";
         }
         // search teachers(faculties)
         else if($toSearch == 'teachers'){
@@ -92,8 +88,13 @@
 ?>
 
 <script>
-// get student data in table if click
-$(".studentrow").click(function(){
-    console.log($(this).attr('id'));
-});
+    // student list popup (more information about student)
+    $(".studentrow").click(function(){
+        var stdinfo = document.getElementById('stdinfo_popup');
+        stdinfo.classList.add('showSemPopup');
+
+        $('#viewstudentinfo_popup').load('Resources/pages/studentinfo.html.php', {
+            student_id: $(this).attr('id')
+        });
+    });
 </script>

@@ -35,26 +35,32 @@ if(isset($_SESSION['username'])){
                 <div class="logo">
                     <img src="Resources/assets/sbca.logo2.png" alt="">
                 </div>
+                <div class="login-error-message">
+                    <?php
+                        if($_GET['message'] === 'user_not_found' && $_SESSION['attempt_login']){
+                            echo '<p>Username or password is incorrect.</p>';
+                            $_SESSION['attempt_login'] = false;
+                        }
+                    ?>
+                </div>
                 <div class="form">
                     <div class="forms">
                         <form action="Model/login.inc.php?user=<?php echo $_GET['user'] ?>" method="post" autocomplete="off" id="login_user">
-                            <input type="text" placeholder="Username or Email" name="username">
-                            <input type="password" placeholder="Password" name="password">
-                            <input type="submit" value="Login" name="submit">
+                            <input class="input" id="username" type="text" placeholder="Username or Email" name="username">
+                            <input class="input" id= "password" type="password" placeholder="Password" name="password">
+                            <input type="submit" value="Login" name="submit" id="submit-login" disabled>
                         </form>
                     </div>
                 </div>
             </div>
             <div class="side right">
-                <img src="Resources/assets/student.nobg.png" alt="user image" id="userImage" class='slide_img'>
+                <img alt="user image" id="userImage" class='slide_img'>
             </div>
         </div>
         <div class="options">
-            <a href="#">About</a>
+            <a href="https://sbca.edu.ph/">SBCA Website</a>
             <p>•</p>
-            <a href="#">Forgot Password</a>
-            <p>•</p>
-            <a href="#">Report a problem</a>
+            <a href="#">Copyright 2025 St. Bernadette College of Alabang. All Right Reserved.</a>
         </div>
     </div>
 

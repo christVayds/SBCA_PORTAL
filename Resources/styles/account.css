@@ -25,6 +25,7 @@
     cursor: pointer;
     display: flex;
     align-items: center;
+    transition: background-color 0.5s ease;
 }
 
 .acc_tabs svg,
@@ -66,10 +67,10 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
+    min-width: 30px;
     height: 30px;
     padding: 5px;
-    border-radius: 50%;
+    border-radius: 50px;
     margin-right: 5px;
     margin-left: 5px;
     font-size: 16px;
@@ -87,6 +88,25 @@
     color: var(---white);
 }
 
+.acc_actions .search-account{
+    display: none;
+}
+
+.acc_actions .show-search-account{
+    display: block;
+}
+
+.acc_actions .search-account input{
+    border: none;
+    font-size: 18px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.acc_actions .search-account input:focus{
+    outline: none;
+}
+
 /* end of for buttons */
 
 
@@ -98,97 +118,86 @@
     justify-content: space-between;
 }
 
-.acc_page .acc_table .acc_table_assessments div{
-    border: 1px solid var(---gray); /* temporary */
+.acc_page .acc_table .acc_table_assessments .table{
+    border: 1px solid var(---gray);
     border-radius: 10px;
     width: 50%;
-    min-height: 50vh;
+    min-height: 55vh;
     max-height: 100vh;
     margin: 5px;
     padding: 10px;
 }
 
-.acc_page .acc_table_view{
+.acc_page .account_table_header{
+    margin-bottom: 15px;
+}
+
+/* left side */
+.acc_page .acc_table .acc_table_assessments .table .acc_info{
+    /* border: 1px solid var(---gray); */
+    margin-bottom: 10px;
+    padding: 5px;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .acc_info .acc_balance{
+    /* border: 1px solid var(---gray); */
+    /* margin-top: 5px; */
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .acc_info .acc_balance:hover{
+    background-color: var(---gray);
+    color: var(---white);
+}
+
+
+/* right side */
+.acc_page .acc_table .acc_table_assessments .table .tuitionfeeinfo .item{
+    display: flex;
+    justify-content: space-between;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .tuitionfeeinfo .break{
+    border-top: 1px solid var(---gray);
+    margin-top: 5px;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .scheduletitle{
+    margin-top: 15px;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .schedultofpayments{
+    /* border: 1px solid var(---gray); */
+    display: flex;
+    justify-content: space-between;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .schedultofpayments .side{
+    /* border: 1px solid var(---gray); */
+    width: 50%;
+    justify-content: left;
+    margin: 5px;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .schedultofpayments .side .item{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid var(---gray);
+    padding: 5px;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .otherbalance .other_balance{
+    padding: 10px;
+    border: 1px solid var(---gray);
+    border-radius: 5px;
     margin-top: 10px;
 }
 
-.acc_page .acc_table_view .acc_table_content{
-    width: 125%;
-    text-align: left;
-    overflow-y: auto;
-}
-
-/* header for table */
-
-.acc_page .acc_table_view .acc_table_content tr:not(#tbl_header):hover{
-    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
-    cursor: pointer;
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header{
-    background-color: var(---tableHeader);
-    color: var(---selected_color);
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header th{
-    font-weight: normal;
-    border: 1px solid var(---line);
-    padding: 4px;
-}
-
-/* for the students account width of columns */
-.acc_page .acc_table_view .acc_table_content #tbl_header #userid{
-    width: 6%;
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header #username{
-    width: 10%;
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header #usercourse{
-    width: 10%;
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header #userreceivable,
-.acc_page .acc_table_view .acc_table_content #tbl_header #usermonthly,
-.acc_page .acc_table_view .acc_table_content #tbl_header #usertotal{
-    width: 5%;
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header #userunit{
-    width: 5%;
-}
-
-/* make the table text color to main color */
-.acc_page .acc_table_view .acc_table_content tr a{
-    color: var(---maincolor);
-}
-
-.acc_page .acc_table_view .acc_table_content tr td{
-    padding: 4px;
-}
-
-.acc_page .acc_table_view .acc_table_content tr .balance{
-    text-align: end;
-}
-
-/* for the students schedule table view */
-.acc_page .acc_table_view .acc_table_content #tbl_header #subcode,
-.acc_page .acc_table_view .acc_table_content #tbl_header #time{
-    width: 10%;
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header #units,
-.acc_page .acc_table_view .acc_table_content #tbl_header #day{
-    width: 10%;
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header #description{
-    width: 25%;
-}
-
-.acc_page .acc_table_view .acc_table_content #tbl_header #gclassCode{
-    width: auto;
+.acc_page .acc_table_view{
+    margin-top: 10px;
 }
 
 /* Table view */
@@ -334,9 +343,7 @@
 .account .logout_content,
 .account .change_pass_content,
 .account .theme_content,
-.account .event_content,
 .account .about_content,
-.account .class_content,
 .account .acc_content{
     width: 85%;
     background-color: var(---acc_bg);
@@ -362,327 +369,164 @@
     display: none;
 }
 
-.account .about_content .about_nav_bar{
+.about_navbar{
+    height: 150px;
+    background-color: var(---white);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-
-    background-color: var(---sbca3);
-    border: 1px solid var(---line);
-    border-radius: 5px;
-    margin: 5px;
-    height: 50px;
 }
 
-/* logo in about page header */
-.account .about_content .about_nav_bar .logo{
-    border: 1px solid var(---line);
-    padding: 1px;
-    width: 85px;
-    height: 85px;
-    border-radius: 50%;
-    background-color: var(---white);
-    margin: 10px;
-
-    position: relative;
-    top: 50%;
+.about_navbar .side{
+    /* border: 1px solid var(---line); */
+    height: 100%;
 }
 
-.account .about_content .about_nav_bar .logo img{
-    width: 100%;
-    border-radius: 50%;
+.about_navbar .logo{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about_navbar .logo img{
+    width: 110px;
+    height: 110px;
     object-fit: cover;
 }
 
-.account .about_content .about_nav_bar .nav_items{
-    padding: 10px;
-}
-
-.account .about_content .about_nav_bar .nav_items a{
-    color: var(---selected_color);
-    margin-left: 10px;
-}
-
-.account .about_content .about_nav_bar .nav_items a:hover{
-    text-decoration: underline;
-}
-
-.account .about_content .slide_images{
-    background-color: transparent;
-    border-radius: 5px;
-    max-height: 450px;
-    margin: 5px;
-}
-
-.account .about_content .slide_images img{
-    width: 100%;
-    max-height: 450px;
-    border-radius: 5px;
-    border: 1px solid var(---line);
-    object-fit: cover;
-}
-
-.account .about_content .news_about{
+.about_navbar .navicons{
+    width: 70%;
     display: flex;
-    justify-content: space-between;
+    align-items: end;
+    justify-content: end;
 }
 
-.account .about_content .news_about .side{
-    margin: 5px;
+.navicons .navbar_icons{
     padding: 10px;
-    border: 1px solid var(---line);
+    cursor: pointer;
+    border-bottom: 5px solid transparent;
+}
+
+.navicons .navbar_icons:hover{
+    border-bottom: 5px solid var(---sbca);
+    color: var(---sbca);
+}
+
+.about_content .sliding_images{
     background-color: var(---white);
-    border-radius: 5px;
-    height: fit-content;
-}
-
-.account .about_content .news_about .side h3{
-    color: var(---sbca2);
-}
-
-/* news side in about page */
-
-.account .about_content .news_about .side .header{
-    padding-bottom: 10px;
-    border-bottom: 1px solid var(---line);
-}
-
-/* news and updates side */
-
-.account .about_content .news_about .news_side{
-    width: 60%;
-}
-
-.account .about_content .news_about .news_side .news_content{
-    margin-bottom: 50px;
-    font-family: "Open sans", "Noto Color Emoji";
-}
-
-.account .about_content .news_about .about_side .abt_side_content .award_content img,
-.account .about_content .news_about .news_side .news_content img{
-    width: 100%;
-    border-radius: 5px;
-    transition: transform 0.3s ease;
-}
-
-.account .about_content .news_about .about_side .abt_side_content .award_content img:hover,
-.account .about_content .news_about .news_side .news_content img:hover{
-    transform: scale(1.01);
-}
-
-.account .about_content .news_about .about_side .abt_side_content .award_content p,
-.account .about_content .news_about .news_side .news_content p{
-    padding: 10px;
-}
-
-
-/* certificate and ratings side */
-.account .about_content .news_about .about_side{
-    width: 40%;
-}
-
-.account .about_content .news_about .about_side .abt_side_content .award_content{
-    margin-bottom: 50px;
-}
-
-/* about St Bernadette College of Alabang */
-.account .about_content .about_school{
-    min-height: 200px;
-    border: 1px solid var(---line);
-    background-color: var(---sbca2);
-    color: var(---selected_color);
     display: flex;
+    height: 500px;
+    align-items: center;
     justify-content: center;
 }
 
-.account .about_content .about_school .side{
-    padding: 10px;
+.about_content .sliding_images img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-.account .about_content .about_school .left_side{
-    width: 40%;
+.about_content .extra_line{
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-.account .about_content .about_school .left_side .side_content{
-    text-align: center;
-}
-
-.account .about_content .about_school .left_side .side_content img{
-    width: 300px;
-    object-fit: cover;
-}
-
-.account .about_content .about_school .right_side{
-    width: 60%;
-}
-
-.account .about_content .about_school .right_side .side_content{
-    margin: 20px;
-}
-
-.account .about_content .about_school .right_side .side_content p{
-    font-size: 15px;
-}
-
-/* events page content */
-.account .event_content .content{
-    display: flex;
-    align-items: center;
-}
-
-.account .event_content .content .event_info{
-    width: 80%;
-    height: 85vh;
-    overflow-y: auto;
-
-    /* removing scrollbar */
-    scrollbar-width: none; /* remove scrollbar for firefox */
-    -ms-overflow-style: none; /* remove scrollbar for edge */
-}
-
-/* hide the scrollbar */
-.account .event_content .content .event_lists::-webkit-scrollbar,
-.account .event_content .content .event_info::-webkit-scrollbar{
-    display: none;
-}
-
-.account .event_content .content .event_info .display_event{
-    background-color: var(---white);
-    margin: 3px;
-    border-radius: 5px;
-    border: 1px solid var(---line);
-    min-height: 400px;
-    margin-bottom: 5px;
-}
-
-.account .event_content .content .event_info .title{
-    padding: 10px;
-    display: flex;
-    justify-content: space-between;
-}
-
-.account .event_content .content .event_info .title .name{
-    display: flex;
-    font-size: 20px;
-}
-
-.account .event_content .content .event_info .title .name img{
-    margin-right: 10px;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    border: 1px solid var(---line);
-    object-fit: cover;
-}
-
-.account .event_content .content .event_info .display_event .event_body{
-    padding: 10px;
-    font-family: "Open sans", "Noto Color Emoji";
-}
-
-.account .event_content .content .event_info .display_event .event_body .medias{
-    overflow-x: auto;
-    overflow-y: hidden;
-}
-
-.account .event_content .content .event_info .display_event .event_body .medias img{
-    width: 500px;
-    border-radius: 5px;
-    object-fit: cover;
-    transition: transform 0.3s ease;
-}
-
-.account .event_content .content .event_info .display_event .event_body .medias img:hover{
-    transform: scale(1.05);
-}
-
-.account .event_content .content .event_info .display_event .numberOfRections{
-    margin-left: 10px;
-    font-size: 16px;
+.about_content .extra_line p{
     color: var(---gray);
 }
 
-.account .event_content .content .event_info .display_event .reactions{
+.about_content .enrollment_information{
+    background-color: var(---white);
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.about_content .enrollment_information .side{
+    /* border: 1px solid var(---line); */
+    min-height: 200px;
+}
+
+.about_content .enrollment_information .enrollment_req{
+    width: 70%;
+}
+
+.about_content .enrollment_information .enrollment_req .list_req{
+    /* border: 1px solid var(---line); */
+    padding: 10px;
+}
+
+.about_content .enrollment_information .enrollment_req .list_req p{
+    padding: 10px;
+}
+
+.about_content .enrollment_information .enrollment_req .list_req p:hover{
+    background-color: var(---hover);
+}
+
+.about_content .enrollment_information .enrollment_qr{
+    width: 30%;
+    text-align: center;
+}
+
+.about_content .enrollment_information .enrollment_qr img{
+    border-radius: 10px;
     margin: 10px;
 }
 
-.account .event_content .content .event_info .display_event .reactions .like .fa-solid{
-    color: var(---sbca2);
+.about_content .enrollment_information .enrollment_qr p{
+    color: var(---gray);
+    font-size: 15px;
+    padding: 10px;
 }
 
-/* event lists */
-
-.account .event_content .content .event_lists{
-    width: 20%;
+.about_content .about_sbca{
     /* border: 1px solid var(---line); */
-    height: 85vh;
-    overflow-y: auto;
-
-    /* removing scrollbar */
-    scrollbar-width: none; /* remove scrollbar for firefox */
-    -ms-overflow-style: none; /* remove scrollbar for edge */
+    /* background-color: var(---white); */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 10px;
 }
 
-.account .event_content .content .event_lists .event_heading{
+.about_content .about_sbca_label{
+    padding: 10px;
+    /* background-color: var(---white); */
+}
+
+.about_content .about_sbca .about-card{
+    width: 30%;
+    height: 350px;
     border: 1px solid var(---line);
     background-color: var(---white);
-    height: 100px;
+    border-radius: 10px;
+    margin: 10px;
 }
 
-.account .event_content .content .event_lists .event_heading .title{
-    padding: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    cursor: pointer;
-}
-
-.account .event_content .content .event_lists .event_heading .title:hover{
-    background-color: var(---list_hover);
-}
-
-.account .event_content .content .event_lists .event_heading .num_events{
-    display: flex;
-    align-items: center;
-    padding: 10px;
-}
-
-.account .event_content .content .event_lists .event_heading .num_events i{
-    margin-right: 10px;
-}
-
-.account .event_content .content .event_lists .list_of_events .event{
-    background-color: var(---white);
-    padding: 10px;
-    margin-top: 2px;
+.about_content .about_sbca .about-card .header{
     border: 1px solid var(---line);
-    cursor: pointer;
-}
-
-.account .event_content .content .event_lists .list_of_events .event:hover{
-    background-color: var(---list_hover);
-}
-
-.account .event_content .content .event_lists .list_of_events .event .title{
+    height: 50px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
+    background-color: var(---maincolor);
+    color: var(---white);
+    border-radius: 10px 10px 0 0;
 }
 
-.account .event_content .content .event_lists .list_of_events .event .content_event{
-    height: 100px;
-    padding: 10px;
-    display: none;
-    font-family: "Open sans", "Noto Color Emoji";
+.about_content .about_sbca .about-card .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 300px;
+    /* border: 1px solid var(---line); */
 }
 
-.account .event_content .content .event_lists .list_of_events .event .show_event{
-    display: block;
+.about_content .about_sbca .about-card .content p{
+    padding: 50px;
 }
 
 /* theme page */
@@ -738,6 +582,15 @@
 .account .theme_content .select_theme .themes_items #dark{
     background-color: #3F3F3F;
     color: var(---selected_color);
+}
+
+.account .theme_content .select_theme .themes_items #christmas{
+    background-color: #A02334;
+    color: #FFEEAD;
+}
+
+.account .theme_content .select_theme .themes_items #christmas:hover{
+    background-color: #FFAD60;
 }
 
 .account .theme_content .select_theme .themes_items .theme .icon{
@@ -863,10 +716,31 @@
 }
 
 /* right side  */
-.account .change_pass_content .change_pass .sides .right_side .side_content .password_icon img{
-    width: 150px;
-    object-fit: cover;
-    border-radius: 5px;
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .chpasspass-message-label{
+    padding: 10px;
+    text-align: start;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .chpasspass-message-label #success{
+    color: green;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .chpasspass-message-label #error{
+    color: red;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .lockiconframe{
+    /* border: 1px solid var(---gray); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .lockiconframe img{
+    width: 100px;
+    height: 100px;
 }
 
 .account .change_pass_content .change_pass .sides .right_side .side_content .form{
@@ -876,6 +750,19 @@
 .account .change_pass_content .change_pass .sides .right_side .side_content .form form{
     margin: 5px;
     text-align: center;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form .label{ 
+    /* border: 1px solid var(---gray); */
+    text-align: start;
+    color: var(---gray);
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form .forgotpassLabel{
+    margin-bottom: 35px;
+    text-align: start;
+    font-size: 15px;
+    color: var(---gray);
 }
 
 .account .change_pass_content .change_pass .sides .right_side .side_content .form form input{
@@ -890,12 +777,17 @@
 
 .account .change_pass_content .change_pass .sides .right_side .side_content .form form input:focus{
     outline: none;
+    border-color: var(---maincolor);
 }
 
 .account .change_pass_content .change_pass .sides .right_side .side_content .form form #save_password{
     background-color: var(---sbca2);
     color: var(---selected_color);
     border-radius: 50px;
+}
+
+.account .change_pass_content .change_pass .sides .right_side .side_content .form form input:hover:not(#save_password){
+    border-color: var(---sbca2);
 }
 
 .account .change_pass_content .change_pass .sides .right_side .side_content .form form #save_password:hover{

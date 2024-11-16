@@ -1,5 +1,5 @@
 # create table for Students
-CREATE TABLE Students(
+CREATE TABLE students(
     username varchar(255) NOT NULL PRIMARY KEY,
     fname varchar(255) NOT NULL,
     lname varchar(255) NOT NULL,
@@ -11,7 +11,10 @@ CREATE TABLE Students(
     bdate DATETIME NOT NULL,
     address varchar(255),
     gender varchar(20),
-    profilePicture LONGBLOB
+    profilePicture LONGBLOB,
+    imageLink varchar(20),
+
+    FOREIGN KEY (course) REFERENCES Course(code)
 );
 
 INSERT INTO Students (username, fname, lname, mname, email, userid, course, _password, bdate, address, gender) VALUES (
@@ -129,15 +132,15 @@ INSERT INTO todo_admin(todoid, username, name, checked) VALUES (
 # courses
 
 CREATE TABLE Course(
-    code varchar(255) PRIMARY KEY,
-    name varchar(255) NOT NULL,
-    _year int(1) NOT NULL
+    course varchar(255) PRIMARY KEY,  # e.g. bsit1
+    name varchar(255) NOT NULL,     # Name of the course (e.g. BSIT)
+    level int(1) NOT NULL,          # 1 to 4
 );
 
 INSERT INTO Course (code, name, _year) VALUES (
-    'bsit3',
-    'BS Information Technology',
-    3
+    'bsit1',
+    'BSIT',
+    1
 );
 
 # student grade
@@ -159,25 +162,28 @@ INSERT INTO grades(subjectId, username, totalGrade) VALUES (
 
 table for School Year
 CREATE TABLE SchoolYear(
-    SY_ID VARCHAR(255) NOT NULL PRIMARY KEY,
-    START_DATE DATETIME NOT NULL,
-    END_DATE DATETIME NOT NULL,
-    EXTEND_DATE DATETIME NOT NULL,
-    NUM_ENROLLED INT(11),
-    OPEN INT(1),
-    CURRENT INT(1),
+    SY_ID VARCHAR(255) NOT NULL PRIMARY KEY,    # varchar
+    START_DATE DATETIME NOT NULL,               # datetime
+    END_DATE DATETIME NOT NULL,                 # datetime
+    EXTEND_DATE DATETIME NOT NULL,              # datetime
+    NUM_ENROLLED INT(11),                       # int
+    OPEN INT(1),                                # int
+    CURRENT INT(1),                             # int
 );
 
-table for Enrolled Students
-CREATE TABLE Enrolled_Students(
-    SSY_ID VARCHAR(225) PRIMARY KEY NOT NULL,
-    S_ID VARCHAR(225) NOT NULL,
-    SY_ID VARCHAR(255) NOT NULL,
-    SEMESTER_LEVEl INT(1) NOT NULL,
-    TOTAL_GPA INT(1) NOT NULL,
-    LEVEL INT(1) NOT NULL,
+INSERT INTO SchoolYear(SY_ID, START_DATE, END_DATE, EXTEND_DATE, OPEN, CURRENT) VALUES (
 
-    FOREIGN KEY (S_ID) REFERENCES Students(username),
+);
+ 
+# table for Enrolled Students
+CREATE TABLE Enrolled_Students(
+    SSY_ID VARCHAR(225) PRIMARY KEY NOT NULL,       # ( school year )
+    S_ID VARCHAR(225) NOT NULL,                     # student ID 
+    SY_ID VARCHAR(255) NOT NULL,                    # school year ID
+    TOTAL_GPA INT(1) NOT NULL,                      # student total gpa
+    LEVEL INT(1) NOT NULL,                          # year level of student (1 to 4)
+
+    FOREIGN KEY (S_ID) REFERENCES students(username),
     FOREIGN KEY (SY_ID) REFERENCES SchoolYear(SY_ID)
 );
 
@@ -243,17 +249,58 @@ INSERT INTO messages(sender, receiver, res_type, datesend, messagebody, messages
 );
 
 // balance of student (tution fee)
-CREATE TABLE account (
+- add new account if student is enrolled
+CREATE TABLE account(
     b_id INT PRIMARY KEY AUTO_INCREMENT,
-    student VARCHAR(255) NOT NULL,
-    assessment INT NOT NULL,
-    balance INT NOT NULL,
-    num_units INT NOT NULL,
+    student VARCHAR(255) NOT NULL,          # student foreign key
+    assessment INT NOT NULL,                # regular balance
+    balance INT NOT NULL,                   # current balance
+    num_units INT NOT NULL,                 # number of units
+    schoolyear VARCHAR(255) NOT NULL,
 
-    FOREIGN KEY (student) REFERENCES Enrolled_Students(S_ID)
+    FOREIGN KEY (student) REFERENCES Enrolled_Students(S_ID),
+    FOREIGN KEY (schoolyear) REFERENCES SchoolYear(SY_ID)
 );
 
-- add new account if student is enrolled
+// payments made (store all the payments that made by students)
+CREATE TABLE Payments(
+    payment_id INT PRIMARY KEY AUTO_INCREMENT,
+    account INT NOT NULL,                           # account table foreign key 
+    amount INT NOT NULL,                            # payment amount 
+    paymentDate DATETIME NOT NULL,                  # payment date and time
+);
+
+CREATE TABLE Announcement(
+    post_id INT PRIMARY KEY AUTO_INCREMENT, # auto increment id
+    title VARCHAR(255) NOT NULL,            # title of the post
+    content VARCHAR(255) NOT NULL,          # content of the post
+    addressLink VARCHAR(255) NOT NULL,      # unique id link for post
+    author VARCHAR(255) NOT NULL,                # Admin,
+    imagefile LONGBLOB,
+
+    FOREIGN KEY (author) REFERENCES Admin(username)
+);
+
+# table of likes from posts
+CREATE TABLE Likes(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    std_username VARCHAR(255) NOT NULL,
+    post_id INT NOT NULL,
+
+    FOREIGN KEY (std_username) REFERENCES students(username),
+    FOREIGN KEY (post_id) REFERENCES Announcement(post_id)
+);
+
+CREATE TABLE Comments(
+    comment_id INT PRIMARY KEY AUTO_INCREMENT,
+    std_username VARCHAR(255) NOT NULL,
+    post_id INT NOT NULL,
+    comment_content VARCHAR(255) NOT NULL,
+    comment_datetime DATETIME NOT NULL,
+
+    FOREIGN KEY (std_username) REFERENCES students(username),
+    FOREIGN KEY (post_id) REFERENCES Announcement(post_id)
+);
 
 // css
 :root{
@@ -277,3 +324,91 @@ CREATE TABLE account (
     ---practice: #f0f0f0ec;
     ---open_popup: rgba(66, 66, 66, 0.589);
 }
+
+tabs
+<!-- <div class="acc_tabs <?php if($user === 'teacher'){echo 'active_tab';} ?>" id="class_sched_tab">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-calendar"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+    <p>Class Schedule</p>
+</div> -->
+
+page
+<!-- class schedule content view (removed)-->
+<div class="side acc_page class_content <?php if($user === 'teacher') {echo 'content_active';} ?>" id="class_content">
+    <div class="acc_header">
+        <div class="_acc_actions">
+            <div class="acc_actions">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></svg>
+            </div>
+            <div class="dropdown">
+                <div class="selection">
+                    <div class="label">
+                        <i class="fa-solid fa-user-large"></i>
+                        <p>Year</p>
+                    </div>
+                    <div class="q_dropdown">
+                        <p>First year</p>
+                        <div class="q_selection">
+                            <p>First year</p>
+                            <p>Second year</p>
+                            <p>Third year</p>
+                            <p>Fourth year</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="selection">
+                    <div class="label">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                        <p>Course</p>
+                    </div>
+                    <div class="q_dropdown">
+                        <p>BS Information Technology</p>
+                        <div class="q_selection">
+                            <p>BS Information Technology</p>
+                            <p>BS Hospitality Managemennt</p>
+                            <p>BS Business Ad</p>
+                            <p>BS Psychology</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="selection">
+                    <div class="label">
+                        <i class="fa-solid fa-upload"></i>
+                        <p>Export</p>
+                    </div>
+                    <div class="q_dropdown">
+                        <p>Excel</p>
+                        <div class="q_selection">
+                            <p>Excel</p>
+                            <p>CSV File</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="selection">
+                    <div class="label">
+                        <i class="fa-solid fa-download"></i>
+                        <p>Import</p>
+                    </div>
+                    <div class="q_dropdown">
+                        <p>Excel</p>
+                        <div class="q_selection">
+                            <p>Excel</p>
+                            <p>CSV File</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="acc_actions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-plus"><path d="M5 12h14"/><path d="M12 5v14"/></svg>
+        </div>
+        <div class="acc_actions">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-save"><path d="M19 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11l5 5v11a2 2 0 0 1-2 2z"/><polyline points="17 21 17 13 7 13 7 21"/><polyline points="7 3 7 8 15 8"/></svg>
+        </div>
+    </div>
+
+    <div class="acc_table">
+        <?php
+            include('Resources/pages/showSchedule.html.php');
+        ?>
+    </div>
+</div>

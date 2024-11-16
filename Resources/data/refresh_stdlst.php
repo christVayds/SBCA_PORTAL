@@ -1,21 +1,15 @@
 <?php
+
+// to be delete
 if(isset($_POST['refresh'])){
     include '../../Model/usertable.inc.php';
-
-    // for students
-    if($_POST['refresh'] == "showStudents"){
-        showUserData(50, 'students');
-    } 
-    // for faculties
-    else if($_POST['refresh'] == 'showfaculties'){
-        showUserData(50, 'teachers');
-    }
+    showUserData(50, $_POST['refresh']);
 }
 ?>
 
 <script>
-// get student data in table if click
-$(".studentrow").click(function(){
-    console.log($(this).attr('id'));
-});
+    // get student data if item in table is click - list of students
+    $(".studentrow").click(function(){
+        console.log($(this).attr('id'));
+    });
 </script>

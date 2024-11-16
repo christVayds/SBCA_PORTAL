@@ -2,10 +2,11 @@
 
 // this will show in dashboard popup
 // show student's grades
-
-if(isset($_POST['student'])){
-
+if(isset($_POST['showPopup'])){
+    include 'Class/Users.class.php';
     $student = findStudent($_POST['student']);
+
+    $getCourse = Students::Course(substr($student->course, 0, -1));
     
     echo '
         <div class="info_popup">
@@ -22,8 +23,8 @@ if(isset($_POST['student'])){
                     <img src="Resources/assets/default-profile-photo2.jpg" alt="">
                 </div>
                 <div class="student_name">
-                    <p class="studentname" id="info_student_name">'. $student->FullName() .'</p>
-                    <p class="studentcourse" id="info_student_course">'. $student->Course() .'</p>
+                    <p class="studentname" id="info_student_name">'. Students::FullName($student->fname, $student->lname, $student->mname) .'</p>
+                    <p class="studentcourse" id="info_student_course">'. $getCourse .'</p>
                 </div>
             </div>
             <div class="students_grade" id="students_grade">';
@@ -32,10 +33,13 @@ if(isset($_POST['student'])){
     
     echo '<div class="total_grade">
                 <p>Total Grade: </p>
-                <input type="text" placeholder="Total">
+                <input type="text" placeholder="Total" id="input_grade_from_admin_dashboard">
             </div>
         </div>';
 
+} else if(isset($_POST['refresh'])){
+    include '../../Model/usertable.inc.php';
+    showUserData(50, $_POST['refresh']);
 }
 
 function findStudent($studentID){
@@ -81,5 +85,20 @@ function DisplayGradesStudent($student){
     // exit dashboard information pop up - dashboard tab
     $("#exit_d_info_p").click(function(){
         document.getElementById('open_info_popup').classList.remove('active_open_popup');
+    });
+
+    // student list popup (more information about student)
+    $(".studentrow").click(function(){
+        var stdinfo = document.getElementById('stdinfo_popup');
+        stdinfo.classList.add('showSemPopup');
+
+        $('#viewstudentinfo_popup').load('Resources/pages/studentinfo.html.php', {
+            student_id: $(this).attr('id')
+        });
+    });
+
+    // exit student info popup
+    $('#exit_stdinfo_popup').click(function(){
+        document.getElementById('stdinfo_popup').classList.remove('showSemPopup');
     });
 </script>
