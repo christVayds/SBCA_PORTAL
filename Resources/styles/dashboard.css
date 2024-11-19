@@ -52,7 +52,7 @@ input{
     border-radius: 50px;
 }
 
-.dashboard .userprofile .usercard .header .user_profile .image #image{
+.dashboard .userprofile .usercard .header .user_profile .image #std-image{
     width: 50px;
     height: 50px;
     border-radius: 50px;
@@ -957,17 +957,28 @@ option{
     border-bottom: 1px solid var(---sbca);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .warning{
+.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .actions{
+    /* border: 1px solid var(---line); */
     display: flex;
     align-items: center;
-    color: var(---gray);
-    font-size: 15px;
-    padding: 10px;
+    justify-content: end;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .warning i{
-    margin-right: 5px;
-    color: var(---sbca);
+.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .actions button{
+    margin: 10px;
+    padding: 5px;
+    font-size: 16px;
+    border: 0;
+    border-radius: 10px;
+    width: 80px;
+    height: 50px;
+    background-color: var(---acc_bg);
+    color: var(---maincolor);
+}
+
+.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .actions button:hover{
+    background-color: var(---sbca);
+    color: var(---selected_color);
 }
 
 .dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio p{
@@ -1582,7 +1593,72 @@ option{
     color: var(---gray);
 }
 
-/* edit subject style here */
+.ranking-students{
+    padding: 10px;
+    margin-top: 10px;
+}
+
+.ranking-students .rank-title{
+    color: var(---gray);
+}
+
+.ranking-students .toptenstudents{
+    min-height: 200px;
+    /* border: 1px solid var(---line); */
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.toptenstudents .top-student{
+    width: 250px;
+    height: 350px;
+    border: 1px solid var(---line);
+    background-color: var(---acc_bg);
+    border-radius: 5px;
+    margin: 10px;
+    cursor: pointer;
+}
+
+.toptenstudents .top-student:hover{
+    background-color: var(---line);
+}
+
+.toptenstudents .top-student .toplevel{
+    padding: 10px;
+    border-bottom: 1px solid var(---line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.toptenstudents .top-student .name{
+    /* border: 1px solid var(---line); */
+    padding: 10px;
+    text-align: center;
+}
+
+.toptenstudents .top-student .name img{
+    width: 60%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.toptenstudents .top-student .name p{
+    color: var(---gray);
+}
+
+.toptenstudents .top-student .other-info{
+    color: var(---gray);
+    padding: 5px;
+    font-size: 16px;
+}
+
+.toptenstudents .top-student .other-info .course{
+    color: var(---maincolor);
+}
+
+/* SUBJECT STYLES */
 .subject-content{
     /* border: 1px solid var(---line); */
     display: flex;

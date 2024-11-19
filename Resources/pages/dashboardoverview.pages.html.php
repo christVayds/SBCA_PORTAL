@@ -131,3 +131,85 @@
         </div>
     </div>
 </div>
+
+<div class="ranking-students">
+    <h2 class="rank-title">Ranking</h2>
+    <p class="rank-title">Rank 10 students this semester</p>
+
+    <div class="toptenstudents">
+        <div class="top-student">
+            <div class="toplevel">
+                <h3>Top 1</h3>
+                <p>1.95</p>
+            </div>
+            <div class="name">
+                <img src="https://i.pinimg.com/736x/6f/82/40/6f8240ec6d36b6e1c6909c1c191a3c9f.jpg" alt="">
+                <p>@jquiqui</p>
+                <h4>Johny Quiqui</h4>
+            </div>
+            <div class="other-info">
+                <p>Course: <span class="course">BS Information Technology</span></p>
+            </div>
+        </div>
+
+        <div class="top-student">
+            <div class="toplevel">
+                <h3>Top 2</h3>
+                <p>1.94</p>
+            </div>
+            <div class="name">
+                <img src="https://i.pinimg.com/236x/0c/b3/db/0cb3db9f0e20357445ddc3a5b6d79c93.jpg" alt="">
+                <p>@rborbon</p>
+                <h4>Ricky Borbon</h4>
+            </div>
+            <div class="other-info">
+                <p>Course: <span class="course">BS Information Technology</span></p>
+            </div>
+        </div>
+
+        <div class="top-student">
+            <div class="toplevel">
+                <h3>Top 3</h3>
+                <p>1.93</p>
+            </div>
+            <div class="name">
+                <img src="https://i.pinimg.com/236x/9d/ec/4e/9dec4e404f72d956507757420ab8e3f2.jpg" alt="">
+                <p>@cvaydal</p>
+                <h4>Christian Vaydal</h4>
+            </div>
+            <div class="other-info">
+                <p>Course: <span class="course">BS Information Technology</span></p>
+            </div>
+        </div>
+
+        <div class="top-student">
+            <div class="toplevel">
+                <h3>Top 4</h3>
+                <p>1.92</p>
+            </div>
+            <div class="name">
+                <img src="https://i.pinimg.com/236x/b1/f4/c4/b1f4c457b97adae52f9e1932cf21532d.jpg" alt="">
+                <p>@jquito</p>
+                <h4>Jayson Quito</h4>
+            </div>
+            <div class="other-info">
+                <p>Course: <span class="course">BS Information Technology</span></p>
+            </div>
+        </div>
+
+        <div class="top-student">
+            <div class="toplevel">
+                <h3>Top 5</h3>
+                <p>1.92</p>
+            </div>
+            <div class="name">
+                <img src="https://i.pinimg.com/736x/45/6d/42/456d4295b0007246f59586f8434949a5.jpg" alt="">
+                <p>@jtangan</p>
+                <h4>Judy An Tangan</h4>
+            </div>
+            <div class="other-info">
+                <p>Course: <span class="course">BS Information Technology</span></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -15,11 +15,11 @@
 
         // search student name
         if($toSearch == 'students'){
-            $searchquery = "SELECT * FROM students WHERE CONCAT(fname, mname, lname, username, userid) LIKE '%$search%' AND course LIKE '%$course%'";
+            $searchquery = "SELECT * FROM students WHERE CONCAT(fname, mname, lname, username, userid) LIKE '%$search%' AND course LIKE '%$course%' and active=1";
         }
         // search teachers(faculties)
         else if($toSearch == 'teachers'){
-            $searchquery = "SELECT * FROM teachers WHERE userid LIKE '%$search%' OR fname LIKE '%$search%' OR lname LIKE '%$search%' OR mname LIKE '%$search%' OR CONCAT(fname, ' ', lname) LIKE '%$search%'";
+            $searchquery = "SELECT * FROM teachers WHERE CONCAT(fname, username, lname, userid) LIKE '%$search%' AND active=1";
         }
 
         // get the result

@@ -13,6 +13,7 @@ CREATE TABLE students(
     gender varchar(20),
     profilePicture LONGBLOB,
     imageLink varchar(20),
+    active BOOLEAN,
 
     FOREIGN KEY (course) REFERENCES Course(code)
 );

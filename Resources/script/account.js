@@ -15,6 +15,25 @@ function convertTo12HourFormat(time){
 // tab bar
 $(document).ready(function(){
 
+    // fetch data functions
+    function fetchDataSettings(){
+        $.ajax({
+            url: '../../Model/editprofile.inc.php',
+            type: 'POST',
+            data: {
+                updateStudentDashboard: true
+            },
+            success: function(response){
+                if(response.success){
+                    document.getElementById('settings-user-photo').src = response.data['imageLink'];
+                }
+            },
+            error: function(){
+
+            }
+        });
+    }
+
     // auto on or off dark mode ??
     $("#end_time_theme").on('change', function(){
         document.getElementById('end_darkmode').textContent = convertTo12HourFormat(this.value); // add this to session or cookie data
@@ -55,7 +74,9 @@ $(document).ready(function(){
                 document.getElementById("logout_popup").classList.add('show_logout');
                 break;
             case("setting_tab"):
+                fetchDataSettings();
                 document.getElementById('settings_page').classList.add('content_active');
+                break;
             default:
                 console.log("Page not available");
                 break;
@@ -149,5 +170,61 @@ $(document).ready(function(){
 
     $('#exit_export').click(function(){
         document.getElementById('export_popup').classList.remove('showPopUp');
+    });
+
+    // edit user profile in settings
+
+    $('#show-edit-user-profile').click(function(){
+        document.getElementById('settings-user-profile').classList.add('showPopUp');
+    });
+
+    $('#save-edit-profile').click(function(){
+        document.getElementById('settings-user-profile').classList.remove('showPopUp');
+
+        var filepicker = document.getElementById('upload-imgae-file');
+        var imagelink  = document.getElementById('linkImage');
+
+        var link = '';
+        var typeImage = 'file';
+
+        if(filepicker.value){
+            console.log('file: ' + filepicker.value);
+            typeImage = 'file';
+            link = filepicker.value;
+        } else if (imagelink.value){
+            console.log('link: ' + imagelink.value);
+            typeImage = 'link';
+            link = imagelink.value;
+        } else {
+            typeImage = 'none';
+        }
+
+        $.ajax({
+            url: '../../Model/editprofile.inc.php',
+            type: 'POST',
+            data: {
+                imageType: typeImage,
+                link: link
+            },
+            success: function(response){
+                if(response.success){
+                    console.log('responce: ' + response.message);
+                }
+            },
+            error: function(){
+
+            }
+        });
+    });
+
+    $('#cancel-edit-profile').click(function(){
+        document.getElementById('settings-user-profile').classList.remove('showPopUp');
+    });
+
+    // upload new profile picture
+    $('#upload-image-file-box').click(function(){
+        var filepicker = document.getElementById('upload-imgae-file');
+
+        filepicker.click();
     });
 });

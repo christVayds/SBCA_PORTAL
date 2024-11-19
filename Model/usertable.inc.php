@@ -18,15 +18,16 @@ function showStudentsByCourse($courseid, $year='1', $searchname=''): void{
     $stmt = mysqli_stmt_init($conn);
     $courseid = $courseid.$year;
     $searchname = '%'.$searchname.'%';
+    $active = 1;
 
     // $studentsquery = 'SELECT * FROM students WHERE course=?';
-    $studentsquery = 'SELECT Enrolled_Students.*, students.* FROM Enrolled_Students JOIN students ON Enrolled_Students.S_ID = students.username WHERE students.course=? AND CONCAT(students.fname, students.lname, students.username, students.userid) like ?';
+    $studentsquery = 'SELECT Enrolled_Students.*, students.* FROM Enrolled_Students JOIN students ON Enrolled_Students.S_ID = students.username WHERE students.course=? AND CONCAT(students.fname, students.lname, students.username, students.userid) like ? AND active=? LIMIT 50';
 
     if(!mysqli_stmt_prepare($stmt, $studentsquery)){
         header('location: /dashboard.php?message=error');
         exit();
     } else {
-        mysqli_stmt_bind_param($stmt,'ss', $courseid, $searchname);
+        mysqli_stmt_bind_param($stmt,'ssi', $courseid, $searchname, $active);
         mysqli_stmt_execute($stmt);
 		$result = mysqli_stmt_get_result($stmt);
 
@@ -68,20 +69,26 @@ function showUserData($count, $user){
     include 'db.inc.php';
 
     // $user = studets or teacher only
-    $studentsquery = "SELECT * FROM ". $user ."";
+    $studentsquery = "SELECT * FROM $user LIMIT $count";
     $result = mysqli_query($conn, $studentsquery);
 
-    if(mysqli_num_rows($result) > 0){
+    $active = 1;
+    $query = $conn->prepare("SELECT * FROM $user WHERE active=? LIMIT $count");
+    $query->bind_param('i', $active);
+    $query->execute();
+    $result = $query->get_result();
+
+    if($result->num_rows > 0){
 
         // echo the table header
         if($user == 'students'){
-        echo '<tr class="tb_header">
-                <th id="userid">ID NO.</th>
-                <th id="name">Name</th>
-                <th id="course">Course</th>
-                <th id="year">Year</th>
-                <th id="status">Status</th>
-            </tr>';
+            echo '<tr class="tb_header">
+                    <th id="userid">ID NO.</th>
+                    <th id="name">Name</th>
+                    <th id="course">Course</th>
+                    <th id="year">Year</th>
+                    <th id="status">Status</th>
+                </tr>';
         } else {
             echo '<tr class="tb_header">
                 <th id="userid">ID NO.</th>
@@ -91,42 +98,39 @@ function showUserData($count, $user){
             </tr>';
         }
             
-        displayTable($result, $count, $user);
+        displayTable($result, $user);
 
     }
     mysqli_close($conn);
 }
 
-function displayTable($result, $count, $userType='students'): void{
+function displayTable($result, $userType='students'): void{
     
     while($row = $result->fetch_assoc()){
         $fullname = ucwords(Naming($row['fname'], $row['lname'], $row['mname']));
 
         // show data
-        if($count > 0){
-            // first check the type of user, teacher(faculty) or students - default is students
-            if($userType == 'students'){
-                // for students data
-                echo '<tr id="'.$row['userid'].'" class="studentrow">
-                            <td>' . $row['userid'] .' </td>
-                            <td>' . $fullname . '</td>
-                            <td>' . Coursename($row["course"]) . '</td>
-                            <td>3rd</td>
-                            <td>Regular</td>
-                        </tr>
-                    ';
-            } else if($userType == 'teachers'){
-                // for teacher (faculty) data
-                echo '<tr id="'.$row['userid'].'" class="studentrow">
-                            <td>' . $row['userid'] .' </td>
-                            <td>' . $fullname . '</td>
-                            <td>' . $row['email'] . '</td>
-                            <td>' . $row['profession'] . '</td>
-                        </tr>
-                    ';
-            }
+        // first check the type of user, teacher(faculty) or students - default is students
+        if($userType == 'students'){
+            // for students data
+            echo '<tr id="'.$row['userid'].'" class="studentrow">
+                        <td>' . $row['userid'] .' </td>
+                        <td>' . $fullname . '</td>
+                        <td>' . Coursename($row["course"]) . '</td>
+                        <td>3rd</td>
+                        <td>Regular</td>
+                    </tr>
+                ';
+        } else if($userType == 'teachers'){
+            // for teacher (faculty) data
+            echo '<tr id="'.$row['userid'].'" class="teacherrow">
+                        <td>' . $row['userid'] .' </td>
+                        <td>' . $fullname . '</td>
+                        <td>' . $row['email'] . '</td>
+                        <td>' . $row['profession'] . '</td>
+                    </tr>
+                ';
         }
-        $count -= 1;
     }
 }
 

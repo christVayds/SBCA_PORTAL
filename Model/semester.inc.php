@@ -79,6 +79,30 @@ else if(isset($_POST['studentSched'])){
 
     echo json_encode($response);
 }
+// deactivate user
+else if (isset($_POST['deactivateUser'])){
+    header('Content-Type: application/json');
+    include 'db.inc.php';
+    session_start();
+
+    $response = [
+        'success' => true,
+        'message' => 'Deactivated'
+    ];
+
+    $active = 1;
+    $deactivate = 0;
+    $username = $_POST['deactivateUser'];
+    $query = $conn->prepare('UPDATE students SET active = ? WHERE username=? and active=?');
+    $query->bind_param('isi', $deactivate, $username, $active);
+    
+    if(!$query->execute()){
+        $response['success'] = false;
+        $response['message'] = 'failed';
+    }
+
+    echo json_encode($response);
+}
 
 // check School year
 function Check_SchoolYear($schoolyear, $semester): bool{ // schoolyear e.g. 2023-2024
