@@ -131,6 +131,21 @@ class Students extends Users{
         $this->course = $course;
     }
 
+    public static function Modify($imageType, $image, $username){
+        include 'db.inc.php';
+
+        $query = $conn->prepare('UPDATE students SET imageLink=? WHERE username=?');
+        $query->bind_param('ss', $image['link'], $username);
+        
+        if($query->execute()){
+            $query->close();
+            return true;
+        }
+
+        $query->close();
+        return false;
+    }
+
     public static function FullName($fname, $lname, $mname='n/a'){
         if($mname != 'n/a'){
             return ucwords($fname . ' ' . $mname[0] . '. ' . $lname);
@@ -138,6 +153,7 @@ class Students extends Users{
     }
 
     public static function Course($course): string{
+        $course = strtolower($course);
         switch($course){
             case("bsit"):
                 $course = "BS Information Technology";
@@ -287,6 +303,27 @@ class Students extends Users{
 
         $stmt->close();
         return false;
+    }
+
+    public static function getUser($username): array{  
+        include 'db.inc.php';
+        $data = [
+            'fullname' => '',
+            'imageLink' => ''
+        ];
+
+        $query = $conn->prepare('SELECT * FROM students WHERE username=?');
+        $query->bind_param('s', $username);
+        $query->execute();
+
+        $result = $query->get_result();
+
+        if($result->num_rows > 0){
+            $rows = $result->fetch_assoc();
+            $data['imageLink'] = $rows['imageLink'];
+        }
+
+        return $data;
     }
 }
 

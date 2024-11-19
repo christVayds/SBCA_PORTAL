@@ -367,9 +367,6 @@
                 <div class="controls" id="admin-select-level-popup">
                     <p id="label-for-select-level">Level: ALL</p>
                 </div>
-                <div class="page">
-                    <p>Page: 1-1</p>
-                </div>
             </div>
         </div>
 
@@ -466,7 +463,7 @@
             <div class="courseinfo">
                 <div class="header">
                     <div class="headertitle">
-                        <p>BS Information Technology</p>
+                        <p id="selected_coursename">Course Name</p>
                     </div>
                     <div class="exit" id="exit_courseinfo_popup">
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-minimize-2"><polyline points="4 14 10 14 10 20"/><polyline points="20 10 14 10 14 4"/><line x1="14" x2="21" y1="10" y2="3"/><line x1="3" x2="10" y1="21" y2="14"/></svg>

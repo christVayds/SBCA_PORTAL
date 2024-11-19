@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Resources/styles/userdata.css">
+    <title>Test Users</title>
+</head>
+<body>
+    <div class="side logo">
+        <div class="title">
+            <img src="Resources/assets/sbca.logo2.png" alt="">
+            <h3>St. Bernadette College of Alabang</h3>
+        </div>
+    </div>
+    <div class="side content">
+        <div class="header">
+            <h2>Test user's data</h2>
+        </div>
+
+        <div class="agreement">
+            <p>Do you agree to use your information that you entered below as test for our SBCA Portal System.</p>
+            <input type="checkbox" id="agree" value="0">
+            <label for="agree">Agree</label>
+        </div>
+
+        <div class="input-data">
+
+            <!-- full name -->
+            <div class="separator">
+                <h3>Your Full Name:</h3>
+                <input type="text" placeholder="First Name">
+                <input type="text" placeholder="Last Name">
+                <input type="text" placeholder="Middle Name (Optional)">
+            </div>
+
+            <!-- student info -->
+            <div class="separator">
+                <h3>Student information:</h3>
+                <input type="text" placeholder="School ID">
+                <input type="email" placeholder="SBCA email Address">
+                <input type="text" placeholder="Course (example: bsit1)">
+                <p>Enter course like: course_name+year_level, example: bsit1</p>
+            </div>
+
+            <div class="separator">
+                <h3>Personal Information:</h3>
+                <input type="text" placeholder="Gender (m/f)">
+                <input type="text" placeholder="Complete home address (Optional)">
+                <input type="text" placeholder="Profile picture (paste image link online)">
+            </div>
+        </div>
+
+        <div class="actions">
+            <button class="button" id="save">Save</button>
+            <button class="button clear" id="Clear">Clear</button>
+        </div>
+    </div>
+</body>
+</html>

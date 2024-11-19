@@ -32,10 +32,30 @@ $(document).ready(function(){
         });
     }
 
+    // fetch data in student's dashboard
+    function studentDashboard(){
+        $.ajax({
+            url: '../../Model/editprofile.inc.php',
+            type: 'POST',
+            data: {
+                updateStudentDashboard: true
+            },
+            success: function(response){
+                if(response.success){
+                    console.log(response.data);
+                    document.getElementById('std-image').src = response.data['imageLink'];
+                }
+            },
+            error: function(){
+
+            }
+        });
+    }
 
     switch(page){
         case('dashboard.php'):
             document.getElementById('dashboard').classList.add('active');
+            studentDashboard(); // fetch data in student's dashboard
             fetchsemesterData();
             break;
         case('accounting.php'):

@@ -399,16 +399,19 @@
     display: flex;
     align-items: end;
     justify-content: end;
+    padding: 10px;
 }
 
 .navicons .navbar_icons{
     padding: 10px;
     cursor: pointer;
-    border-bottom: 5px solid transparent;
+    border-bottom: 3px solid transparent;
+    width: 100px;
+    text-align: center;
 }
 
 .navicons .navbar_icons:hover{
-    border-bottom: 5px solid var(---sbca);
+    border-bottom: 3px solid var(---sbca);
     color: var(---sbca);
 }
 
@@ -511,8 +514,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: var(---maincolor);
-    color: var(---white);
+    background-color: var(---sbca4);
+    color: var(---selected_color);
     border-radius: 10px 10px 0 0;
 }
 
@@ -527,6 +530,82 @@
 
 .about_content .about_sbca .about-card .content p{
     padding: 50px;
+}
+
+.about_content .about_contacts{
+    display: flex;
+    justify-content: space-between;
+    background-color: var(---white);
+}
+
+.about_contacts .side{
+    width: 50%;
+    /* border: 1px solid var(---line); */
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.about_contacts .side .contact_content{
+    /* border: 1px solid var(---line); */
+    padding: 10px;
+    color: var(---gray);
+    width: 80%;
+}
+
+.about_contacts .side .contact_content p{
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid transparent;
+}
+
+.about_contacts .side .contact_content p:hover{
+    border-bottom: 1px solid var(---line);
+}
+
+.about_contacts .side .contact_content p i{
+    margin-right: 10px;
+}
+
+.about_contacts .side .contact_content .highlight{
+    color: var(---sbca);
+}
+
+.about_content .about_socialm{
+    display: flex;
+    align-items: center;
+    height: 20px;
+    padding: 20px;
+    /* border: 1px solid var(---line); */
+    background-color: var(---maincolor);
+    border-radius: 5px;
+    margin: 10px;
+    color: var(---gray);
+}
+
+.about_content .about_socialm h3{
+    margin-right: 200px;
+}
+
+.about_content .about_socialm i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    font-size: 20px;
+}
+
+.about_content .about_socialm i:hover{
+    color: var(---white);
+}
+
+.about_content .about_footer{
+    background-color: var(---white);
+    text-align: center;
+    padding: 10px;
+    color: var(---gray);
 }
 
 /* theme page */
@@ -908,6 +987,163 @@
     display: none;
 }
 
+/* profile content */
+.account .settings_content .popup .profile-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 80%;
+    height: 80%;
+    background-color: var(---white);
+    border-radius: 5px;
+    border: 1px solid var(---line);
+    box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+}
+
+.profile-content .sides{
+    /* border: 1px solid var(---line); */
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.profile-content .sides .profile-box{
+    width: 30%;
+    border-radius: 5px 20px 20px 5px;
+    border: 1px solid var(---line);
+    background-color: var(---acc_bg);
+}
+
+.profile-box .name-photo{
+    /* border: 1px solid var(---line); */
+    padding: 10px;
+    text-align: center;
+}
+
+.profile-box .name-photo .username{
+    color: var(---gray);
+    padding: 10px;
+}
+
+.profile-box .name-photo img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-box .name-photo .actions{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid var(---line); */
+}
+
+.profile-box .name-photo .actions .button{
+    padding: 5px;
+    margin: 5px;
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    width: 100px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.profile-box .name-photo .actions .button i{
+    margin-right: 10px;
+}
+
+.profile-box .name-photo .actions .button:hover{
+    background-color: var(---line);
+}
+
+.profile-content .sides .edit-profile-box{
+    width: 70%;
+    overflow-y: scroll;
+    /* border: 1px solid var(---line); */
+}
+
+.profile-content .sides .edit-profile-box::-webkit-scrollbar{
+    width: 5px;
+    background-color: transparent;
+}
+
+.profile-content .sides .edit-profile-box::-webkit-scrollbar-thumb{
+    background-color: var(---gray);
+    border-radius: 10px;
+}
+
+.edit-profile-box .line{
+    min-height: 50px;
+    /* border: 1px solid var(---line); */
+    padding: 10px;
+}
+
+.edit-profile-box .line .edit-user-info .hide{
+    display: none;
+}
+
+.edit-profile-box .line h3{
+    padding: 5px;
+}
+
+.edit-profile-box .line .upload-image{
+    display: flex;
+    justify-content: start;
+    margin-left: 20px;
+}
+
+.edit-profile-box .line .upload-image .image-uploader-box{
+    border: 1px solid var(---line);
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    margin-right: 10px;
+}
+
+.edit-profile-box .line .upload-image .image-uploader-box:hover{
+    background-color: var(---acc_bg);
+}
+
+.edit-profile-box .line .upload-image .image-uploader-box:active{
+    background-color: var(---maincolor);
+    color: var(---white);
+}
+
+.edit-profile-box .line .edit-user-info{
+    display: flex;
+    justify-content: start;
+    /* border: 1px solid var(---line); */
+    flex-wrap: wrap;
+}
+
+.edit-profile-box .line input{
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    width: 40%;
+    margin: 5px;
+}
+
+.edit-profile-box .line .withlabelinput{
+    margin-top: 10px;
+}
+
+.edit-profile-box .line input:focus{
+    outline: none;
+}
+
+/* import and export */
 .account .settings_content .popup .popupbox{
     position: absolute;
     top: 50%;
@@ -1076,7 +1312,7 @@
 
 .account .settings_content .content .side{
     /* border: 1px solid var(---line); */
-    height: 80vh;
+    height: 83vh;
     padding: 5px;
 }
 
@@ -1089,11 +1325,17 @@
     border: 1px solid var(---line);
     border-radius: 5px;
     height: 100%;
-    overflow-y: auto;
+    overflow-y: scroll;
 }
 
 .account .settings_content .content .setting .settingbox::-webkit-scrollbar{
-    display: none;
+    width: 5px;
+    background-color: var(---line);
+}
+
+.account .settings_content .content .setting .settingbox::-webkit-scrollbar-thumb{
+    background-color: var(---gray);
+    border-radius: 10px;
 }
 
 .account .settings_content .content .setting .settingbox .header{
@@ -1150,9 +1392,13 @@
     margin: 5px;
 }
 
-.account .settings_content .content .user .userbox .header .nameuser a{
+.account .settings_content .content .user .userbox .header .nameuser .name{
     font-weight: bold;
     color: var(---maincolor);
+}
+
+.account .settings_content .content .user .userbox .header .nameuser .role{
+    color: var(---gray);
 }
 
 .account .settings_content .content .user .userbox .actions{
@@ -1167,6 +1413,7 @@
     margin-bottom: 10px;
     border-radius: 5px;
     color: var(---maincolor);
+    cursor: pointer;
 }
 
 .account .settings_content .content .user .userbox .actions .action p{

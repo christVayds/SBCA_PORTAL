@@ -3,7 +3,7 @@
         <div class="header">
             <div class="user_profile">
                 <div class="image">
-                    <img src="Resources/assets/default-profile-photo2.jpg" alt="" id="image">
+                    <img src="Resources/assets/default-profile-photo2.jpg" alt="" id="std-image">
                 </div>
                 <div class="name">
                     <a id="name" href="#">Christian Vaydal</a>

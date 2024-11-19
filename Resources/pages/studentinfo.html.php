@@ -108,9 +108,15 @@ function getStudentInfo($studentid): array{
                 <input type="text" placeholder="Address" value="<?php echo $userdata['address']; ?>">
             </div>
 
-            <div class="warning">
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                <p>After you exit this window, all changes will be saved.</p>
+            <div class="actions">
+                <button id="save-student-info-changes">
+                    <i class="fa-solid fa-floppy-disk"></i>
+                    <p>Save</p>
+                </button>
+                <button id="clear-student-info-changes">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <p>Reset</p>
+                </button>
             </div>
         </div>
         <div class="table-of-grade-in-semester">
@@ -204,7 +210,26 @@ function getStudentInfo($studentid): array{
         document.getElementById('std_enroll_popup').classList.add('showSemPopup');
     });
 
-    // edit student's info
+    // deactivate student
+    $('#deactivate-student').click(function(){
+        console.log($(this).attr('value'));
+
+        $.ajax({
+            url: '../../Model/semester.inc.php',
+            type: 'POST',
+            data: {
+                deactivateUser: $(this).attr('value')
+            },
+            success: function(response){
+                console.log(response.message);
+            },
+            error: function(){
+
+            }
+        });
+    });
+
+    // edit student's subjects
     $('#edit_info-student').click(function(){
         // clear tabs
         var options = document.getElementsByClassName('option');

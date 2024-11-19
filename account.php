@@ -86,6 +86,8 @@
     <div class="side acc_page settings_content" id="settings_page">
 
         <!-- POPUP for SETTINGS -->
+
+        <!-- import data -->
         <div class="popup import" id="import_popup">
             <div class="popupbox">
                 <div class="popupHeader">
@@ -106,6 +108,7 @@
             </div>
         </div>
 
+        <!-- export data -->
         <div class="popup export" id="export_popup">
             <div class="popupbox">
                 <div class="popupHeader">
@@ -137,103 +140,64 @@
             </div>
         </div>
 
+        <!-- edit user profile -->
+        <div class="popup user-profile" id="settings-user-profile">
+            <div class="profile-content">
+                <div class="sides">
+                    <div class="side profile-box">
+                        <div class="name-photo">
+                            <img src="https://i.pinimg.com/236x/24/93/21/2493217e597e1ea61077b1f42892effb.jpg" alt="">
+                            <p class="username">@sbcaeduph</p>
+                            <p>St. Bernadette College of Alabang</p>
+                            <p class="username">Registration</p>
+                            <div class="actions">
+                                <div class="button" id="save-edit-profile">
+                                    <i class="fa-solid fa-floppy-disk"></i>
+                                    <p>Save</p>
+                                </div>
+                                <div class="button" id="cancel-edit-profile">
+                                    <i class="fa-solid fa-xmark"></i>
+                                    <p>Cancel</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side edit-profile-box">
+                        <div class="line">
+                            <h3>Upload image file</h3>
+                            <div class="upload-image">
+                                <div class="image-uploader-box" id="upload-image-file-box">
+                                    <i class="fa-regular fa-image"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="line">
+                            <h3>Paste image link online</h3>
+                            <input type="text" placeholder="Image link" id="linkImage">
+                        </div>
+                        <div class="line">
+                            <h3>User information</h3>
+                            <div class="edit-user-info">
+                                <input type="text" placeholder="First Name">
+                                <input type="text" placeholder="Last Name">
+                                <input type="text" placeholder="Middle Name">
+                                <input type="text" placeholder="School ID no.">
+                                <input type="text" placeholder="Current Home Address">
+                                <input type="file" placeholder="Current Home Address" class="hide" id="upload-imgae-file">
+                            </div>
+                            <div class="withlabelinput">
+                                <p>Birthdate</p>
+                                <input type="date">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- END OF POPUP FOR SETTINGS -->
         <div class="content">
-            <div class="side setting">
-                <div class="settingbox">
-                    <h1 class="header">
-                        <i class="fa-solid fa-wrench"></i>
-                        <p>Settings</p>
-                    </h1>
-
-                    <div class="settingItem" id="import">
-                        <h2>
-                            <i class="fa-solid fa-download"></i>
-                        </h2>
-                        <div class="settingname">
-                            <h3>Import</h3>
-                            <div class="description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="settingItem" id="export">
-                        <h2>
-                            <i class="fa-solid fa-upload"></i>
-                        </h2>
-                        <div class="settingname">
-                            <h3>Export</h3>
-                            <div class="description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="settingItem">
-                        <h2>
-                            <i class="fa-solid fa-timeline"></i>
-                        </h2>
-                        <div class="settingname">
-                            <h3>User Timeline</h3>
-                            <div class="description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="settingItem">
-                        <h2>
-                            <i class="fa-solid fa-heart"></i>
-                        </h2>
-                        <div class="settingname">
-                            <h3>Viewers Reactions</h3>
-                            <div class="description">
-                                <p>Students and teachers can like and post a comment on SBCA posts.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="settingItem">
-                        <h2>
-                            <i class="fa-regular fa-life-ring"></i>
-                        </h2>
-                        <div class="settingname">
-                            <h3>Help</h3>
-                            <div class="description">
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <div class="side user">
-                <div class="userbox">
-                    <div class="header">
-                        <img src="resources/assets/sbca.logo.5.jpg" alt="">
-                        <div class="nameuser">
-                            <!-- change this! -->
-                            <a href="#">Christian Vaydal</a>
-                            <p>SBCA</p>
-                        </div>
-                    </div>
-                    <div class="actions">
-                        <a class="action" href="#">
-                            <i class="fa-solid fa-user-pen"></i>
-                            <p>Edit profile</p>
-                        </a>
-                        <a class="action" href="#">
-                            <i class="fa-solid fa-clock-rotate-left"></i>
-                            <p>History</p>
-                        </a>
-                        <a class="action" href="#">
-                            <i class="fa-solid fa-users"></i>
-                            <p>Other users</p>
-                        </a>
-                    </div>
-                </div>
-            </div>
+            <?php include 'Resources/pages/settings.html.php'; ?>
         </div>
     </div>
 

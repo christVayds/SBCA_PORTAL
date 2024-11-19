@@ -85,7 +85,7 @@ function getCommentFromPost($post_address, $std_username){
             echo '<div class="user-comment">
                     <div class="user-comment-header">
                         <div class="user-image">
-                            <img src="Resources/assets/cares.png" alt="user-profile">
+                            <img src="'. $rows['imageLink'] .'" alt="user-profile">
                         </div>
                         <div class="user-info">
                             <a href="#" class="name">'. Students::FullName($rows['fname'], $rows['lname'], $rows['mname']) .'</a>
