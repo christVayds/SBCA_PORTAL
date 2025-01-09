@@ -12,6 +12,20 @@
     padding: 10px;
 }
 
+::-webkit-scrollbar{
+    width: 5px;
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-track{
+    background-color: var(---line);
+}
+
+::-webkit-scrollbar-thumb{
+    background-color: var(---gray);
+    border-radius: 10px;
+}
+
 /* all text input and textarea */
 textarea,
 input{
@@ -21,8 +35,9 @@ input{
 /* dashboard Usercard - STUDENTS */
 
 .dashboard .userprofile{
-    width: 25%;
-    min-width: 300px;
+    width: 280px;
+    min-width: 280px;
+    /* border: 1px solid var(---line); */
 }
 
 .dashboard .userprofile .usercard{
@@ -38,6 +53,7 @@ input{
     align-items: center;
     justify-content: space-between;
     padding: 10px;
+    /* border: 1px solid var(---line); */
 }
 
 .dashboard .userprofile .usercard .header .user_profile{
@@ -58,28 +74,9 @@ input{
     border-radius: 50px;
 }
 
-.dashboard .userprofile .usercard .header .user_profile .name #name{
-    color: var(---maincolor);
-    font-weight: bold;
-}
-
-.dashboard .userprofile .usercard .header .user_profile .name #course{
+.dashboard .userprofile .usercard .header .user_profile .name p{
     color: var(---gray);
-    font-size: 16px;
-}
-
-.dashboard .userprofile .usercard .header .options{
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 30px;
-    width: 30px;
-    cursor: pointer;
-}
-
-.dashboard .userprofile .usercard .header .options:hover{
-    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+    font-size: 14px;
 }
 
 /* View GPA */
@@ -92,7 +89,7 @@ input{
     justify-content: center;
 }
 
-.dashboard .userprofile .usercard .viewGPA .gpa #grade{
+.dashboard .userprofile .usercard .viewGPA .gpa #student-grade{
     font-size: 50px;
     font-weight: bold;
     margin-right: 10px;
@@ -100,7 +97,8 @@ input{
 
 /* dashboard Table view - STUDENTS */
 .dashboard .dashboardTable{
-    width: 75%;
+    width: 100%;
+    /* border: 1px solid var(---line); */
 }
 
 .dashboard .dashboardTable .header{
@@ -116,8 +114,6 @@ input{
 }
 
 .dashboard .dashboardTable .timeupdate{
-    padding-left: 10px;
-    padding-right: 10px;
     color: var(---gray);
     display: flex;
     align-items: center;
@@ -125,49 +121,6 @@ input{
 
 .dashboard .dashboardTable .timeupdate i{
     margin-right: 10px;
-}
-
-.dashboard .dashboardTable .table{
-    padding: 10px;
-}
-
-.dashboard .dashboardTable .table .gradeTable{
-    width: 100%;
-    border-collapse: collapse;
-}
-
-.dashboard .dashboardTable .table .gradeTable tr th{
-    border: 1px solid var(---line);
-    text-align: start;
-    padding: 3px;
-    color: var(---selected_color);
-    background-color: var(---tableHeader);
-}
-
-.dashboard .dashboardTable .table .gradeTable tr td{
-    border: 1px solid var(---gray);
-    padding: 3px;
-    cursor: pointer;
-}
-
-.dashboard .dashboardTable .table .gradeTable tr #grade{
-    width: 5%;
-}
-
-.dashboard .dashboardTable .table .gradeTable tr #subject{
-    width: auto;
-}
-
-.dashboard .dashboardTable .table .gradeTable tr #code{
-    width: 10%;
-}
-
-.dashboard .dashboardTable .table .gradeTable tr #teacher{
-    width: auto;
-}
-
-.dashboard .dashboardTable .table .gradeTable tr:not(#header):hover{
-    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
 }
 
 /* dashboard admin's view - ADMIN */
@@ -242,6 +195,7 @@ option{
     align-items: center;
     justify-content: center;
     margin-right: 5px;
+    font-size: 18px;
 }
 
 .dashboard .tabbar .t_option svg,
@@ -300,6 +254,17 @@ option{
     padding: 5px;
     border-radius: 50px;
     font-size: 15px;
+    border: 1px solid transparent;
+}
+
+.dashboard .workspace .workcard .header .actionside .highlight{
+    background-color: var(---mark);
+    color: var(---selected_color);
+    background: linear-gradient(90deg, rgba(30,223,185,1) 0%, rgba(43,94,232,1) 56%, rgba(255,0,254,1) 100%);
+}
+
+.dashboard .workspace .workcard .header .actionside .actions p{
+    padding: 10px;
 }
 
 .dashboard .workspace .workcard .header .actionside #admindb_option p{
@@ -418,7 +383,7 @@ option{
     box-shadow: 0 4px 8px 0 var(---tableHeader), 0 6px 20px 0 var(---tableHeader);
 }
 
-.dashboard .workspace .Dashboardview .view_select-level_popup .header .blurbg,
+.dashboard .workspace .Dashboardview .view_select-level_popup .header .exit,
 .dashboard .workspace .Dashboardview .open_info_popup .info_popup .header .exit{
     display: flex;
     align-items: center;
@@ -530,7 +495,9 @@ option{
 
 /* Semester workspace */
 
+.dashboard .view .dashboardTable .table,
 .dashboard .workspace .workcard .content{ /* Content page of all pages from tab bar starts here. */
+    /* border: 1px solid var(---line); */
     padding: 10px;
     height: 450px;
     overflow-y: auto;
@@ -538,6 +505,10 @@ option{
     /* removing scrollbar */
     scrollbar-width: none; /* remove scrollbar for firefox */
     -ms-overflow-style: none; /* remove scrollbar for edge  */
+}
+
+.dashboard .view .dashboardTable .table{
+    padding: 0;
 }
 
 /* remove scrollbar */
@@ -654,18 +625,78 @@ option{
 }
 
 /* popup for new semester */
-.dashboard .workspace .blurbg{
+.blurbg{
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
     background-color: rgba(66, 66, 66, 0.589);
+    /* backdrop-filter: blur(5px); */
     height: 100%;
     width: 100%;
 
     visibility: hidden;
 }
+
+/* for popup messages */
+.blurbg .popupmessage{
+    width: 400px;
+    height: 200px;
+    background-color: var(---white);
+    border-radius: 10px;
+    border: 1px solid var(---line);
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.blurbg .popupmessage .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    /* border: 1px solid var(---line); */
+    background-color: var(---acc_bg);
+}
+
+.blurbg .popupmessage .header .exit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.blurbg .popupmessage .header .exit:hover{
+    background-color: var(---acc_bg);
+}
+
+.blurbg .popupmessage .header .exit:active{
+    color: var(---white);
+}
+
+.blurbg .popupmessage .message{
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid var(---sbca); */
+}
+
+.blurbg .popupmessage .message .message-content{
+    text-align: center;
+}
+
+.blurbg .popupmessage .message .message-content i{
+    font-size: 50px;
+    padding: 10px;
+}
+
+/* other popups */
 .dashboard .Semesterview .blurbg .newsempopup{
     width: 500px;
     border-radius: 10px;
@@ -676,7 +707,11 @@ option{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: var(---white);
+    display: none;
+}
+
+.dashboard .Semesterview .blurbg .show-popup{
+    display: block;
 }
 
 /* add this to classlist */
@@ -684,24 +719,27 @@ option{
     visibility: visible;
 }
 
+.dashboard .teacher_popup .header .headertitle,
 .dashboard .Semesterview .blurbg .newsempopup .header .headertitle{
     font-weight: bold;
 }
 
+.dashboard .teacher_popup .header .exit,
 .dashboard .Semesterview .blurbg .newsempopup .header .exit{
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    padding: 5px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
 }
 
+.dashboard .teacher_popup .header .exit:hover,
 .dashboard .Semesterview .blurbg .newsempopup .header .exit:hover{
     box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
 }
 
+.dashboard .teacher_popup .header .exit:active,
 .dashboard .Semesterview .blurbg .newsempopup .header .exit:active{
     color: var(---white);
 }
@@ -718,16 +756,57 @@ option{
     align-items: center;
 }
 
-.dashboard .Semesterview .blurbg .newsempopup .newsemform .inputsem input{
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .radiobtn{
+    justify-content: start;
+    /* border: 1px solid var(---line); */
+    text-align: start;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .radiobtn input{
+    border: 1px solid var(---line);
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .inputsem input:not(input[type="checkbox"]){
     padding: 5px;
     font-size: 18px;
     font-family: Arial, Helvetica, sans-serif;
     border: none;
-    border-bottom: 1px solid var(---gray);
+    border-bottom: 1px solid var(---line);
     text-align: end;
+    width: 250px;
 }
 
-.dashboard .Semesterview .blurbg .newsempopup .newsemform .savesemester #savesemester{
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .inputsem .radiobbutton{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border: 5px solid var(---line);
+    border-radius: 50%;
+    margin-right: 10px;
+    /* padding: 10px; */
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .inputsem .radiobbutton .highlight{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    border-radius: 50%;
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .inputsem .radiobbutton .active{
+    background-color: var(---bday);
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .inputsem .radiobbutton:hover{
+    border: 5px solid var(---gray);
+}
+
+.dashboard .Semesterview .blurbg .newsempopup .newsemform .savesemester button{
     padding: 10px;
     font-size: 18px;
     border-radius: 10px;
@@ -748,8 +827,136 @@ option{
     color: var(---maincolor);
 }
 
+.dashboard .teacher_popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: var(---white);
+    height: fit-content;
+    width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+}
+
+.dashboard .teacher_popup .t_popup_content{
+    /* border: 1px solid var(---sbca); */
+    min-height: 200px;
+    display: none;
+}
+
+.dashboard .teacher_popup .t_popup_content .std-info{
+    display: flex;
+    justify-content: space-between;
+}
+.dashboard .teacher_popup .t_popup_content .popup-message{
+    align-items: center;
+    justify-content: center;
+    /* border: 1px solid var(---sbca); */
+    height: 250px;
+}
+
+.dashboard .teacher_popup .t_popup_content .popup-message .popup-message-content{
+    text-align: center;
+}
+
+.dashboard .teacher_popup .t_popup_content .popup-message .popup-message-content i{
+    color: var(---sunflower);
+    font-size: 50px;
+    padding: 10px;
+}
+
+.dashboard .teacher_popup .t_popup_content .std-info .side{
+    /* border: 1px solid var(---line); */
+    padding: 10px;
+    min-height: 50px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .teacher_popup .t_popup_content .std-info .side img{
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid var(---line);
+}
+
+.dashboard .teacher_popup .t_popup_content .std-info .left{
+    width: 20%;
+}
+
+.dashboard .teacher_popup .t_popup_content .std-info .right{
+    width: 80%;
+    justify-content: start;
+}
+.dashboard .teacher_popup .t_popup_content .std-info .right .info{
+    text-align: start;
+}
+
+.dashboard .teacher_popup .t_popup_content .std-info .right .info p{
+    color: var(---gray);
+}
+
+.dashboard .teacher_popup .t_popup_content .input{
+    /* border: 1px solid var(---line); */
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard .teacher_popup .t_popup_content .input input{
+    padding: 5px;
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    text-align: end;
+    font-size: 18px;
+}
+
+.dashboard .teacher_popup .t_popup_content .input select{
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid var(---line);
+    width: 200px;
+}
+
+.dashboard .teacher_popup .t_popup_content .submit-grade{
+    justify-content: center;
+}
+
+.dashboard .teacher_popup .t_popup_content .submit-grade button{
+    padding: 10px;
+    width: 50%;
+    border: none;
+    border-radius: 10px;
+    background-color: var(---sbca2);
+    color: var(---selected_color);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.dashboard .teacher_popup .t_popup_content .submit-grade button i{
+    font-size: 18px;
+    color: var(---sunflower);
+    margin-right: 10px;
+}
+
+.dashboard .teacher_popup .t_popup_content .submit-grade button:hover{
+    background-color: var(---sbca);
+}
+
+.dashboard .teacher_popup .show{
+    display: block;
+}
+
 /* enroll student popup */
-.dashboard .studentlistview .viewenrollstudent_popup{
+.dashboard .userlistview .viewenrollstudent_popup{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -762,7 +969,7 @@ option{
     box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
 }
 
-.dashboard .studentlistview .viewenrollstudent_popup .enrollment-user-photo{
+.dashboard .userlistview .viewenrollstudent_popup .enrollment-user-photo{
     /* border: 1px solid var(---line); */
     display: flex;
     align-items: center;
@@ -770,7 +977,7 @@ option{
     padding: 10px;
 }
 
-.dashboard .studentlistview .viewenrollstudent_popup .enrollment-user-photo img{
+.dashboard .userlistview .viewenrollstudent_popup .enrollment-user-photo img{
     width: 100px;
     height: 100px;
     object-fit: cover;
@@ -778,11 +985,11 @@ option{
     border: 1px solid var(---line);
 }
 
-.dashboard .studentlistview .viewenrollstudent_popup .enrollment-config{
+.dashboard .userlistview .viewenrollstudent_popup .enrollment-config{
     padding: 10px;
 }
 
-.dashboard .studentlistview .viewenrollstudent_popup .enrollment-config .enrollment-info{
+.dashboard .userlistview .viewenrollstudent_popup .enrollment-config .enrollment-info{
     padding: 5px;
     display: flex;
     align-items: center;
@@ -791,13 +998,13 @@ option{
     margin-bottom: 10px;
 }
 
-.dashboard .studentlistview .viewenrollstudent_popup .enrollment_btn{
+.dashboard .userlistview .viewenrollstudent_popup .enrollment_btn{
     padding: 10px;
     text-align: center;
     /* border: 1px solid var(---gray); */
 }
 
-.dashboard .studentlistview .viewenrollstudent_popup .enrollment_btn button{
+.dashboard .userlistview .viewenrollstudent_popup .enrollment_btn button{
     width: fit-content;
     background-color: var(---sbca2);
     border: 0;
@@ -807,17 +1014,17 @@ option{
     border-radius: 5px;
 }
 
-.dashboard .studentlistview .viewenrollstudent_popup .enrollment_btn button:hover{
+.dashboard .userlistview .viewenrollstudent_popup .enrollment_btn button:hover{
     background-color: var(---sbca);
 }
 
-.dashboard .studentlistview .viewenrollstudent_popup .enrollment_btn button:active{
+.dashboard .userlistview .viewenrollstudent_popup .enrollment_btn button:active{
     background-color: var(---white);
     color: var(---white);
 }
 
 /* error message in enrolling student */
-.dashboard .studentlistview .view_error-message{
+.dashboard .userlistview .view_error-message{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -830,20 +1037,20 @@ option{
     box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
 }
 
-.dashboard .studentlistview .view_error-message .error-message-content{
+.dashboard .userlistview .view_error-message .error-message-content{
     text-align: center;
     /* border: 1px solid var(---gray); */
     height: 75%;
 }
 
-.dashboard .studentlistview .view_error-message .error-message-content #warning-sign{
+.dashboard .userlistview .view_error-message .error-message-content #warning-sign{
     font-size: 50px;
     padding: 5px;
     color: var(---sbca);
 }
 
 /* view more information about students - admin list of all students, formerly dashboard */
-.dashboard .studentlistview .viewstudentinfo_popup{
+.dashboard .userlistview .viewstudentinfo_popup{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -856,7 +1063,84 @@ option{
     box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .tabbars{
+.dashboard .userlistview .viewstudentinfo_popup .userinfolines .line{
+    /* border: 1px solid var(---line); */
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .userinfolines .line .block{
+    padding: 10px;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .userinfolines .line .block input{
+    border: 1px solid var(---line);
+    width: 250px;
+    padding: 5px;
+    font-size: 15px;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .userinfolines .line .block input:focus{
+    outline: none;
+    background-color: var(---line);
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .userinfolines .line .block button{
+    border: 1px solid var(---line);
+    background-color: var(---acc_bg);
+    font-size: 18px;
+    width: 50px;
+    height: 50px;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .userinfolines .line .block button:hover{
+    background-color: var(---line);
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .teacherSchedule{
+    padding: 10px;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .teacherSchedule .teacherScheduleHeader{
+    /* border: 1px solid var(---line); */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .teacherSchedule .teacherScheduleHeader .addSubjectBtn{
+    /* border: 1px solid var(---line); */
+    padding: 10px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .teacherSchedule .teacherScheduleHeader .addSubjectBtn:hover{
+    background-color: var(---acc_bg);
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .teacherSchedule .teacherScheduleHeader .addSubjectBtn p{
+    font-size: 16px;
+    margin-left: 5px;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .teacherSchedule .teacherScheduleHeader .addSubjectBtn:active{
+    color: var(---selected_color);
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .teacherSchedule .scroll-table{
+    height: 200px;
+    overflow-y: scroll;
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .tabbars{
     /* border: 1px solid var(---gray); */
     padding: 10px;
     display: flex;
@@ -864,16 +1148,16 @@ option{
     justify-content: space-between;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .tabbars .side{
+.dashboard .userlistview .viewstudentinfo_popup .tabbars .side{
     /* border: 1px solid var(---gray); */
     width: 50%;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .tabbars .action-button{
+.dashboard .userlistview .viewstudentinfo_popup .tabbars .action-button{
     text-align: end;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .tabbars .action-button button{
+.dashboard .userlistview .viewstudentinfo_popup .tabbars .action-button button{
     padding: 5px;
     border: 0;
     border-radius: 5px;
@@ -885,22 +1169,22 @@ option{
     cursor: pointer;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .tabbars .action-button button:hover{
+.dashboard .userlistview .viewstudentinfo_popup .tabbars .action-button button:hover{
     background-color: var(---line);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .tabbars .action-button button:active{
+.dashboard .userlistview .viewstudentinfo_popup .tabbars .action-button button:active{
     color: var(---gray);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student{
+.dashboard .userlistview .viewstudentinfo_popup .info-student{
     display: flex;
     justify-content: center;
     /* border: 1px solid var(---gray); */
     height: 80%;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side{
     /* border: 1px solid var(---gray); */
     width: 50%;
     padding: 10px;
@@ -910,7 +1194,7 @@ option{
 }
 
 /* student's bio */
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio{
     padding: 5px;
     border-radius: 10px;
     margin: 10px;
@@ -935,7 +1219,7 @@ option{
     border: 1px solid var(---line);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .user-name{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio .user-name{
     /* border: 1px solid var(---line); */
     display: flex;
     align-items: center;
@@ -943,8 +1227,8 @@ option{
     color: var(---gray);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .user-name input{
-    width: 100%;
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio .user-name input{
+    width: 70%;
     border: 0;
     font-size: 18px;
     padding: 5px;
@@ -952,19 +1236,26 @@ option{
     border-bottom: 1px solid var(---line);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .user-name input:focus{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio .user-name select{
+    padding: 10px;
+    width: 72%;
+    border: 0;
+    border-bottom: 1px solid var(---line);
+}
+
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio .user-name input:focus{
     outline: none;
     border-bottom: 1px solid var(---sbca);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .actions{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio .actions{
     /* border: 1px solid var(---line); */
     display: flex;
     align-items: center;
     justify-content: end;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .actions button{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio .actions button{
     margin: 10px;
     padding: 5px;
     font-size: 16px;
@@ -976,80 +1267,73 @@ option{
     color: var(---maincolor);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio .actions button:hover{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio .actions button:hover{
     background-color: var(---sbca);
     color: var(---selected_color);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .student-bio p{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .student-bio p{
     padding: 5px;
 }
 
 /* costumize scrollbar */
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side::-webkit-scrollbar {
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side::-webkit-scrollbar {
     width: 5px;
     border: 1px solid var(---gray);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side::-webkit-scrollbar-track {
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side::-webkit-scrollbar-track {
     background: transparent;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side::-webkit-scrollbar-thumb {
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side::-webkit-scrollbar-thumb {
     background: var(---gray);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side::-webkit-scrollbar-thumb:hover {
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side::-webkit-scrollbar-thumb:hover {
     background: var(---maincolor);
 }
 
 /* end of costomize scrollbar */
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .table-of-grade-in-semester{
-    margin-bottom: 50px;
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .table-of-grade-in-semester .table-item{
+    margin-bottom: 20px;
     border-bottom: 1px solid var(---gray);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .table-of-grade-in-semester .more-info{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .table-of-grade-in-semester .more-info{
     color: var(---gray);
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .account-info{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .account-info{
     margin-bottom: 10px;
     /* border: 1px solid var(---gray); */
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .account-info .item{
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .account-info .item{
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 5px;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .payment-history{
-    margin-top: 20px;
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .sem-balance{
     padding: 10px;
-    border-radius: 5px;
-}
-
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .payment-history:hover{
-    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
-}
-
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .payment-history .payment-info{
+    /* border: 1px solid var(---line); */
+    border-radius: 10px;
     display: flex;
+    align-items: center;
     justify-content: space-between;
-    padding: 10px;
-    border-bottom: 1px solid var(---gray);
-    cursor: pointer;
+    margin-top: 10px;
 }
 
-.dashboard .studentlistview .viewstudentinfo_popup .info-student .side .payment-history .payment-info:hover{
-    background-color: var(---line);
+.dashboard .userlistview .viewstudentinfo_popup .info-student .side .sem-balance:hover{
+    background-color: var(---acc_bg);
 }
 
 /* admin's dashboard list of all students option popup */
-.dashboard .studentlistview .studentOption{
+.dashboard .picker-popup,
+.dashboard .studentOption{
     position: absolute;
     top: 50%;
     left: 50%;
@@ -1062,15 +1346,16 @@ option{
     box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
 }
 
-.dashboard .studentlistview .studentOption .header .headertitle{
+.dashboard .picker-popup .header .headertitle,
+.dashboard .studentOption .header .headertitle{
     font-weight: bold;
 }
 
 .dashboard .courselistview .blurbg .header .exit,
-.dashboard .studentlistview .view_error-message .exit,
-.dashboard .studentlistview .viewenrollstudent_popup .header .exit,
-.dashboard .studentlistview .viewstudentinfo_popup .header .exit,
-.dashboard .studentlistview .studentOption .header .exit{
+.dashboard .userlistview .view_error-message .exit,
+.dashboard .userlistview .viewenrollstudent_popup .header .exit,
+.dashboard .userlistview .viewstudentinfo_popup .header .exit,
+.dashboard .studentOption .header .exit{
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1081,22 +1366,22 @@ option{
 }
 
 .dashboard .courselistview .blurbg .header .exit:active,
-.dashboard .studentlistview .view_error-message .exit:active,
-.dashboard .studentlistview .viewenrollstudent_popup .header .exit:active,
-.dashboard .studentlistview .viewstudentinfo_popup .header .exit:active,
-.dashboard .studentlistview .studentOption .header .exit:active{
+.dashboard .userlistview .view_error-message .exit:active,
+.dashboard .userlistview .viewenrollstudent_popup .header .exit:active,
+.dashboard .userlistview .viewstudentinfo_popup .header .exit:active,
+.dashboard .studentOption .header .exit:active{
     color: var(---white);
 }
 
 .dashboard .courselistview .blurbg .header .exit:hover,
-.dashboard .studentlistview .view_error-message .exit:hover,
-.dashboard .studentlistview .viewenrollstudent_popup .header .exit:hover,
-.dashboard .studentlistview .viewstudentinfo_popup .header .exit:hover,
-.dashboard .studentlistview .studentOption .header .exit:hover{
+.dashboard .userlistview .view_error-message .exit:hover,
+.dashboard .userlistview .viewenrollstudent_popup .header .exit:hover,
+.dashboard .userlistview .viewstudentinfo_popup .header .exit:hover,
+.dashboard .studentOption .header .exit:hover{
     box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
 }
 
-.dashboard .studentlistview .studentOption .popupOptions{
+.dashboard .userlistview .studentOption .popupOptions{
     height: 200px;
 }
 
@@ -1117,68 +1402,203 @@ option{
     outline: none;
 }
 
-/* list of students view - ADMIN */
-.dashboard .workspace .workcard .content .adminlistofstudents{
-    width: 100%;
+.optionsContent input{
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    padding: 10px;
+    width: 150px;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr:not(.tb_header){
+.optionsContent button{
+    border: 1px solid transparent;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100px;
+    background-color: var(---sbca);
+    color: var(---selected_color);
+}
+
+.checkbox{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+}
+
+/* add subject to schedule - schedule tab */
+.dashboard .appendSub{
+    height: 500px;
+    max-height: 500px;
+}
+
+.dashboard .inputter{
+    height: 200px;
+}
+
+.dashboard .appendSub .popupOptions{
+    height: 450px;
+    overflow-y: scroll;
+}
+
+.dashboard .appendSub h3{
+    padding: 5px;
+    background-color: var(---acc_bg);
+}
+
+.dashboard .appendSub .list-subjects-selection{
+    padding: 5px;
+    /* border: 1px solid var(---line); */
+}
+
+.dashboard .appendSub .list-subjects-selection .subject-item{
+    padding: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.dashboard .appendSub .list-subjects-selection .disabled{
+    color: var(---gray);
+}
+
+.dashboard .appendSub .list-subjects-selection .subject-item:hover:not(.disabled){
+    background-color: var(---hover);
+}
+
+.dashboard .appendSub .list-subjects-selection .subject-item p{
+    color: var(---gray);
+}
+
+/* selection under appendsub */
+.dashboard .appendSub .selection{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    /* border: 1px solid var(---line); */
+}
+
+.dashboard .appendSub .selection select{
+    width: 150px;
+    padding: 5px;
+    border: 0;
+    border-bottom: 1px solid var(---line);
+    border-radius: 0;
+}
+
+.dashboard .appendSub .selection select:focus{
+    outline: none;
+    background-color: var(---acc_bg);
+}
+
+.dashboard .appendSub .addsubject-showsubject{
+    height: 350px;
+    /* border: 1px solid var(---line); */
+    overflow-y: scroll;
+}
+.dashboard .appendSub .addsubject-showsubject .addsubject-subjectitem{
+    padding: 10px;
+    /* border: 1px solid var(---line); */
     cursor: pointer;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr:not(.tb_header):hover{
-    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+.dashboard .appendSub .addsubject-showsubject .addsubject-subjectitem p{
+    font-size: 15px;
+    color: var(---gray);
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr:not(.tb_header):active{
-    color: var(---white);
+.dashboard .appendSub .addsubject-showsubject .addsubject-subjectitem:hover{
+    background-color: var(---acc_bg);
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr th{
-    /* border: 1px solid var(---gray); */
-    padding: 3px;
-    text-align: start;
-    background-color: var(---tableHeader);
-    color: var(---selected_color);
-    font-weight: normal;
+.dashboard .appendSub .quick-action{
+    /* border: 1px solid var(---line); */
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding: 5px;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr td{
-    /* border: 1px solid var(---gray); */
+.dashboard .appendSub .quick-action .action{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.dashboard .appendSub .update{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 10px;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr #userid{
-    width: 15%;
+.dashboard .appendSub .update input{
+    padding: 10px;
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    width: 150px;
+    text-align: end;
+    font-size: 18px;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr #name{
-    width: 30%;
+.dashboard .appendSub .update input:focus{
+    outline: none;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr #course{
-    width: 30%;
+.dashboard .appendSub .quick-action .action:hover{
+    background-color: var(---acc_bg);
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr #year{
-    width: 10%;
+.dashboard .appendSub .quick-action .action i{
+    font-size: 20px;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr #status{
-    width: 10%;
+/* modify subject in schedule tab */
+.dashboard .modifySub{
+    height: 350px;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr #email{
-    width: 20%;
+/* actions */
+.dashboard .modifySub .scheduleActions{
+    padding: 5px;
+    color: var(---gray);
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr #numstudents,
-.dashboard .workspace .workcard .content .adminlistofstudents tr #coursecode{
-    width: 10%;
+.dashboard .modifySub .scheduleActions .action{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
 }
 
-.dashboard .workspace .workcard .content .adminlistofstudents tr #coursename{
-    width: auto;
+.dashboard .modifySub .scheduleActions .action:hover{
+    background-color: var(---line);
+    color: var(---maincolor);
+}
+
+.dashboard .modifySub .popupOptions{
+    overflow-y: scroll;
+    height: 250px;
+    max-height: 250px;
+}
+
+.dashboard .modifySub input{
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    width: 200px;
+    padding: 5px;
+}
+
+.dashboard .modifySub input:focus{
+    outline: none;
 }
 
 /* announcment /calendar */
@@ -1187,6 +1607,10 @@ option{
     border: none;
     font-size: 30px;
     width: 100%;
+}
+
+.dashboard .workspace .announcementview .content .entries input:focus{
+    background-color: transparent;
 }
 
 .dashboard .workspace .announcementview .content .entries .ann_body:focus,
@@ -1237,10 +1661,31 @@ option{
     transform: translate(-50%, -50%);
 
     background-color: var(---white);
-    height: 95%;
-    width: 90%;
+    height: 500px;
+    width: 70%;
     border-radius: 10px;
     box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+}
+
+.dashboard .courselistview .courseinfo .contents{
+    padding: 10px;
+    /* border: 1px solid var(---line); */
+    height: 420px;
+    overflow-y: scroll;
+}
+
+.dashboard .courselistview .courseinfo .contents .viewTable{
+    margin-bottom: 50px;
+    border-bottom: 1px solid var(---line);
+}
+
+.dashboard .courselistview .courseinfo .contents .viewTable .label{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    /* border: 1px solid var(---line); */
+    color: var(---gray);
 }
 
 /* Course popup - for adding new course */
@@ -1256,6 +1701,17 @@ option{
     background-color: rgba(66, 66, 66, 0.589);
 
     display: none;
+}
+
+.dashboard .courselistview .addnew_course select{
+    border: none;
+    border-bottom: 1px solid var(---line);
+    padding: 10px;
+    width: 150px;
+}
+
+.addnew_course select:focus{
+    outline: none;
 }
 
 .dashboard .courselistview .show_addnew_course{
@@ -1340,7 +1796,105 @@ option{
 
 
 /* todo list view */
+/* new todo list */
+.dashboard .workspace .workcard .content .todolist_content{
+    /* border: 1px solid var(---line); */
+    min-height: 300px;
 
+    display: flex;
+    justify-content: space-between;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .right{
+    width: 70%;
+    padding: 20px;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .right .emptyTaskLabel{
+    padding: 10px;
+    font-size: 20px;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .right .taskitem{
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid var(---line); */
+    cursor: pointer;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .right .taskitem:hover{
+    background-color: var(---acc_bg);
+}
+
+.dashboard .workspace .workcard .content .todolist_content .right .done p{
+    text-decoration: line-through;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .right .taskitem i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    /* border: 1px solid var(---line); */
+    font-size: 18px;
+    padding: 5px;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .right .taskitem i:hover{
+    background-color: var(---acc_bg);
+    color: var(---sbca);
+}
+
+.dashboard .workspace .workcard .content .todolist_content .left{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .left .newTodo{
+    border: 1px solid var(---line);
+    padding: 10px;
+    height: fit-content;
+    width: 100%;
+    background-color: var(---maincolor);
+    color: var(---white);
+    border-radius: 10px;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .left .newTodo h3{
+    padding: 10px;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .left .newTodo .newtask{
+    padding: 10px;
+    display: flex;
+}
+
+.dashboard .workspace .workcard .content .todolist_content .left .newTodo .newtask input{
+    border: 0;
+    padding: 5px;
+    border-radius: 5px 0 0 5px;
+    width: 80%;
+    color: var(---white);
+}
+
+.dashboard .workspace .workcard .content .todolist_content .left .newTodo .newtask button{
+    width: 20%;
+    /* border: 1px solid var(---line); */
+    border: 0;
+    border-radius: 0 5px 5px 0;
+    background-color: transparent;
+    color: var(---white);
+}
+
+.dashboard .workspace .workcard .content .todolist_content .left .newTodo .newtask button:hover{
+    background-color: var(---acc_bg);
+}
+
+/* old todo list css */
 .dashboard .workspace .workcard .content .todo_lists,
 .dashboard .workspace .workcard .content .todolist{
     display: flex;
@@ -1798,6 +2352,7 @@ option{
     border: 1px solid transparent;
     padding: 10px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .list-subjects .subject-item:hover{
@@ -1809,6 +2364,11 @@ option{
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.list-subjects .subject-item .empty{
+    padding: 10px;
+    color: var(---gray);
 }
 
 .list-subjects .subject-item .subj-header .subj-option{
@@ -1834,6 +2394,8 @@ option{
     color: var(---gray);
 }
 
-.list-subjects .subject-item .other-subj-info .subj-holder{
-    color: var(---maincolor);
+.list-subjects .subject-item .other-subj-info p{
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(---line);
 }

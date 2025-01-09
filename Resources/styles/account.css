@@ -13,6 +13,12 @@
     display: flex;
 }
 
+select:focus,
+input:focus{
+    outline: none;
+    background-color: var(---acc_bg);
+}
+
 /* .account .side{
     border: 1px solid gray;
 } */
@@ -21,20 +27,27 @@
 
 /* for all tabs */
 .acc_tabs{
-    padding: 20px;
+    padding: 10px;
     cursor: pointer;
     display: flex;
     align-items: center;
     transition: background-color 0.5s ease;
+    border-radius: 10px;
+    margin-bottom: 5px;
 }
 
 .acc_tabs svg,
 .acc_tabs i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+    font-size: 20px;
     margin-right: 10px;
 }
 
 .acc_tabs p{
-    font-size: 17px;
+    font-size: 16px;
 }
 
 .acc_tabs:hover{
@@ -119,13 +132,12 @@
 }
 
 .acc_page .acc_table .acc_table_assessments .table{
-    border: 1px solid var(---gray);
+    border: 1px solid var(---line);
     border-radius: 10px;
     width: 50%;
     min-height: 55vh;
     max-height: 100vh;
     margin: 5px;
-    padding: 10px;
 }
 
 .acc_page .account_table_header{
@@ -136,7 +148,7 @@
 .acc_page .acc_table .acc_table_assessments .table .acc_info{
     /* border: 1px solid var(---gray); */
     margin-bottom: 10px;
-    padding: 5px;
+    padding: 10px;
 }
 
 .acc_page .acc_table .acc_table_assessments .table .acc_info .acc_balance{
@@ -155,13 +167,16 @@
 
 
 /* right side */
+.acc_page .acc_table .acc_table_assessments .table .tuitionfeeinfo{
+    padding: 10px;
+}
 .acc_page .acc_table .acc_table_assessments .table .tuitionfeeinfo .item{
     display: flex;
     justify-content: space-between;
 }
 
 .acc_page .acc_table .acc_table_assessments .table .tuitionfeeinfo .break{
-    border-top: 1px solid var(---gray);
+    border-top: 1px solid var(---line);
     margin-top: 5px;
 }
 
@@ -185,13 +200,17 @@
 .acc_page .acc_table .acc_table_assessments .table .schedultofpayments .side .item{
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid var(---gray);
+    border-bottom: 1px solid var(---line);
     padding: 5px;
+}
+
+.acc_page .acc_table .acc_table_assessments .table .otherbalance{
+    padding: 10px;
 }
 
 .acc_page .acc_table .acc_table_assessments .table .otherbalance .other_balance{
     padding: 10px;
-    border: 1px solid var(---gray);
+    border: 1px solid var(---line);
     border-radius: 5px;
     margin-top: 10px;
 }
@@ -213,6 +232,11 @@
     min-height: 450px;
     overflow-x: scroll;
     box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
+}
+
+.std_viewAccount{
+    height: 90%;
+    margin-top: 20px;
 }
 
 .acc_table::-webkit-scrollbar{
@@ -335,21 +359,23 @@
 /* tabbar side */
 .account .acc_tabbar{
     width: 15%;
-    border-right: 1px solid var(---line);
+    padding: 5px;
 }
 
 /* content side */
-.account .settings_content,
-.account .logout_content,
-.account .change_pass_content,
-.account .theme_content,
-.account .about_content,
-.account .acc_content{
+.account .acc_page{
     width: 85%;
     background-color: var(---acc_bg);
-    border-top: 1px solid var(---line);
 
     display: none;
+}
+
+.account .acc_content{
+    border-top: 1px solid var(---line);
+}
+
+.account .acc_content{
+    width: 100%;
 }
 
 /* display the page */
@@ -440,6 +466,53 @@
     color: var(---gray);
 }
 
+.about_content .schollarship_info{
+    padding: 10px;
+}
+
+.about_content .schollarship_info .items{
+    /* border: 1px solid var(---line); */
+    min-height: 200px;
+    padding: 10px;
+    display: flex;
+    align-items: start;
+    justify-content: center;
+}
+
+.about_content .schollarship_info .items .item{
+    width: 300px;
+    min-height: 200px;
+    /* border: 1px solid var(---line); */
+    background-color: var(---sunflower);
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+.about_content .schollarship_info .items .item .header{
+    padding: 10px;
+    border: 1px solid var(---line);
+    font-weight: bold;
+}
+
+.about_content .schollarship_info .items .item .checkLists{
+    padding: 10px;
+    /* border: 1px solid var(---mark); */
+}
+
+.about_content .schollarship_info .items .item .checkLists .list{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: 17px;
+    margin-bottom: 10px;
+}
+
+.about_content .schollarship_info .items .item .checkLists .list i{
+    margin-right: 5px;
+    color: var(---sbca);
+}
+
+/* enrollment info */
 .about_content .enrollment_information{
     background-color: var(---white);
     display: flex;
@@ -450,23 +523,70 @@
 .about_content .enrollment_information .side{
     /* border: 1px solid var(---line); */
     min-height: 200px;
+    width: 100%;
+}
+
+.about_content .enrollment_information .prog_offer{
+    /* background-color: var(---maincolor); */
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.about_content .enrollment_information .prog_offer .description{
+    color: var(---gray);
 }
 
 .about_content .enrollment_information .enrollment_req{
     width: 70%;
 }
 
-.about_content .enrollment_information .enrollment_req .list_req{
-    /* border: 1px solid var(---line); */
+.about_content .enrollment_information .side .flexed .item{
+    border: 1px solid var(---line);
+    border-radius: 5px;
+    width: 280px;
+    height: 350px;
+    padding: 5px;
+    margin: 10px;
+    box-shadow: 0 4px 10px 0 var(---shadow), 0 10px 10px 0 var(---shadow);
+}
+
+.about_content .enrollment_information .side .flexed .item img{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.about_content .enrollment_information .side .flexed .item h5{
+    margin-bottom: 10px;
+    color: var(---sunflower);
+}
+
+.about_content .enrollment_information .side .flexed .item .short{
+    color: var(---bday);
+}
+
+.about_content .enrollment_information .side .flexed .item p{
+    color: var(---gray);
+    font-size: 15px;
+}
+
+.about_content .enrollment_information .side .list_req{
     padding: 10px;
+}
+
+/* items with cards */
+.about_content .enrollment_information .side .flexed{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* border: 1px solid var(---line); */
+    padding: 0;
+    margin-top: 15px;
 }
 
 .about_content .enrollment_information .enrollment_req .list_req p{
     padding: 10px;
-}
-
-.about_content .enrollment_information .enrollment_req .list_req p:hover{
-    background-color: var(---hover);
 }
 
 .about_content .enrollment_information .enrollment_qr{
@@ -477,6 +597,9 @@
 .about_content .enrollment_information .enrollment_qr img{
     border-radius: 10px;
     margin: 10px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
 }
 
 .about_content .enrollment_information .enrollment_qr p{
@@ -651,9 +774,6 @@
     justify-content: center;
     font-size: 50px;
     cursor: pointer;
-}
-
-.account .theme_content .select_theme .themes_items #normal{
     background-color: #fff;
     color: #3F3F3F;
 }
@@ -661,15 +781,6 @@
 .account .theme_content .select_theme .themes_items #dark{
     background-color: #3F3F3F;
     color: var(---selected_color);
-}
-
-.account .theme_content .select_theme .themes_items #christmas{
-    background-color: #A02334;
-    color: #FFEEAD;
-}
-
-.account .theme_content .select_theme .themes_items #christmas:hover{
-    background-color: #FFAD60;
 }
 
 .account .theme_content .select_theme .themes_items .theme .icon{
@@ -685,54 +796,6 @@
 .account .theme_content .select_theme .themes_items .theme:hover{
     background-color: var(---tab_hover);
     color: var(---maincolor);
-}
-
-.account .theme_content .time_to_off{
-    margin-top: 5px;
-    background-color: var(---white);
-    border: 1px solid var(---line);
-    border-radius: 5px;
-    padding: 10px;
-}
-
-.account .theme_content .time_to_off .time_picker{
-    margin-top: 10px;
-    border: 1px solid var(---line);
-    padding: 10px;
-    width: 300px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 5px;
-}
-
-.account .theme_content .time_to_off .time_picker:hover{
-    background-color: var(---tab_hover);
-}
-
-.account .theme_content .time_to_off .time_picker input{
-    border: none;
-    font-size: 18px;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-.account .theme_content .time_to_off .time_picker input:focus{
-    outline: none;
-}
-
-.account .theme_content .time_to_off .info{
-    font-size: 16px;
-    margin: 10px;
-    margin-top: 20px;
-    display: flex;
-    align-items: center;
-    color: var(---gray);
-}
-
-.account .theme_content .time_to_off .info svg,
-.account .theme_content .time_to_off .info i{
-    margin-right: 5px;
-    font-size: 18px;
 }
 
 /* change password page */
@@ -987,6 +1050,144 @@
     display: none;
 }
 
+/* setting profile card id content */
+.account .settings_content .popup .card{
+    /* border: 1px solid var(---mark); */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    perspective: 1000px;
+
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+}
+
+.account .settings_content .popup .card .card-rotate{
+    /* border: 1px solid var(---sbca); */
+    position: relative;
+    width: 600px;
+    height: 300px;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+
+}
+
+.account .settings_content .popup .card .card-rotate .usercard-content{
+    position: absolute;
+
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    border: 1px solid var(---line);
+    background-color: var(---selected_color);
+    color: var(---black);
+    box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+    background-image: url('../assets/sbca.logo4.jpg');
+    background-position: center;
+    background-repeat: no-repeat no-repeat;
+    background-size: 200px;
+}
+
+.account .settings_content .popup .card .card-rotate .front{
+    z-index: 2;
+    backface-visibility: hidden;
+    will-change: transform;
+}
+
+.account .settings_content .popup .card .card-rotate .back{
+    z-index: 1;
+    transform: rotateY(180deg);
+}
+
+.account .settings_content .popup .card:hover .card-rotate{
+    transform: rotateY(180deg);
+}
+
+.account .settings_content .popup .card .usercard-content .card-header{
+    /* border: 1px solid var(---line); */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: var(---sbca);
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides{
+    display: flex;
+    justify-content: space-between;
+    /* border: 1px solid var(---line); */
+    height: 250px;
+}
+
+.account .settings_content .popup .card .back .info-sides{
+    height: 100%;
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .side{
+    width: 70%;
+    height: 100%;
+    /* border: 1px solid var(---sbca); */
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .image{
+    width: 30%;
+    display: flex;
+    justify-content: center;
+}
+
+.account .settings_content .popup .card .back .info-sides .image{
+    align-items: end;
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .image .user{
+    color: var(---gray);
+    /* border: 1px solid var(---line); */
+    padding-top: 20px;
+    text-align: center;
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .image .qr{
+    padding-top: 0;
+    padding-bottom: 20px;
+    font-size: 15px;
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .image img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(---sbca);
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .qr img{
+    border-radius: 0;
+    border: 0;
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .info .user-name{
+    text-align: end;
+    /* border: 1px solid var(---line); */
+    padding-right: 10px;
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .info .user-name #user-course{
+    font-size: 16px;
+    color: var(---gray);
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .info .line{
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    /* border: 1px solid var(---line); */
+    font-size: 15px;
+}
+
+.account .settings_content .popup .card .usercard-content .info-sides .info .line i{
+    padding-right: 10px;
+}
+
 /* profile content */
 .account .settings_content .popup .profile-content{
     position: absolute;
@@ -994,10 +1195,10 @@
     left: 50%;
     transform: translate(-50%, -50%);
 
-    width: 80%;
+    width: 600px;
     height: 80%;
     background-color: var(---white);
-    border-radius: 5px;
+    border-radius: 10px;
     border: 1px solid var(---line);
     box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
 }
@@ -1011,7 +1212,7 @@
 
 
 .profile-content .sides .profile-box{
-    width: 30%;
+    width: 50%;
     border-radius: 5px 20px 20px 5px;
     border: 1px solid var(---line);
     background-color: var(---acc_bg);
@@ -1063,8 +1264,7 @@
 }
 
 .profile-content .sides .edit-profile-box{
-    width: 70%;
-    overflow-y: scroll;
+    width: 50%;
     /* border: 1px solid var(---line); */
 }
 
@@ -1131,7 +1331,7 @@
     font-size: 16px;
     border: 1px solid var(---line);
     border-radius: 10px;
-    width: 40%;
+    width: 90%;
     margin: 5px;
 }
 
@@ -1158,8 +1358,93 @@
     box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
 }
 
+/* .showPopUp, */
 .account .settings_content .showPopUp{
     display: block;
+}
+
+/* longer popupbox */
+.account .settings_content .popup .longer{
+    width: 900px;
+    height: 500px;
+}
+
+.account .settings_content .popup .popupbox .popupcontent{
+    /* border: 1px solid var(---line); */
+    height: 280px;
+    overflow-y: scroll;
+}
+
+.account .settings_content .popup .longer .popupcontent{
+    height: 430px;
+}
+
+.account .settings_content .popup .popupbox .popupcontent .line{
+    /* border: 1px solid var(---line); */
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.account .settings_content .popup .popupbox .popupcontent .options{
+    justify-content: start;
+}
+
+.account .settings_content .popup .popupbox .popupcontent .options i{
+    margin-right: 10px;
+    font-size: 20px;
+}
+
+.account .settings_content .popup .popupbox .popupcontent .options:hover{
+    background-color: var(---acc_bg);
+    cursor: pointer;
+}
+
+.account .settings_content .popup .popupbox .popupcontent .options:active{
+    color: var(---white);
+}
+
+.account .settings_content .popup .popupbox .popupcontent .line .element{
+    margin-right: 10px;
+}
+
+.account .settings_content .popup .popupbox .popupcontent .line .element .icon-button:hover{
+    background-color: var(---acc_bg);
+}
+
+.account .settings_content .popup .popupbox .popupcontent .action{
+    justify-content: center;
+}
+
+.account .settings_content .popup .popupbox .popupcontent .action button{
+    padding: 10px;
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    width: 150px;
+    font-size: 18px;
+    background-color: var(---maincolor);
+    color: var(---white);
+}
+
+.account .settings_content .popup .popupbox .popupcontent .action button:active{
+    color: var(---maincolor);
+}
+
+.account .settings_content .popup .popupbox .popupcontent input{
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    width: 250px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+.account .settings_content .popup .popupbox .popupcontent select{
+    border: 1px solid var(---line);
+    border-radius: 10px;
+    width: 250px;
+    padding: 10px;
+    font-size: 16px;
 }
 
 .account .settings_content .popup .popupbox .popupHeader{
@@ -1178,8 +1463,8 @@
     margin-right: 10px;
 }
 
-.account .settings_content .popup .popupbox .popupHeader #exit_export,
-.account .settings_content .popup .popupbox .popupHeader #exit_import{
+.account .settings_content .popup .popupbox .popupHeader .exit,
+.account .settings_content .popup .popupbox .popupHeader .exit{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1189,8 +1474,8 @@
     border-radius: 50%;
 }
 
-.account .settings_content .popup .popupbox .popupHeader #exit_export:hover,
-.account .settings_content .popup .popupbox .popupHeader #exit_import:hover{
+.account .settings_content .popup .popupbox .popupHeader .exit:hover,
+.account .settings_content .popup .popupbox .popupHeader .exit:hover{
     background-color: var(---hover);
 }
 
@@ -1322,7 +1607,7 @@
 
 .account .settings_content .content .setting .settingbox{
     background-color: var(---white);
-    border: 1px solid var(---line);
+    /* border: 1px solid var(---line); */
     border-radius: 5px;
     height: 100%;
     overflow-y: scroll;
@@ -1355,6 +1640,10 @@
     padding: 10px;
 }
 
+.account .settings_content .content .setting .settingbox .settingItem .settingname p{
+    font-size: 15px;
+}
+
 .account .settings_content .content .setting .settingbox .settingItem:hover{
     background-color: var(---hover);
 }
@@ -1370,7 +1659,7 @@
 .account .settings_content .content .user .userbox{
     background-color: var(---white);
     border: 1px solid var(---line);
-    border-radius: 5px;
+    border-radius: 10px;
     min-height: 200px;
 }
 
@@ -1426,4 +1715,344 @@
 
 .account .settings_content .content .user .userbox .actions .action:active{
     color: var(---white);
+}
+
+/* accounting */
+
+.accounting .account_info_popup{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background-color: rgba(66, 66, 66, 0.589);
+    display: none;
+}
+
+.accounting .account_info_popup .viewuseraccount{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    min-width: 25%;
+    height: 500px;
+    border-radius: 10px;
+    background-color: var(---white);
+    box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2);
+}
+
+.accounting .account_info_popup .viewuseraccount .viewaccount{
+    display: flex;
+    /* transition: transform 1s; */
+}
+
+.accounting .account_info_popup .viewuseraccount .viewaccount .sides{
+    /* border: 1px solid var(---sbca); */
+    padding: 5px;
+    height: auto;
+}
+
+.accounting .account_info_popup .viewuseraccount .viewaccount .viewHistory{
+    width: 500px;
+    display: none;
+}
+
+.accounting .account_info_popup .viewuseraccount .viewaccount .viewHistory .display-payments{
+    /* border: 1px solid var(---line); */
+    margin-top: 20px;
+    height: 400px;
+    overflow-y: scroll;
+}
+
+.accounting .account_info_popup .viewuseraccount .viewaccount .viewHistory .display-payments .item{
+    border-bottom: 1px solid var(---line);
+    padding: 5px;
+}
+
+.accounting .account_info_popup .viewuseraccount .viewaccount .viewHistory .display-payments .item:hover{
+    background-color: var(---acc_bg);
+}
+
+.accounting .account_info_popup .viewuseraccount .viewaccount .viewHistory .display-payments .item .payment-info{
+    font-size: 15px;
+    color: var(---gray);
+}
+
+.accounting .account_info_popup .viewuseraccount .viewaccount .view{
+    display: block;
+}
+
+.viewuseraccount .page-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    /* border: 1px solid var(---line); */
+    padding: 5px;
+    color: var(---gray);
+    height: 5%;
+}
+
+.viewuseraccount .page-header i{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.viewuseraccount .actions .action:hover,
+.viewuseraccount .page-header i:hover{
+    color: var(---maincolor);
+    background-color: var(---line);
+}
+
+.viewuseraccount .actions .action:active,
+.viewuseraccount .page-header i:active{
+    background-color: var(---white);
+    color: var(---white);
+}
+
+.viewuseraccount .actions{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 5px;
+    /* border: 1px solid var(---line); */
+}
+
+.viewuseraccount .actions .action{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    height: 30px;
+    padding: 0 10px 0 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 25px;
+}
+
+.viewuseraccount .actions .action p{
+    font-size: 16px;
+    color: var(---gray);
+    margin-left: 5px;
+}
+
+.viewuseraccount .actions .action i{
+    font-size: 18px;
+}
+
+.viewuseraccount .header{
+    /* border: 1px solid var(---line); */
+    height: 30%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.viewuseraccount .header .user-info{
+    text-align: center;
+    /* border: 1px solid var(---line); */
+    color: var(---gray);
+}
+
+.viewuseraccount .header .user-info img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.viewuseraccount .header .user-info .name{
+    font-size: 20px;
+}
+
+.viewuseraccount .header .user-info .schoolid{
+    font-size: 15px;
+}
+
+.viewuseraccount .content-account{
+    /* border: 1px solid var(---line); */
+    height: 250px;
+    overflow-y: scroll;
+}
+
+.viewuseraccount .content-account .line{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    /* border: 1px solid var(---line); */
+}
+
+.viewuseraccount .content-account select{
+    padding: 10px;
+    border: 0;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.viewuseraccount .content-account select:focus{
+    outline: none;
+}
+
+.viewuseraccount .content-account select:hover{
+    background-color: var(---acc_bg);
+}
+
+.viewuseraccount .content-account select option{
+    padding: 10px;
+}
+
+.viewuseraccount .content-account .note{
+    display: block;
+    align-items: start;
+}
+
+.viewuseraccount .content-account .note textarea{
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    height: 100px;
+    font-size: 16px;
+}
+
+.viewuseraccount .content-account .note textarea:focus{
+    outline: none;
+}
+
+.viewuseraccount .content-account .note textarea:hover{
+    border: 1px solid var(---line);
+}
+
+.viewuseraccount .content-account .line input{
+    border: 1px solid transparent;
+    padding: 5px;
+    font-size: 16px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.viewuseraccount .content-account .line input[type='text']{
+    text-align: end;
+}
+
+.viewuseraccount .content-account .line input:focus{
+    outline: none;
+    border: 1px solid var(---line);
+}
+
+.viewuseraccount .content-account .line input:hover{
+    background-color: var(---acc_bg);
+}
+
+.viewuseraccount .content-account::-webkit-scrollbar{
+    width: 5px;
+}
+
+.viewuseraccount .content-account::-webkit-scrollbar-track{
+    background-color: var(---line);
+}
+
+.viewuseraccount .content-account::-webkit-scrollbar-thumb{
+    background-color: var(---gray);
+    border-radius: 10px;
+}
+
+/* .showPopUp, */
+.accounting .showPopUp{
+    display: block;
+}
+
+/* for popups */
+.blur{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    background-color: rgba(66, 66, 66, 0.589);
+    height: 100%;
+    width: 100%;
+
+    visibility: hidden;
+}
+
+.showPopUpBG{
+    visibility: visible;
+}
+
+.blur .acc_popupmessage{
+    width: 450px;
+    height: 250px;
+    border-radius: 10px;
+    background-color: var(---white);
+    border: 1px solid var(---line);
+    /* box-shadow: 0 4px 8px 0 var(---shadow2), 0 6px 20px 0 var(---shadow2); */
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.blur .acc_popupmessage .header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(---acc_bg);
+    padding: 5px;
+}
+
+.blur .acc_popupmessage .header .exit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.blur .acc_popupmessage .header .exit:hover{
+    background-color: var(---acc_bg);
+}
+
+.blur .acc_popupmessage .header .exit:active{
+    color: var(---white);
+}
+
+.blur .acc_popupmessage .content{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+}
+
+.blur .acc_popupmessage .content .content-message{
+    text-align: center;
+}
+
+.blur .acc_popupmessage .content .content-message i{
+    font-size: 50px;
+    padding: 10px;
+}
+
+.blur .acc_popupmessage .content .content-message p{
+    font-size: 16px;
+}
+
+@media only screen and (max-width: 768px){
+    /* for mobile */
+    .acc_page .acc_table .acc_table_assessments{
+        display: block;
+    }
+
+    .acc_page .acc_table .acc_table_assessments .table{
+        width: 100%;
+    }
 }

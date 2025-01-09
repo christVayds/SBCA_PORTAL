@@ -15,22 +15,34 @@ if(isset($_SESSION['username'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="Resources/styles/login.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/9515269a08.js" crossorigin="anonymous"></script>
     <title>Login</title>
 </head>
 <body>
     <div class="container">
         <div class="users">
             <a href="login.php?user=student">
-                <div class="user student active" id="student"><p>Student</p></div>
+                <div class="user student active" id="student">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <p>Student</p>
+                </div>
             </a>
             <a href="login.php?user=teacher">
-                <div class="user teacher" id="teacher"><p>Teacher</p></div>
+                <div class="user teacher" id="teacher">
+                    <i class="fa-solid fa-chalkboard-user"></i>
+                    <p>Teacher</p>
+                </div>
             </a>
             <a href="login.php?user=sbca">
-                <div class="user admin" id="sbca"><p>SBCA</p></div>
+                <div class="user admin" id="sbca">
+                    <i class="fa-solid fa-user-tie"></i>
+                    <p>SBCA</p>
+                </div>
             </a>
         </div>
         <div class="loginbox">
+
+            <!-- left side -->
             <div class="side left">
                 <div class="logo">
                     <img src="Resources/assets/sbca.logo2.png" alt="">
@@ -53,14 +65,19 @@ if(isset($_SESSION['username'])){
                     </div>
                 </div>
             </div>
+
+            <!-- right side -->
             <div class="side right">
                 <img alt="user image" id="userImage" class='slide_img'>
             </div>
         </div>
-        <div class="options">
+        <!-- <div class="options">
             <a href="https://sbca.edu.ph/">SBCA Website</a>
             <p>•</p>
             <a href="#">Copyright 2025 St. Bernadette College of Alabang. All Right Reserved.</a>
+        </div> -->
+        <div class="copyright">
+            <p>Copyright ©2025 St. Bernadette College of Alabang. All Right Reserved.</p>
         </div>
     </div>
 

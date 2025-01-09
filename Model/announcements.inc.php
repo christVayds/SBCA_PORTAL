@@ -5,13 +5,24 @@ if(isset($_POST['postAnnouncement'])){
     include 'db.inc.php';
     include '../Class/Announcements.class.php';
     session_start();
+
+    if($_SESSION['role'] == 'accounting'){
+        $response = [
+            'success' => false,
+            'message' => 'Restricted, cant post announcement'
+        ];
+        echo json_encode($response);
+        exit();
+    }
     
     $title = $_POST['title'];
     $content = $_POST['content'];
     $imagefile = $_POST['imagefile'];
     $author = $_SESSION['username']; // admin username
+    $addEvent = $_POST['addEvent'];
+    $eventDate = $_POST['eventDate'];
 
-    $announcement = new Announcements($title, $content, $author);
+    $announcement = new Announcements($title, $content, $author, $addEvent, $eventDate, $imagefile);
     $announcement->postAnnouncement();
 
     echo json_encode($announcement->response);
@@ -67,6 +78,35 @@ if(isset($_POST['postAnnouncement'])){
     session_start();
 
     getCommentFromPost($_POST['post_address'], $_SESSION['username']);
+}
+
+// fetch events
+else if(isset($_POST['fetchEventsInAnnouncements'])){
+    header('Content-Type: application/json');
+    include 'db.inc.php';
+    session_start();
+
+    $response = [
+        'success' => false,
+        'message' => 'Database error: Events not found',
+        'data' => []
+    ];
+
+    $limit = 4;
+    $query = $conn->prepare('SELECT Events.*, Announcement.* FROM Events JOIN Announcement ON Events.announcement = Announcement.post_id ORDER BY event_date DESC LIMIT ?');
+    $query->bind_param('i', $limit);
+    $query->execute();
+    $result = $query->get_result();
+
+    if($result->num_rows > 0){
+        $response['success'] = true;
+        while($rows = $result->fetch_assoc()){
+            $newData = [$rows['month_year'], $rows['day'], ucwords($rows['title'])];
+            array_push($response['data'], $newData);
+        }
+    }
+
+    echo json_encode($response);
 }
 
 function getCommentFromPost($post_address, $std_username){

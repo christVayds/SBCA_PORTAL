@@ -1,172 +1,99 @@
 <?php
-// not yet done
-// fix the naming for faculty and students
-// check for selecting student
 
-// display the table    +
-// display in refresh   +
-// display in search    +
-
-// show table of all users (students and faculties)
-
-// show student grade info in dashboard(student/teacher tab) - popup
-
-// show students in dashboard tab
-
-function showStudentsByCourse($courseid, $year='1', $searchname=''): void{
+if(isset($_POST['fetchusertable'])){
+    header('Content-Type: application/json');
     include 'db.inc.php';
-    $stmt = mysqli_stmt_init($conn);
-    $courseid = $courseid.$year;
-    $searchname = '%'.$searchname.'%';
-    $active = 1;
+    include '../Class/Users.class.php';
+    session_start();
 
-    // $studentsquery = 'SELECT * FROM students WHERE course=?';
-    $studentsquery = 'SELECT Enrolled_Students.*, students.* FROM Enrolled_Students JOIN students ON Enrolled_Students.S_ID = students.username WHERE students.course=? AND CONCAT(students.fname, students.lname, students.username, students.userid) like ? AND active=? LIMIT 50';
+    $search = $_POST['search'];
+    $course = $_POST['course'];
+    $yearLevel = $_POST['yearLevel'];
+    $usertype = $_POST['user'];
 
-    if(!mysqli_stmt_prepare($stmt, $studentsquery)){
-        header('location: /dashboard.php?message=error');
-        exit();
-    } else {
-        mysqli_stmt_bind_param($stmt,'ssi', $courseid, $searchname, $active);
-        mysqli_stmt_execute($stmt);
-		$result = mysqli_stmt_get_result($stmt);
-
-        // table header
-        echo '
-            <tr class="table-row">
-                <th class="table-header table-id">ID NO.</th>
-                <th class="table-header table-name">Name</th>
-                <th class="table-header table-long">Course</th>
-                <th class="table-header table-num">Year</th>
-                <th class="table-header table-num">Unit</th>
-                <th class="table-header table-input">GPA</th>
-            </tr>
-        ';
-
-        while($row = $result->fetch_assoc()){
-            // table of students
-            $fullname = ucwords(Naming($row["fname"], $row["lname"], $row["mname"]));
-
-            echo '
-                <tr id="'. $row['userid'] .'" class="table-row table-user enrolled_std">
-                    <td class="table-data">'. $row['userid'] .'</td>
-                    <td class="table-data" id="'. $row['userid'] .'_name">'. $fullname .'</td>
-                    <td class="table-data" id="'. $row['userid'] .'_course">'. Coursename($row['course']) .'</td>
-                    <td class="table-data">3rd</td>
-                    <td class="table-data">12</td>
-                    <td class="table-data table-input">
-                        <input type="text" class="total_gpa" placeholder="0">
-                    </td>
-                </tr>
-            '; // end of tr
-
-        }
+    if($course === 'all'){
+        $course = '';
+    } if ($yearLevel === 'all'){
+        $yearLevel = '';
     }
-}
 
-// no filter
-function showUserData($count, $user){
-    include 'db.inc.php';
+    $courseyear = '%' . $course . $yearLevel . '%';
+    $search_ = '%' . $search . '%';
 
-    // $user = studets or teacher only
-    $studentsquery = "SELECT * FROM $user LIMIT $count";
-    $result = mysqli_query($conn, $studentsquery);
+    $response = [
+        'success' => true,
+        'message' => '',
+        // student - id, name, course, email
+        // faculty - id, name, email, profession
+        'data' => []
+    ];
 
     $active = 1;
-    $query = $conn->prepare("SELECT * FROM $user WHERE active=? LIMIT $count");
-    $query->bind_param('i', $active);
+
+    if($usertype == 'student'){
+        $query = $conn->prepare('SELECT * FROM students WHERE CONCAT(fname, lname, mname, username, email, userid) LIKE ? AND course LIKE ? AND active=? LIMIT 50');
+        $query->bind_param('ssi', $search_, $courseyear, $active);
+    } else {
+        $query = $conn->prepare('SELECT * FROM teachers WHERE CONCAT(fname, lname, mname, username, email, userid) LIKE ? AND active=? LIMIT 50');
+        $query->bind_param('si', $search_, $active);
+    }
     $query->execute();
     $result = $query->get_result();
 
     if($result->num_rows > 0){
-
-        // echo the table header
-        if($user == 'students'){
-            echo '<tr class="tb_header">
-                    <th id="userid">ID NO.</th>
-                    <th id="name">Name</th>
-                    <th id="course">Course</th>
-                    <th id="year">Year</th>
-                    <th id="status">Status</th>
-                </tr>';
-        } else {
-            echo '<tr class="tb_header">
-                <th id="userid">ID NO.</th>
-                <th id="name">Name</th>
-                <th id="course">Email</th>
-                <th id="year">Course</th>
-            </tr>';
-        }
-            
-        displayTable($result, $user);
-
-    }
-    mysqli_close($conn);
-}
-
-function displayTable($result, $userType='students'): void{
-    
-    while($row = $result->fetch_assoc()){
-        $fullname = ucwords(Naming($row['fname'], $row['lname'], $row['mname']));
-
-        // show data
-        // first check the type of user, teacher(faculty) or students - default is students
-        if($userType == 'students'){
-            // for students data
-            echo '<tr id="'.$row['userid'].'" class="studentrow">
-                        <td>' . $row['userid'] .' </td>
-                        <td>' . $fullname . '</td>
-                        <td>' . Coursename($row["course"]) . '</td>
-                        <td>3rd</td>
-                        <td>Regular</td>
-                    </tr>
-                ';
-        } else if($userType == 'teachers'){
-            // for teacher (faculty) data
-            echo '<tr id="'.$row['userid'].'" class="teacherrow">
-                        <td>' . $row['userid'] .' </td>
-                        <td>' . $fullname . '</td>
-                        <td>' . $row['email'] . '</td>
-                        <td>' . $row['profession'] . '</td>
-                    </tr>
-                ';
+        while($rows = $result->fetch_assoc()){
+            // $response['message'] = $usertype;
+            $fullname = Students::FullName($rows['fname'], $rows['lname'], $rows['mname']);
+            if($usertype === 'student'){
+                $coursename = Students::Course(substr($rows['course'], 0, -1));
+            } else {
+                $coursename = $rows['profession'];
+            }
+            $newData = [$rows['userid'], $fullname, $coursename, $rows['email']];
+            array_push($response['data'], $newData);
         }
     }
-}
 
-function Coursename($course){
-    $course = substr($course, 0, -1);
-    
-    switch($course){
-        case("bsit"):
-            $course = "BS Information Technology";
-            break;
-        case("bsba"):
-            $course = "BS Business Ad";
-            break;
-        case("bshm"):
-            $course = "BS Hospitality Management";
-            break;
-        case("bspsych"):
-            $course = "BS Psychology";
-            break;
-        default:
-            $course = "Unkown";
-            break;
-    };
+    echo json_encode($response);
+} else if(isset($_POST['enrolledStudents'])){
+    header('Content-Type: application/json');
+    include 'db.inc.php';
+    include '../Class/Users.class.php';
+    session_start();
 
-    return $course;
-}
+    $response = [
+        'success' => true,
+        'message' => '',
+        'data' => [
+            // userid, name, course, email, totalgpa
+        ]
+    ];
 
-function Naming($fname, $lname, $mname){
-    $fullname = "";
-    if($mname != 'n/a'){
-        $fullname = $fname . " " . $mname[0] . ". " . $lname;
-    } else {
-        $fullname = $fname . " " . $lname;
+    $course = $_POST['course'];
+    $yearLevel = $_POST['yearLevel'];
+    $search = '%' . $_POST['search'] . '%';
+    $courseyear = $course . $yearLevel;
+    $active = 1;
+    $currentSY = getCurrentSchoolYear();
+
+    $query = $conn->prepare('SELECT Enrolled_Students.*, students.* FROM Enrolled_Students JOIN students ON Enrolled_Students.S_ID = students.username WHERE Enrolled_Students.SY_ID=? AND students.course=? AND CONCAT(students.fname, students.lname, students.username, students.userid) like ? AND active=? LIMIT 50');
+    $query->bind_param('sssi', $currentSY, $courseyear, $search, $active);
+    $query->execute();
+    $result = $query->get_result();
+
+    if($result->num_rows > 0){
+        $response['message'] = 'hello world';
+        while($rows = $result->fetch_assoc()){
+            $fullname = Students::FullName($rows['fname'], $rows['lname'], $rows['mname']);
+            $coursename = Students::Course(substr($rows['course'], 0, -1));
+            $newData = [$rows['userid'], $fullname, $coursename, $rows['email'], $rows['TOTAL_GPA']];
+            array_push($response['data'], $newData);
+        }
+    } else{
+        $response['message'] = 'hello mars';
     }
 
-    return $fullname;
+    echo json_encode($response);
 }
 
 // this will format date into string formate
@@ -179,4 +106,22 @@ function formatDate($date, $format='toString'): string{
     }
 
     return $formattedDate;
+}
+
+function getCurrentSchoolYear(){
+    include 'db.inc.php';
+
+    $ActiveValue = 1;
+    $query = $conn->prepare('SELECT * FROM SchoolYear WHERE CURRENT=?');
+    $query->bind_param('i', $ActiveValue);
+    $query->execute();
+    $result = $query->get_result();
+
+    if($result->num_rows > 0){
+        $rows = $result->fetch_assoc();
+        $schoolyear = $rows['SY_ID'];
+        return $schoolyear;
+    }
+
+    return 'empty';
 }

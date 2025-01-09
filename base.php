@@ -3,6 +3,7 @@
 
     if(isset($_SESSION['user'])){
         $user = $_SESSION['user'];
+        $_SESSION['selected-user'] = '';
     } else {
         // if user not in session, go to login page
         header('location: login.php');
@@ -10,44 +11,53 @@
     }
 
     function displayTabs($user): void{
-        echo '<a href="dashboard.php">
-                <div class="nav" id="dashboard">
+        echo '<div class="nav-item mobile" id="menu-page">
+                <div class="icon">
+                    <i class="fa-solid fa-bars"></i>
+                </div>
+                <div class="label">
+                    <p>Menu</p>
+                </div>
+            </div>';
+
+        echo '<div class="nav-item" id="home-page">
+                <div class="icon">
                     <i class="fa-solid fa-house"></i>
                 </div>
                 <div class="label">
                     <p>Home</p>
                 </div>
-            </a>';
+            </div>';
         
         // display account page for sbca admin and students only
         if($user === 'sbca' || $user === 'student'){
-            echo '<a href="accounting.php">
-                <div class="nav" id="accounting">
-                    <i class="fa-solid fa-receipt" id="icon_messages"></i>
-                </div>
-                <div class="label">
-                    <p>Accounting</p>
-                </div>
-            </a>';
+            echo '<div class="nav-item" id="accounting-page">
+                    <div class="icon">
+                        <i class="fa-solid fa-receipt"></i>
+                    </div>
+                    <div class="label">
+                        <p>Account</p>
+                    </div>
+                </div>';
         }
 
-        echo '<a href="announcements.php">
-                <div class="nav" id="news-updates">
-                    <i class="fa-regular fa-newspaper" id="icon_announce"></i>
+        echo '<div class="nav-item" id="news-page">
+                <div class="icon">
+                    <i class="fa-regular fa-newspaper"></i>
                 </div>
                 <div class="label">
                     <p>News</p>
                 </div>
-            </a>';
+            </div>';
 
-        echo '<a href="account.php">
-                <div class="nav" id="account">
-                    <i class="fa-regular fa-circle-user" id="icon_account"></i>
+        echo '<div class="nav-item" id="users-page">
+                <div class="icon">
+                    <i class="fa-regular fa-user"></i>
                 </div>
                 <div class="label">
                     <p>User</p>
                 </div>
-            </a>';
+            </div>';
     }
 
 ?>

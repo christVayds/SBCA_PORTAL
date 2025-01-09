@@ -51,8 +51,9 @@ body{
     transform: translate(-50%, -50%);
     background-color: var(---white);
 
-    width: 900px;
+    width: 70%;
     border-radius: 5px;
+    /* border: 1px solid var(---line); */
 }
 
 .container .users{
@@ -62,24 +63,42 @@ body{
 }
 
 .container .users .user{
-    padding: 7px;
-    border-radius: 8px 8px 0 0;
+    padding: 5px 10px 5px 10px;
+    border-radius: 20px;
     cursor: pointer;
+    min-width: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.container .users .user i{
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+}
+
+.container .users .user p{
+    font-size: 17px;
 }
 
 .container .users .active{
-    border: 1px solid var(---line);
-    background-color: var(---sbca2);
+    /* border: 1px solid var(---line); */
+    background-color: var(---sbca);
     color: var(---selected_color);
 }
 
 .container .users .user:not(.active):hover{
-    background-color: var(---hover);
+    background-color: var(---acc_bg);
 }
 
 .container .loginbox{
-    border: 1px solid var(---line);
-    border-radius: 5px;
+    /* border: 1px solid var(---line); */
+    border-radius: 20px;
     height: 400px;
     padding: 10px;
     box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
@@ -94,11 +113,10 @@ body{
 
 .container .loginbox .left{
     position: relative;
-    border-radius: 10px;
-    margin: 10px;
-    /* box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset; */
-    box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
-    /* box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset; */
+    border-radius: 20px;
+    /* border: 2px solid var(---line); */
+    /* box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px; */
+
 }
 
 .container .loginbox .left .logo{
@@ -119,17 +137,23 @@ body{
 }
 
 .container .loginbox .left .form .forms input{
-    width: 350px;
+    width: 80%;
     padding: 10px;
     font-size: 18px;
     font-family: "Open sans";
     margin-top: 10px;
-    border-radius: 5px;
+    border-radius: 20px;
     border: 1px solid var(---line);
+    border: none;
+}
+
+.container .loginbox .left .form .forms input:not[type="submit"]:hover{
+    background-color: var(---acc_bg);
 }
 
 .container .loginbox .left .form .forms input:focus{
     outline: none;
+    background-color: var(---acc_bg);
 }
 
 .container .loginbox .left .form .forms input[type="submit"]:disabled:hover{
@@ -202,4 +226,23 @@ body{
 .container .options a:hover{
     color: var(---maincolor);
     text-decoration: underline;
+}
+
+.container .copyright{
+    /* border: 1px solid var(---line); */
+    font-size: 16px;
+    color: var(---gray);
+    padding: 10px;
+    margin-top: 10px;
+}
+
+@media only screen and (max-width: 1010px){
+    /* for mobile */
+    .container .loginbox .right{
+        display: none;
+    }
+
+    .container .loginbox .left{
+        width: 100%;
+    }
 }

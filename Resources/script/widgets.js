@@ -29,6 +29,21 @@ $(document).ready(function(){
         }
     });
 
+    $("#selector-std").click(function(){
+        console.log('yeah');
+        if(clicked_course_selector){
+            document.getElementById("select_options").classList.remove('show');
+            document.getElementById("down_icon").classList.remove('fa-caret-up');
+            document.getElementById("down_icon").classList.add('fa-caret-down');
+            clicked_course_selector = false;
+        } else {
+            document.getElementById("select_options").classList.add('show');
+            document.getElementById("down_icon").classList.add('fa-caret-up');
+            document.getElementById("down_icon").classList.remove('fa-caret-down');
+            clicked_course_selector = true;
+        }
+    });
+
     $(".course_year").click(function(){
         var selected = document.getElementById('selected');
         selected.textContent = $(this).attr('id');

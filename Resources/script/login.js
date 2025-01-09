@@ -22,17 +22,17 @@ $(document).ready(function(){
     switch(active_user){
         case('student'):
             document.getElementById(active_user).classList.add('active');
-            userImage.src = 'Resources/assets/student.nobg.png';
+            userImage.src = 'Resources/assets/student_anime.png';
             sessionStorage.setItem('user', 'student');
             break;
         case('teacher'):
             document.getElementById(active_user).classList.add('active');
-            userImage.src = 'Resources/assets/teacher.nobg.png';
+            userImage.src = 'Resources/assets/teacher_anime.png';
             sessionStorage.setItem('user', 'teacher'); // student replaced
             break;
         case('sbca'):
             document.getElementById(active_user).classList.add('active');
-            userImage.src = 'Resources/assets/tom.nobg.png';
+            userImage.src = 'Resources/assets/admin_anime.png';
             sessionStorage.setItem('user', 'admin'); // student replaced
             break;
         default:

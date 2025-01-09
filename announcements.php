@@ -40,10 +40,10 @@
     <div class="n_side news-calendar">
         <div class="calendar">
             <div class="calendar-header">
-                <p>November 2024</p>
+                <p id="month_year_calendar">Loading...</p>
             </div>
             <div class="calendar-table">
-                <table>
+                <table id="calendar-table">
                     <tr>
                         <th class="sunday">S</td>
                         <th class="monday">M</td>
@@ -53,51 +53,7 @@
                         <th class="friday">F</td>
                         <th class="saturday">S</td>
                     </tr>
-                    <tr>
-                        <td class="sunday"></td>
-                        <td class="monday"></td>
-                        <td class="tuesday"></td>
-                        <td class="wednesday"></td>
-                        <td class="thursday"></td>
-                        <td class="friday mark">1</td>
-                        <td class="saturday mark">2</td>
-                    </tr>
-                    <tr>
-                        <td class="sunday">3</td>
-                        <td class="monday">4</td>
-                        <td class="tuesday">5</td>
-                        <td class="wednesday">6</td>
-                        <td class="thursday">7</td>
-                        <td class="friday">8</td>
-                        <td class="saturday">9</td>
-                    </tr>
-                    <tr>
-                        <td class="sunday mark bday">10</td>
-                        <td class="monday">11</td>
-                        <td class="tuesday">12</td>
-                        <td class="wednesday">13</td>
-                        <td class="thursday">14</td>
-                        <td class="friday">15</td>
-                        <td class="saturday">16</td>
-                    </tr>
-                    <tr>
-                        <td class="sunday">17</td>
-                        <td class="monday">18</td>
-                        <td class="tuesday">19</td>
-                        <td class="wednesday">20</td>
-                        <td class="thursday">21</td>
-                        <td class="friday">22</td>
-                        <td class="saturday">23</td>
-                    </tr>
-                    <tr>
-                        <td class="sunday">24</td>
-                        <td class="monday">25</td>
-                        <td class="tuesday">26</td>
-                        <td class="wednesday">27</td>
-                        <td class="thursday">28</td>
-                        <td class="friday">29</td>
-                        <td class="saturday mark">30</td>
-                    </tr>
+                    <tbody class="calendar-days" id="calendar_days"></tbody>
                 </table>
            </div>
         </div>
@@ -116,7 +72,9 @@
 
         <div class="feed">
             <div class="composer">
-                <div class="com-image"></div>
+                <div class="com-image">
+                    <img src="Resources/assets/sbca.logo.5.jpg" alt="SBCA">
+                </div>
                 <div class="com-name">
                     <p class="com-name-p">St. Bernadette College of Alabang</p>
                     <p class="com-time-p">Nov. 3, 2024 at 11:04pm</p>
@@ -145,27 +103,13 @@
     </div>
 
     <!-- upcomming events -->
-    <div class="n_side news-tabs">
+    <div class="n_side news-tabs" id="list-events-announcements">
+        <h2>Events</h2>
         <div class="events-tab">
-            <h3>November 2024</h3>
+            <h3>Loading...</h3>
             <div class="num-events">
-                <h1>2</h1>
-                <p>Upcomming events this month.</p>
-            </div>
-        </div>
-
-        <div class="events-tab">
-            <h3>December 2024</h3>
-            <div class="num-events">
-                <h1>3</h1>
-                <p>Upcomming events.</p>
-            </div>
-        </div>
-        <div class="events-tab">
-            <h3>January 2025</h3>
-            <div class="num-events">
-                <h1>5</h1>
-                <p>Upcomming events.</p>
+                <h1>Loading...</h1>
+                <p>Loading...</p>
             </div>
         </div>
     </div>

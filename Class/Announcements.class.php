@@ -6,11 +6,16 @@ class Announcements{
     public $imagefile;
     public $author;
     public $response;
+    public $addEvent;
+    public $eventDate;
 
-    public function __construct($title, $content, $author){
+    public function __construct($title, $content, $author, $addEvent, $eventDate, $imagefile=false){
         $this->title = $title;
         $this->content = $content;
         $this->author = $author;
+        $this->addEvent = $addEvent;
+        $this->eventDate = $eventDate;
+        $this->imagefile = $imagefile;
         $this->response = [
             "success" => false,
             "message" => "None"
@@ -30,15 +35,44 @@ class Announcements{
 
         // get datetime
         $date = new DateTime();
-        $datetime = $date->format('Y:m:d H:i:s'); // soon
+        $datetime = $date->format('Y:m:d H:i:s');
 
         $postlink = $this->generateLink();
-        $stmt = $conn->prepare("INSERT INTO Announcement(title, content, addresslink, author) VALUES (?,?,?,?)");
-        $stmt->bind_param('ssss', $this->title, $this->content, $postlink, $this->author);
+        if($this->imagefile !== 'false'){
+            $uploadDir = '../Resources/uploads/';
+            if(!is_dir($uploadDir)){
+                mkdir($uploadDir, 0777, true);
+            }
+
+            $distination = $uploadDir . basename($this->imagefile);
+
+            // move the upload file - wrong
+            if(move_uploaded_file('C:/fakepath/', $distination)){
+                $binary_image = addslashes(file_get_contents(htmlspecialchars($this->imagefile)));
+                $stmt = $conn->prepare("INSERT INTO Announcement(title, content, addresslink, author, postDate, imagefile) VALUES (?,?,?,?,?,?)");
+                $stmt->bind_param('ssssss', $this->title, $this->content, $postlink, $this->author, $datetime, $binary_image);
+            }
+        } else {
+            $stmt = $conn->prepare("INSERT INTO Announcement(title, content, addresslink, author, postDate) VALUES (?,?,?,?,?)");
+            $stmt->bind_param('sssss', $this->title, $this->content, $postlink, $this->author, $datetime);
+        }
 
         if($stmt->execute()){
-            $this->response["success"] = true;
-            $this->response['message'] = "Posted";
+            if($this->addEvent == 'false'){
+                $this->response["success"] = true;
+                $this->response['message'] = "Posted";
+            } else {
+                $announcementID = $stmt->insert_id;
+                $event_date = new DateTime($this->eventDate);
+                $month_year = $event_date->format('F Y');
+                $day = $event_date->format('j');
+                $newStmt = $conn->prepare('INSERT INTO Events(month_year, day, announcement, event_date) VALUE (?,?,?,?)');
+                $newStmt->bind_param('ssis', $month_year, $day, $announcementID, $this->eventDate);
+                if($newStmt->execute()){
+                    $this->response["success"] = true;
+                    $this->response['message'] = "Posted with events";
+                }
+            }
         } else {
             $this->response["success"] = false;
             $this->response['message'] = "Database Error";
@@ -203,12 +237,15 @@ class Announcements{
 
         if($result->num_rows > 0){
             while($row = $result->fetch_assoc()){
+                $postDate = new DateTime($row['postDate']);
                 echo '<div class="feed">
                     <div class="composer">
-                        <div class="com-image"></div>
+                        <div class="com-image">
+                            <img src="Resources/assets/sbca.logo.5.jpg" alt="SBCA">
+                        </div>
                         <div class="com-name">
                             <p class="com-name-p">St. Bernadette College of Alabang</p>
-                            <p class="com-time-p">Nov. 3, 2024 at 11:04pm</p>
+                            <p class="com-time-p">'. $postDate->format('F j, Y').' at ' . $postDate->format('h:iA') .'</p>
                         </div>
                     </div>
                     <div class="content-feed">

@@ -5,9 +5,9 @@ if(isset($_POST['view_list_course'])){
     include '../../Class/Users.class.php';
     session_start();
 
-    $semesterLevel = $_POST['semesterLevel'];
+    $yearLevel = $_POST['yearLevel'];
     $stmt = $conn->prepare('SELECT * FROM Course WHERE level=?');
-    $stmt->bind_param('i', $semesterLevel);
+    $stmt->bind_param('i', $yearLevel);
     $stmt->execute();
     $result = $stmt->get_result();
 
@@ -35,10 +35,28 @@ if(isset($_POST['view_list_course'])){
 ?>
 
 <script>
+
+    function course_displaytable(data=[]){
+        // console.log(data);
+        var table = document.getElementById('courseList-display-subjects');
+        var tbody = table.querySelector('tbody');
+
+        var newRows = document.createElement('tr');
+        newRows.className = 'table-row table-user';
+
+        for(var i=0;i<data.length;i++){
+            newData = document.createElement('td');
+            newData.className = 'table-data';
+            newData.textContent = data[i];
+            newRows.appendChild(newData);
+        }
+
+        tbody.appendChild(newRows);
+    }
+
     // course list on click items
     $('.course-data').click(function(){
-        document.getElementById('courseinfo-popup').classList.add('showSemPopup');
-        // console.log($(this).attr('id').slice(7));
+        console.log($(this).attr('id').slice(7));
         var courseSelected = $(this).attr('id').slice(7);
 
         $.ajax({
@@ -49,10 +67,24 @@ if(isset($_POST['view_list_course'])){
                 selectedCourse: courseSelected
             },
             success: function(response){
-                console.log('response: ' + response.data['name']);
-                document.getElementById('selected_coursename').textContent = response.data['name'];
+                if(response.success && response.data.length > 0){
+                    document.getElementById('courseinfo-popup').classList.add('showSemPopup');
+                    document.getElementById('selected_coursename').textContent = response.info.name;
+                    document.getElementById('courselist-number-of-subjects').textContent = response.data.length;
+                    
+                    // console.log('response: ' + response.data);
+                    // clear table contents
+                    $("#courseList-display-subjects tbody tr").remove();
+
+                    // show table of subjects
+                    response.data.forEach(data => {
+                        // console.log(data);
+                        course_displaytable(data);
+                        
+                    });
+                }
             },
-            error: function(){
+            error: function(error){
 
             }
         });

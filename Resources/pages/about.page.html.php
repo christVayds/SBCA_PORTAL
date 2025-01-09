@@ -22,7 +22,7 @@
 </div>
 
 <div class="sliding_images">
-    <img src="Resources/assets/cover.png" alt="">
+    <img src="Resources/assets/cover.png" alt="logo">
 </div>
 
 <div class="extra_line">
@@ -34,16 +34,140 @@
 
 <div class="enrollment_information">
     <div class="side enrollment_req">
-        <h2>Enrollment Requierments:</h2>
+        <h2>Enrollment Requirements:</h2>
         <div class="list_req">
-            <p>Dapat madami kang pera</p>
-            <p>Wag ka mag reklamo</p>
+            <p>Item 1</p>
+            <p>Item 2</p>
         </div>
     </div>
     <div class="side enrollment_qr">
         <h2>Enroll now!</h2>
-        <img src="https://i.pinimg.com/236x/d8/11/10/d81110f74b45542aa26eddc290592ed8.jpg" alt="SBCA QR Code Enromment">
-        <p>www.sbca.ph</p>
+        <img src="Resources/assets/sbcaqrcode.svg" alt="SBCA QR Code Enromment">
+        <p>www.sbca.edu.ph</p>
+    </div>
+</div>
+<div class="schollarship_info">
+    <h2>Scholarship Grants and Discounts!</h2>
+    <div class="items">
+        <div class="item">
+            <div class="header">
+                <p>Academic Acheivement Scholarship Grant</p>
+            </div>
+            <div class="checkLists">
+                <div class="list">
+                    <i class="fa-solid fa-check"></i>
+                    <p>With highest honors - 100% tuition fee discount.</p>
+                </div>
+                <div class="list">
+                    <i class="fa-solid fa-check"></i>
+                    <p>With high honors - 50% tuition fee discount.</p>
+                </div>
+                <div class="list">
+                    <i class="fa-solid fa-check"></i>
+                    <p>With honors - 30% tuition fee discount.</p>
+                </div>
+                <div class="list">
+                    <i class="fa-solid fa-check"></i>
+                    <p>Full payement - 5% tuition fee discount.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="header">
+                <p>Siblings' Discount</p>
+            </div>
+            <div class="checkLists">
+                <div class="list">
+                    <p>Given to the oldest sibling enrolled</p>
+                </div>
+                <div class="list">
+                    <i class="fa-solid fa-check"></i>
+                    <p>2 siblings - 5% tuition fee discount.</p>
+                </div>
+                <div class="list">
+                    <i class="fa-solid fa-check"></i>
+                    <p>3 siblings - 10% tuition fee discount.</p>
+                </div>
+                <div class="list">
+                    <i class="fa-solid fa-check"></i>
+                    <p>4 siblings - 50% tuition fee discount.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="item">
+            <div class="header">
+                <p>Being a friend Discount</p>
+            </div>
+            <div class="checkLists">
+                <div class="list">
+                    <p>A students or parent who can bring another student to enroll at any level will be entitled to PHP 500 credit to tuition fee.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="enrollment_information">
+    <div class="side prog_offer">
+        <h2>Programs Offered</h2>
+        <p class="description">The Collegiate Department offers several FOUR-YEAR DEGREE PROGRAMS.</p>
+        <p class="description">We aim to respond positively to the growth in our society by providing Quality Education for the students.</p>
+        <div class="list_req flexed">
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/1f/f2/f3/1ff2f3a454fd9c61db2d602265dc59ae.jpg" alt="bsit">
+                <h4>BS in Information Technology</h4>
+                <h5>FOUR-YEAR DEGREE</h5>
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/9c/8e/fc/9c8efcb9c28b8c3e71edd23ab79bdcd3.jpg" alt="bsed">
+                <h4>BS in Elementary Education</h4>
+                <h5>FOUR-YEAR DEGREE</h5>
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/77/fc/08/77fc08253ea661f5eea2c341d3ebc180.jpg" alt="bssd">
+                <h4>BS in Secondary Education</h4>
+                <h5>FOUR-YEAR DEGREE</h5>
+                <p>Major in Social studies, Math, English, and Music.</p>
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/4a/db/a3/4adba3b1cf2c33102e183f3b7edf83f5.jpg" alt="bshm">
+                <h4>BS in Hospitality Management</h4>
+                <h5>FOUR-YEAR DEGREE</h5>
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/bd/6c/26/bd6c26e49abf10a33d5d6d5b32444001.jpg" alt="bsba">
+                <h4>BS in Business Administrator</h4>
+                <h5>FOUR-YEAR DEGREE</h5>
+                <p>Major in Marketing Management</p>
+                <p>Major in Operations Management</p>
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/c7/6f/9d/c76f9db4d7f9f76c767ece6f3175dac8.jpg" alt="bsentrep">
+                <h4>BS in Entrepreneurship</h4>
+                <h5>FOUR-YEAR DEGREE</h5>
+            </div>
+            <div class="item">
+                <img src="https://i.pinimg.com/736x/a6/96/d3/a696d36c965e13c663bdcd8f8f5e1da9.jpg" alt="bspsych">
+                <h4>BS in Psychology</h4>
+                <h5>FOUR-YEAR DEGREE</h5>
+            </div>
+            <div class="item">
+                <img src="https://hrmasia.com/wp-content/uploads/2018/10/Hong-Kong-approves-five-day-paternity-leave-2.jpg" alt="ctp">
+                <h4>Certificate of Teaching Program (CTP)</h4>
+                <h5 class="short">SHORT-TERM PROGRAM</h5>
+            </div>
+            <div class="item">
+                <img src="https://2012-2017.usaid.gov/sites/default/files/success_story/basa-rural-teachers.jpg" alt="cpe">
+                <h4>Certificate of Pre-School Education (CPE)</h4>
+                <h5 class="short">SHORT-TERM PROGRAM</h5>
+            </div>
+            <div class="item">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiDE_KSm6Vhy2foh3tOkw8kwRShZ9N5mI7uw&s" alt="midwifery">
+                <h4>Deploma in Midwifery</h4>
+                <h5 class="short">SHORT-TERM PROGRAM</h5>
+            </div>
+        </div>
     </div>
 </div>
 <div class="about_sbca_label">

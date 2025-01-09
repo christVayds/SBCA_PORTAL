@@ -25,6 +25,7 @@
 
 .news-tabs{
     width: 17%;
+    overflow-y: scroll;
 }
 
 .calendar{
@@ -134,6 +135,13 @@
     margin-right: 10px;
 }
 
+.composer .com-image img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
 .composer .com-name{
     width: fit-content;
     height: 50px;
@@ -146,7 +154,7 @@
 }
 
 .com-time-p{
-    font-size: 18px;
+    font-size: 15px;
     color: var(---gray);
 }
 
@@ -293,9 +301,14 @@
 }
 
 .list-comments .user-comment{
-    /* border: 1px solid var(---gray); */
+    /* border: 1px solid var(---line); */
+    /* background-color: var(---acc_bg); */
     min-height: 10px;
     padding: 10px;
+}
+
+.list-comments .user-comment:hover{
+    background-color: var(---acc_bg);
 }
 
 .list-comments .user-comment .user-comment-header{
@@ -321,6 +334,10 @@
 
 .list-comments .user-comment .user-comment-header .user-info .time{
     color: var(---gray);
+}
+
+.list-comments .user-comment .comment-content{
+    padding: 10px;
 }
 
 /* type comment */
@@ -356,4 +373,16 @@
 .type-comment button:hover{
     background-color: var(---sbca2);
     color: var(---selected_color);
+}
+
+@media only screen and (max-width: 768px){
+    /* for mobile */
+    .news-calendar,
+    .news-tabs{
+        display: none;
+    }
+
+    .news-feeds{
+        width: 100%;
+    }
 }
