@@ -1,8 +1,9 @@
 <?php
 
 // fetching semester info
-if(isset($_POST['semesterLevel'])){
+if(isset($_POST['updateAdminDashboard'])){
     header('Content-Type: application/json');
+    include '../Class/Users.class.php';
     include 'db.inc.php';
 
     $response = [
@@ -10,11 +11,13 @@ if(isset($_POST['semesterLevel'])){
         'message' => 'hello world',
         'data' => [], // num_enrolles, num_students, num_faculties, num_course
         'semesterLevel' => '0',
-        'schoolYear' => 'XXXX-XXXX'
+        'schoolYear' => 'Loading...'
     ];
 
+    $currentSY = Users::getCurrentSchoolYear();
+
     $student_sql = "SELECT COUNT(*) AS count FROM students"; // number of students
-    $enrolled_sql = "SELECT COUNT(*) AS count FROM Enrolled_Students"; // number of enrolled students
+    $enrolled_sql = "SELECT COUNT(*) AS count FROM Enrolled_Students WHERE SY_ID='$currentSY'"; // number of enrolled students
     $teacher_sql = "SELECT COUNT(*) AS count FROM teachers"; // number of teachers / faculties
     $avail_courses = "SELECT COUNT(*) AS count FROM Course"; // number of courses available
 

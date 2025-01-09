@@ -30,6 +30,7 @@ Noto Color Emoji
     ---practice: #f0f0f0ec;
     ---mark: #75ff9a;
     ---bday: #5ea3f7;
+    ---sunflower: #ffa902;
     ---bdayhover: #308eff;
     ---markhover: #44f273;
     ---black: #3F3F3F;
@@ -45,7 +46,7 @@ Noto Color Emoji
     ---gray: #A5A5A5;
     ---line: #9b9a9a59;
     ---white: #3F3F3F;
-    ---selected_color: #f0f0f0ec;
+    ---selected_color: #fff;
     ---shadow: #6b6b6b94;
     ---shadow2: #2e2e2e;
     ---hover: #686868;
@@ -58,32 +59,10 @@ Noto Color Emoji
     ---open_popup: rgba(66, 66, 66, 0.589);
     ---mark: #75ff9a;
     ---bday: #5ea3f7;
+    ---sunflower: #ffa902;
     ---bdayhover: #308eff;
     ---markhover: #44f273;
     ---black: #3F3F3F;
-}
-
-.christmas{
-    ---sbca: #f7c6b4;
-    ---sbca2: #FFA27F;
-    ---sbca3: #fa7d4f;
-    ---sbca4: #ff4646;
-    ---maincolor: #FFE8C5;
-    ---tableHeader: #97BE5A;
-    ---gray: #A5A5A5;
-    ---line: #9b9a9a59;
-    ---white: #FF0000;
-    ---selected_color: #f0f0f0ec;
-    ---shadow: #6b6b6b94;
-    ---shadow2: #2e2e2e;
-    ---hover: #97BE5A;
-    ---hover2: #ebeaea48;
-    ---hover3: #c4c4c45d;
-    ---acc_bg: #b9b1fd15;
-    ---list_hover: #e2e2e238;
-    ---tab_hover: #dbdbdb5d;
-    ---practice: #f0f0f0ec;
-    ---open_popup: rgba(66, 66, 66, 0.589);
 }
 
 *{
@@ -93,7 +72,7 @@ Noto Color Emoji
 }
 
 body{
-    font-size: 18px;
+    font-size: 14px;
     font-family: "Open Sans", sans-serif;
     color: var(---maincolor);
     background-color: var(---white);
@@ -147,49 +126,64 @@ body{
 
 /* Action menu */
 
-.navbar .navmenu a{
+.navbar .navmenu a #sbca:active{
+    color: var(---white);
+}
+
+.navbar .navmenu .nav-item{
+    /* border: 1px solid var(---line); */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 35px;
+    height: 35px;
+    border-radius: 50px;
+    padding: 0 10px 0 10px;
+    cursor: pointer;
     color: var(---gray);
+}
+
+.navbar .navmenu .mobile{
+    display: none;
+}
+
+.navbar .navmenu .nav-item i{
+    font-size: 18px;
+}
+
+.navbar .navmenu .nav-item .label{
+    display: none;
+    margin-left: 10px;
+    color: gray;
+}
+
+.navbar .navmenu .nav-item:hover{
+    background-color: var(---acc_bg);
+}
+
+.navbar .navmenu .nav-item:hover .label{
+    display: block;
+}
+
+.navbar .navmenu .nav-item:active{
+    color: var(---white);
 }
 
 .navbar .navmenu .active{
     color: var(---maincolor);
 }
 
-.navbar .navmenu a .nav{
-    margin-left: 15px;
-    padding: 5px;
-    font-size: 20px;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.navbar .navmenu a .label{
-    display: none;
-    opacity: 0;
-    position: absolute;
-    font-size: 15px;
-    border-radius: 5px;
-    background-color: var(---hover);
-    color: var(---maincolor);
-    margin-top: 5px;
-    transition: opacity .5s, display 5s;
-    padding: 5px;
-}
-
-.navbar .navmenu a .nav:hover{
-    box-shadow: 0 4px 8px 0 var(---shadow), 0 6px 20px 0 var(---shadow);
-}
-
-.navbar .navmenu a:hover .label{
-    opacity: .7;
+.navbar .navmenu .active .label{
     display: block;
 }
 
-.navbar .navmenu a #sbca:active,
-.navbar .navmenu a .nav:active{
-    color: var(---white);
+@media only screen and (max-width: 768px){
+    /* for mobile */
+    .navbar .navmenu .nav-item{
+        display: none;
+    }
+
+    .navbar .navmenu .mobile{
+        display: flex;
+    }
 }

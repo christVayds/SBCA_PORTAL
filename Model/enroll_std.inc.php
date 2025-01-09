@@ -5,8 +5,18 @@
 if(isset($_POST['enrollstudent'])){
     header('Content-Type: application/json');
     include '../Class/Users.class.php';
-
     session_start();
+
+    // check for roles
+    if($_SESSION['role'] === 'accounting'){
+        $response = [
+            'success' => false,
+            'message' => 'Unable to update changes.',
+            'reason' => 'not admin'
+        ];
+        echo json_encode($response);
+        exit();
+    }
     
     // selected user from student list
     $userid = $_SESSION['selected-user'];
@@ -16,6 +26,7 @@ if(isset($_POST['enrollstudent'])){
         $response = [
             'success' => true,
             'message' => 'username not found',
+            'reason' => '',
             'selected_user' => $userid
         ];
 
@@ -23,7 +34,7 @@ if(isset($_POST['enrollstudent'])){
         exit();
     }
 
-    $enrollstudent = Students::enrollStudent($username);
+    $enrollstudent = Students::enrollStudent($username, $username);
 
     // check if student enrolled successfully
     if($enrollstudent){

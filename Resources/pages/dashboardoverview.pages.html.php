@@ -1,6 +1,6 @@
 <div class="semester-name">
-    <h1>School Year: <span class="semester-number" id="semester-year-level">XXXX-XXXX</span></h1>
-    <h1>Semester Level: <span class="semester-number" id="semester-num-level">1st</span></h1>
+    <h1>School Year: <span class="semester-number" id="semester-year-level">Loading...</span></h1>
+    <h1>Semester Level: <span class="semester-number" id="semester-num-level">Loading...</span></h1>
 </div>
 
 <div class="label-for-dashboard">

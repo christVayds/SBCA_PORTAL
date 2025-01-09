@@ -72,5 +72,7 @@ $(document).ready(function(){
     $('#exit-comments').click(function(){
         document.getElementById('input-comment').value = "";
         document.getElementById('read-comments').classList.remove('show-comments');
+
+        $('#list-comments div').remove();
     });
 });

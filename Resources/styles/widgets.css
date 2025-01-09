@@ -167,16 +167,18 @@
     display: block;
 }
 
+/* click selection */
+.remove_dropdown{
+    display: none;
+}
+
 /* quick selectiion */
 .year_selection{
     border-bottom: 1px solid var(---line);
     background-color: var(---white);
     text-align: end;
-}
-
-.year_selection #selected{
-    padding: 5px;
     width: 150px;
+    padding: 5px;
 }
 
 .year_selection .selections{

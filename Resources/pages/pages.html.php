@@ -22,7 +22,6 @@ function AccountPage(): void{
         } else if ($user === 'sbca') {
             include('admin_acc.page.html.php');
         } else {
-            // error in teacher
             exit(); // exit here
         }
     }
